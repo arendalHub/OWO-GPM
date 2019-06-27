@@ -46,8 +46,6 @@
 
     <body>
         <div id="sb-site">
-            
-            <!-- BEGIN SideBars -->
             <div class="sb-slidebar bg-black sb-left sb-style-overlay">
                 <div class="scrollable-content scrollable-slim-sidebar">
                     <div class="pad10A">
@@ -395,8 +393,11 @@
                     </div>
                 </div>
             </div>
-            <!-- END SideBars -->
-
+            <div id="loading">
+                <div class="svg-icon-loader">
+                    <img src="http://demo.agileui.com/delight/assets-minified/images/svg-loaders/bars.svg" width="40" alt="">
+                </div>
+            </div>
 
             <div id="page-wrapper">
 
@@ -558,7 +559,7 @@
                 </div>
                 <!-- END LEFT -->
 
-                <!-- BEGIN CONTENT -->
+                
                 <div id="page-content-wrapper">
                     <div id="page-content">
                         <div id="page-header">
@@ -973,7 +974,6 @@
 
                     </div>
                 </div>
-                <!-- END CONTENT -->
             </div>
 
 
