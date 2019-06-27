@@ -10,7 +10,7 @@
 
         <meta charset="UTF-8">
         <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-        <title>OWO-GPM [Titre de page] </title>
+        <title>OWO-GPM | @yield('titre_page', '[TITRE DE PAGE]')</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -406,11 +406,11 @@
                 </div>
                 <div id="page-sidebar">
                     <div id="header-logo" class="logo-bg">
-                        <a href="index-2.html" class="logo-content-big" title="OWO-GPM">
+                        <a href="#" class="logo-content-big" title="OWO-GPM">
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>
-                        <a href="index-2.html" class="logo-content-small" title="OWO-GPM">
+                        <a href="#" class="logo-content-small" title="OWO-GPM">
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>
@@ -959,13 +959,14 @@
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/calendar/calendar-demo.js') }}"></script>
 
                         <div id="page-title">
-                            <h2>[TITRE DE CONTENU]</h2>
-                            <p>[SOUS TITRE DE CONTENU]</p>
+                            <h2>@yield('titre_contenu', '[TITRE DE CONTENU]')</h2>
+                            <p>@yield('sous_titre_contenu', '[SOUS TITRE DE CONTENU]')</p>
 
                         </div>
 
                         <div class="row">
-                            <h1>[CONTENU DE LA PAGE]</h1>
+                            @yield('contenu_page', '[CONTENU DE LA PAGE]')
+                            
                         </div>
 
 
