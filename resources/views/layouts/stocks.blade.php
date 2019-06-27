@@ -10,7 +10,7 @@
 
         <meta charset="UTF-8">
         <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-        <title>OWO-GPM [Titre de page] </title>
+        <title>OWO-GPM | STOCKS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -46,6 +46,8 @@
 
     <body>
         <div id="sb-site">
+            
+            <!-- BEGIN SideBars -->
             <div class="sb-slidebar bg-black sb-left sb-style-overlay">
                 <div class="scrollable-content scrollable-slim-sidebar">
                     <div class="pad10A">
@@ -393,11 +395,8 @@
                     </div>
                 </div>
             </div>
-            <div id="loading">
-                <div class="svg-icon-loader">
-                    <img src="http://demo.agileui.com/delight/assets-minified/images/svg-loaders/bars.svg" width="40" alt="">
-                </div>
-            </div>
+            <!-- END SideBars -->
+
 
             <div id="page-wrapper">
 
@@ -407,11 +406,11 @@
                 </div>
                 <div id="page-sidebar">
                     <div id="header-logo" class="logo-bg">
-                        <a href="index-2.html" class="logo-content-big" title="OWO-GPM">
+                        <a href="#" class="logo-content-big" title="OWO-GPM">
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>
-                        <a href="index-2.html" class="logo-content-small" title="OWO-GPM">
+                        <a href="#" class="logo-content-small" title="OWO-GPM">
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>
@@ -443,95 +442,7 @@
 
                                 </div><!-- .sidebar-submenu -->
                             </li>
-                            <li class="header"><span>OPERATIONS DU PERSONNEL</span></li>
-                            <li>
-                                <a href="#" title="Element 1">
-                                    <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Element 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" title="Elements 2">
-                                    <i class="glyph-icon icon-linecons-diamond"></i>
-                                    <span>Element 2</span>
-                                </a>
-                                <div class="sidebar-submenu">
-
-                                    <ul>
-                                        <li><a href="#" title="Sous-Element 2.1"><span>Sous-Element 2.1</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.2"><span>Sous-Element 2.2</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.3"><span>Sous-Element 2.3</span></a></li>
-                                    </ul>
-
-                                </div><!-- .sidebar-submenu -->
-                            </li>
-                            <li class="header"><span>GESTION STOCK</span></li>
-                            <li>
-                                <a href="#" title="Element 1">
-                                    <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Element 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" title="Elements 2">
-                                    <i class="glyph-icon icon-linecons-diamond"></i>
-                                    <span>Element 2</span>
-                                </a>
-                                <div class="sidebar-submenu">
-
-                                    <ul>
-                                        <li><a href="#" title="Sous-Element 2.1"><span>Sous-Element 2.1</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.2"><span>Sous-Element 2.2</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.3"><span>Sous-Element 2.3</span></a></li>
-                                    </ul>
-
-                                </div><!-- .sidebar-submenu -->
-                            </li>
-                            <li class="header"><span>GESTION PARC ROULANT</span></li>
-                            <li>
-                                <a href="#" title="Element 1">
-                                    <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Element 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" title="Elements 2">
-                                    <i class="glyph-icon icon-linecons-diamond"></i>
-                                    <span>Element 2</span>
-                                </a>
-                                <div class="sidebar-submenu">
-
-                                    <ul>
-                                        <li><a href="#" title="Sous-Element 2.1"><span>Sous-Element 2.1</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.2"><span>Sous-Element 2.2</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.3"><span>Sous-Element 2.3</span></a></li>
-                                    </ul>
-
-                                </div><!-- .sidebar-submenu -->
-                            </li>
-                            <li class="header"><span>GESTION PATRIMOINE</span></li>
-                            <li>
-                                <a href="#" title="Element 1">
-                                    <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Element 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" title="Elements 2">
-                                    <i class="glyph-icon icon-linecons-diamond"></i>
-                                    <span>Element 2</span>
-                                </a>
-                                <div class="sidebar-submenu">
-
-                                    <ul>
-                                        <li><a href="#" title="Sous-Element 2.1"><span>Sous-Element 2.1</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.2"><span>Sous-Element 2.2</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.3"><span>Sous-Element 2.3</span></a></li>
-                                    </ul>
-
-                                </div><!-- .sidebar-submenu -->
-                            </li>
-                            <li class="header"><span>GESTION CLIENTELE</span></li>
+                            <li class="header"><span>GESTION FOURNISSEURS</span></li>
                             <li>
                                 <a href="#" title="Element 1">
                                     <i class="glyph-icon icon-linecons-tv"></i>
@@ -559,7 +470,7 @@
                 </div>
                 <!-- END LEFT -->
 
-                
+                <!-- BEGIN CONTENT -->
                 <div id="page-content-wrapper">
                     <div id="page-content">
                         <div id="page-header">
@@ -960,13 +871,14 @@
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/calendar/calendar-demo.js') }}"></script>
 
                         <div id="page-title">
-                            <h2>[TITRE DE CONTENU]</h2>
-                            <p>[SOUS TITRE DE CONTENU]</p>
+                            <h2>@yield('titre_contenu', 'STOCKS')</h2>
+                            <p>@yield('sous_titre_contenu', '[SOUS MODULE]')</p>
 
                         </div>
 
                         <div class="row">
-                            <h1>[CONTENU DE LA PAGE]</h1>
+                            @yield('contenu_page', '[-EN COURS DE DEVELOPPEMENT-]')
+                            
                         </div>
 
 
@@ -974,6 +886,7 @@
 
                     </div>
                 </div>
+                <!-- END CONTENT -->
             </div>
 
 
