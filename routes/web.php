@@ -28,16 +28,16 @@ Route::get('/stock', function () {
     return view('stock.accueil');
 });
 Route::get('/stock/article/list', function () {
-    return view('stocks.article.list');
+    return view('stock.article.list');
 });
 Route::get('/stock/article/create_update', function () {
-    return view('stocks.article.create_update');
+    return view('stock.article.create_update');
 });
 Route::get('/stock/fournisseur/list', function () {
-    return view('stocks.list');
+    return view('stock.fournisseur.list');
 });
 Route::get('/stock/fournisseur/create_update', function () {
-    return view('stocks.create_update');
+    return view('stock.fournisseur.create_update');
 });
 
 // Gestion des operations du personnel
