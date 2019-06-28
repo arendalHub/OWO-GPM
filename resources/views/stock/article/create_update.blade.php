@@ -1,11 +1,11 @@
-@extends('layouts.default')
+@extends('layouts.stock')
 
 @section('titre_contenu')
-PROFILS 
+ARTICLES
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-CREATION DE PROFIL
+CREATION / MODIFICATION D'UN ARTICLE
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')

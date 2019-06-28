@@ -1,11 +1,11 @@
-@extends('layouts.default')
+@extends('layouts.stock')
 
 @section('titre_contenu')
-PROFILS 
+FOURNISSEURS
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-LISTE DES PROFILS
+LISTE DES FOURNISSEURS
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')

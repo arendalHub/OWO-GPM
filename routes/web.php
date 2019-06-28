@@ -25,7 +25,7 @@ Route::get('/menu_modulaire', function () {
 
 // Gestion de stocks
 Route::get('/stock', function () {
-    return view('stocks.accueil');
+    return view('stock.accueil');
 });
 Route::get('/stock/article/list', function () {
     return view('stocks.article.list');
