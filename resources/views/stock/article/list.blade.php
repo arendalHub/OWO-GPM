@@ -35,25 +35,25 @@ List des articles
                     <tbody>
                         <?php $limit=5; ?>
                         @for($i=0; $i<$limit; $i++)
-                                    <tr>
-                                        <td>SAV 00{{$i+1}}</td>
-                                        <td>Savon Anamousse</td>
-                                        <td>Savon de marseille</td>
-                                        <td>Oui</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a title="supprimer" href="#">supprimer</a></li>
-                                                    <li><a title="modifier" href="#">modifier</a></li>
-                                                    <!--<li><a href="#">JavaScript</a></li>-->
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endfor
+                            <tr>
+                                <td>SAV 00{{$i+1}}</td>
+                                <td>Savon Anamousse</td>
+                                <td>Savon de marseille</td>
+                                <td>Oui</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link" type="button" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a title="supprimer" href="#">supprimer</a></li>
+                                            <li><a title="modifier" href="#">modifier</a></li>
+                                            <!--<li><a href="#">JavaScript</a></li>-->
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endfor
                     </tbody>
                 </table>
             </div>

@@ -39,6 +39,26 @@ Route::get('/stock/fournisseur/list', function () {
 Route::get('/stock/fournisseur/create_update', function () {
     return view('stock.fournisseur.create_update');
 });
+Route::get('/stock/commande/create_update', function () {
+    return view('stock.commande.create_update');
+});
+Route::get('/stock/commande/list', function () {
+    return view('stock.commande.list');
+});
+
+Route::get('/stock/commande/details/{id}', function () {
+    return view('stock.commande.details');
+});
+
+Route::get('/stock/livraison/create_update', function () {
+    return view('stock.livraison.create_update');
+});
+Route::get('/stock/livraison/list', function () {
+    return view('stock.livraison.list');
+});
+Route::get('/stock/livraison/details/{id}', function () {
+    return view('stock.livraison.details');
+});
 
 // Gestion des operations du personnel
 Route::get('/personnel', function () {

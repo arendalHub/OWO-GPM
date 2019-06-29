@@ -422,21 +422,21 @@
                         <ul id="sidebar-menu">
                             <li class="header"><span>GESTION STOCK</span></li>
                             <li>
-                                <a href="{{url('/stock/article/list')}}" title="Element 1">
+                                <a href="{{url('/stock/article/list')}}" title="Articles">
                                     <i class="glyph-icon icon-linecons-tv"></i>
                                     <span>Articles</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{url('/stock/fournisseur/list')}}" title="Element 1">
+                                <a href="{{url('/stock/commande/list')}}" title="Commandes">
                                     <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Fournisseurs</span>
+                                    <span>Commandes</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" title="Element 1">
+                                <a href="{{url('/stock/livraison/list')}}" title="Livraisons">
                                     <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Commandes</span>
+                                    <span>Livraisons</span>
                                 </a>
                             </li>
                             <li>
@@ -456,9 +456,9 @@
                             </li>
                             <li class="header"><span>GESTION FOURNISSEURS</span></li>
                             <li>
-                                <a href="#" title="Element 1">
+                                <a href="{{url('/stock/fournisseur/list')}}" title="Fournisseurs">
                                     <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Element 1</span>
+                                    <span>Fournisseurs</span>
                                 </a>
                             </li>
                             <li>
