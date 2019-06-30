@@ -15,10 +15,10 @@ CONNEXION
                 <div id="login-form" class="content-box" style="display: block;">
                     <div class="content-box-wrapper pad20A">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Adresse Email:</label>
+                            <label for="exampleInputEmail1">Nom d'utilisateur:</label>
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon addon-inside bg-white font-primary"> <i class="glyph-icon icon-envelope-o"></i></span> 
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Entrer votre email">
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Entrer votre nom d'utilisateur">
                             </div>
                         </div>
                         <div class="form-group">
@@ -30,7 +30,8 @@ CONNEXION
                         </div>
                     </div>
                     <div class="button-pane">
-                        <button type="submit" class="btn btn-block btn-primary">CONNEXION</button>
+                        {{-- <button type="submit" class="btn btn-block btn-primary">CONNEXION</button> --}}
+                        <a href="{{ url('/menu_modulaire') }}" class="btn btn-block btn-primary">CONNEXION</a>
                     </div>
                 </div>
             </form>
