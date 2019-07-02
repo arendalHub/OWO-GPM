@@ -1,4 +1,4 @@
-@extends('layouts.stock')
+@extends('layouts.parametre')
 
 @section('titre_contenu')
 UTILISATEURS 
@@ -42,7 +42,7 @@ CREATION / MODIFICATION D'UN COMPTE D'UTILISATEUR
                         <div class="form-group">
                             <label class="col-sm-3 control-label">MOT DE PASSE</label>
                             <div class="col-sm-6">
-                                <input type="text" id="ps1" required class="form-control">
+                                <input type="text" data-parsley-minlength="6" placeholder="At least 6 characters" required class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

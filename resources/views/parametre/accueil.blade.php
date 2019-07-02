@@ -38,13 +38,23 @@ PARAMETRAGE DE L'APPLICATION
         <br>
 
     <div class="row">
-        <div class="col-md-12">
-            <a href="#" title="Example tile shortcut" class="col-md-4 col-md-offset-4 tile-box tile-box-shortcut btn-info">
+        <div class="col-md-6">
+            <a href="#" title="Example tile shortcut" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-info">
                <div class="tile-header">
                     SOCIETE
                 </div>
                 <div class="tile-content-wrapper">
                     <i class="glyph-icon icon-download"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="#" title="Example tile shortcut" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-warning">
+                <div class="tile-header">
+                    AUTRES
+                </div>
+                <div class="tile-content-wrapper">
+                    <i class="glyph-icon icon-code-fork"></i>
                 </div>
             </a>
         </div>

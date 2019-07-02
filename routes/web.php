@@ -95,7 +95,6 @@ Route::get('/parametre/profil/create_update', function () {
     return view('parametre.profil.create_update');
 });
 
-
 // Tests
 Route::get('/test', function () {
     return view('test');
