@@ -1,11 +1,11 @@
 @extends('layouts.stock')
 
 @section('titre_contenu')
-FOURNISSEURS
+COMMANDES
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-LISTE DES FOURNISSEURS
+LISTE DES COMMANDES
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -13,42 +13,37 @@ LISTE DES FOURNISSEURS
         <div class="panel panel-heading">
             <form class="form-inline">
                     <div class="form-group">
-                        <input  class="form-control" required placeholder="rechercher un fournisseur" type="search"/>
+                        <input  class="form-control" required placeholder="rechercher une commande" type="search"/>
                 </div>
             </form>
         </div>
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
-                <a href="{{url('/stock/fournisseur/create_update')}}" class="btn btn-primary">Ajouter un nouveau fournisseur</a>
+                <a href="{{url('/stock/commande/create_update')}}" class="btn btn-primary">Creer une nouvelle commande</a>
 
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                         <tr>
-                            <th>Désignation</th>
-                            <th>Adresse</th>
-                            <th>Contact</th>
-                            <th>Email</th>
-                            <th>Boite postale</th>
+                            <th>Date</th>
+                            <th>Libelle</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7?>
+                            <?php $limit=7; sleep(1);?>
                             @for($i=0; $i<$limit; $i++)
                                 <tr>
-                                    <td>Tictac Corp.</td>
-                                    <td>132 Lomé, Rue la tortue</td>
-                                    <td>+228 99-99-99-99</td>
-                                    <td>titaccorp@tictac.com</td>
-                                    <td>1265</td>
+                                    <td>{{date('d m Y H:i:s')}}</td>
+                                    <td>Commande {{$i++}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-link" type="button" data-toggle="dropdown">
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a title="supprimer" href="#">supprimer</a></li>
-                                                <li><a title="modifier" href="{{url('/stock/fournisseur/create_update')}}">modifier</a></li>
+                                                <li><a title="supprimer la commande" href="#">supprimer</a></li>
+                                                <li><a title="modifier la commande" href="{{url('/stock/commane/create_update')}}">modifier</a></li>
+                                                <li><a title="voir les details de la commande" href="{{url('/stock/commande/details/i')}}">details</a></li>
                                                 <!--<li><a href="#">JavaScript</a></li>-->
                                             </ul>
                                         </div>

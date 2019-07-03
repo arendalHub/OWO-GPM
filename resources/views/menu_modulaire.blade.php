@@ -9,7 +9,7 @@ MODULES
 @section('contenu_page')
 <div class="center-vertical bg-black" style="margin-top: 5%;">
     <div class="center-content col-md-10 col-md-offset-1">
-        <h2 class="text-center pad25B font-gray font-size-43"> BIENVENUE </span> </h2>
+        <h2 class="text-center pad25B font-gray font-size-43"> MENU MODULAIRE </span> </h2>
 
         <div class="example-box-wrapper">
             <div class="row">
@@ -24,7 +24,7 @@ MODULES
                                 STOCKS
                             </div>
                         </div>
-                        <a href="#" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
+                        <a href="{{ url('/stock') }}" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
                             Accès au module
                             <i class="glyph-icon icon-arrow-right"></i>
                         </a>
@@ -41,7 +41,7 @@ MODULES
                                 PERSONNEL
                             </div>
                         </div>
-                        <a href="#" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
+                        <a href="{{ url('/personnel') }}" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
                             Accès au module
                             <i class="glyph-icon icon-arrow-right"></i>
                         </a>
@@ -116,7 +116,7 @@ MODULES
                                 PARAMETRAGE
                             </div>
                         </div>
-                        <a href="#" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
+                        <a href="{{ url('/parametre') }}" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
                             Accès au module
                             <i class="glyph-icon icon-arrow-right"></i>
                         </a>
