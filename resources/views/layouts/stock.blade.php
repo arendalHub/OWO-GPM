@@ -440,19 +440,16 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" title="Elements 2">
-                                    <i class="glyph-icon icon-linecons-diamond"></i>
-                                    <span>Element 2</span>
+                                <a href="{{url('/stock/entree/create_update')}}" title="Entrée en stocks">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Entrée en stocks</span>
                                 </a>
-                                <div class="sidebar-submenu">
-
-                                    <ul>
-                                        <li><a href="#" title="Sous-Element 2.1"><span>Sous-Element 2.1</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.2"><span>Sous-Element 2.2</span></a></li>
-                                        <li><a href="#" title="Sous-Element 2.3"><span>Sous-Element 2.3</span></a></li>
-                                    </ul>
-
-                                </div><!-- .sidebar-submenu -->
+                            </li>
+                            <li>
+                                <a href="{{url('/stock/stock/list')}}" title="Stocks">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Stock</span>
+                                </a>
                             </li>
                             <li class="header"><span>GESTION FOURNISSEURS</span></li>
                             <li>

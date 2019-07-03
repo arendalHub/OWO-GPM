@@ -1,10 +1,10 @@
 @extends('layouts.stock')
 @section('titre_contenu')
-    COMMANDES
+ENTREE EN STOCKS
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    ENREGISTREMENT / MODIFICATION D'UNE COMMANDE
+AJOUTER UN PRODUIT AU STOCK
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -15,18 +15,7 @@
                     <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate>
                         <span id="items-index" hidden>0</span>
                         <fieldset>
-                            <legend>Fournisseur</legend>
-                            <div class="form-group">
-                                <select class="form-control">
-                                    @for($i=0; $i<8; $i++)
-                                        <option>Fournisseur {{$i+1}}</option>
-                                    @endfor
-                                    <option class="btn btn-link">Rechercher un fournisseur</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Demande initiale</legend>
+                            <legend>Articles a mettre en stock</legend>
                             <button onclick="addItemRow()" type="button" class="btn btn-link" id="action-indicator">Ajouter un élément</button>
                             <div id="items-form-group">
                                 <table class="table">

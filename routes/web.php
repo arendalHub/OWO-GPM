@@ -65,7 +65,12 @@ Route::get('/stock/livraison/list', function () {
 Route::get('/stock/livraison/details/{id}', function () {
     return view('stock.livraison.details');
 });
-
+Route::get('/stock/entree/create_update/', function () {
+    return view('stock.entreesimple.create_update');
+});
+Route::get('/stock/stock/list', function () {
+    return view('stock.stock.list');
+});
 
 // Gestion des operations du personnel
 Route::get('/personnel', function () {
