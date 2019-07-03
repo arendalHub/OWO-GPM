@@ -71,6 +71,18 @@ Route::get('/stock/entree/create_update/', function () {
 Route::get('/stock/stock/list', function () {
     return view('stock.stock.list');
 });
+Route::get('/stock/stock/create_update', function () {
+    return view('stock.stock.create_update');
+});
+Route::get('/stock/stock/details/{id}', function () {
+    return view('stock.stock.details');
+});
+Route::get('/stock/rebus/create_update', function () {
+    return view('stock.rebus.create_update');
+});
+Route::get('/stock/rebus/list', function () {
+    return view('stock.rebus.list');
+});
 
 // Gestion des operations du personnel
 Route::get('/personnel', function () {

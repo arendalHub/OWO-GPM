@@ -440,15 +440,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{url('/stock/entree/create_update')}}" title="Entrée en stocks">
+                                <a href="{{url('/stock/stock/list')}}" title="Stocks">
                                     <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Entrée en stocks</span>
+                                    <span>Stocks</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{url('/stock/stock/list')}}" title="Stocks">
+                                <a href="{{url('/stock/rebus/list')}}" title="Rebus">
                                     <i class="glyph-icon icon-linecons-tv"></i>
-                                    <span>Stock</span>
+                                    <span>Rebus</span>
                                 </a>
                             </li>
                             <li class="header"><span>GESTION FOURNISSEURS</span></li>

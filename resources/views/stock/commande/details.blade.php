@@ -16,11 +16,14 @@ DETAILS DE LA COMMANDE cmd1
             <p>
                 <h3>Fournisseur : fournisseur 1</h3>
                 <hr/>
+                <h3>Stock : stock 1</h3>
+                <hr/>
                 <h3>Date : {{date('d m Y H:i:s')}}</h3>
             </p>
         </div>
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
+                <h2>Articles de cette commande</h2>
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                         <tr>

@@ -1,10 +1,10 @@
 @extends('layouts.stock')
 @section('titre_contenu')
-ENTREE EN STOCKS
+STOCKS
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-AJOUTER UN PRODUIT AU STOCK
+CRéER UN STOCK
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -15,37 +15,11 @@ AJOUTER UN PRODUIT AU STOCK
                     <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate>
                         <span id="items-index" hidden>0</span>
                         <fieldset>
-                            <legend>Designation du stock</legend>
                             <div class="form-group">
-                                <div class="col-sm-12">
-                                    <select class="form-control" required name="stock">
-                                       <option>stock 1</option>
-                                       <option>stock 2</option>
-                                       <option>stock 3</option>
-                                       <option>stock 4</option>
-                                       <option>stock 5</option>
-                                       <option>stock 6</option>
-                                       <option>Chercher un stock</option>
-                                    </select>
+                                <label class="col-sm-3 control-label">Désignation du stock</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" required placeholder="Saisir une designation pour le stock" type="text"/>
                                 </div>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Articles à mettre en stock</legend>
-                            <button onclick="addItemRow()" type="button" class="btn btn-link" id="action-indicator">Ajouter un élément</button>
-                            <div id="items-form-group">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <td>Article</td>
-                                        <td>Quantité</td>
-                                        <td>Action</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
                             </div>
                         </fieldset>
                         <div class="bg-default content-box text-center pad20A mrg25T">

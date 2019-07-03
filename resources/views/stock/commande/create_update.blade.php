@@ -26,6 +26,17 @@
                             </div>
                         </fieldset>
                         <fieldset>
+                            <legend>Stock de destination</legend>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    @for($i=0; $i<8; $i++)
+                                        <option>stock {{$i+1}}</option>
+                                    @endfor
+                                    <option class="btn btn-link">Rechercher un stock</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset>
                             <legend>Demande initiale</legend>
                             <button onclick="addItemRow()" type="button" class="btn btn-link" id="action-indicator">Ajouter un élément</button>
                             <div id="items-form-group">
