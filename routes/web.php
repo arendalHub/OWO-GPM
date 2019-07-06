@@ -27,18 +27,10 @@ Route::get('/menu_modulaire', function () {
 Route::get('/stock', function () {
     return view('stock.accueil');
 });
-Route::get('/stock/article', function () {
-    return view('stock.article.list');
-});
-Route::get('/stock/article/list', function () {
-    return view('stock.article.list');
-});
-Route::get('/stock/article/create_update', function () {
-    return view('stock.article.create_update');
-});
-Route::get('/stock/fournisseur/list', function () {
-    return view('stock.fournisseur.list');
-});
+Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
+Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
+Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
+
 Route::get('/stock/fournisseur/list', function () {
     return view('stock.fournisseur.list');
 });
