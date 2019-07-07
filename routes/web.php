@@ -31,12 +31,10 @@ Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
 Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
 Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
 
-Route::get('/stock/fournisseur/list', function () {
-    return view('stock.fournisseur.list');
-});
-Route::get('/stock/fournisseur/create_update', function () {
-    return view('stock.fournisseur.create_update');
-});
+Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list');
+Route::get('/stock/fournisseur/create_update/{id_fournisseur?}', 'FournisseurController@create_update');
+Route::post('/stock/fournisseur/do_create_update','FournisseurController@do_create_update'); // Traitememt du formulaire d'ajout/modification des fournisseurs
+
 Route::get('/stock/commande/create_update', function () {
     return view('stock.commande.create_update');
 });
