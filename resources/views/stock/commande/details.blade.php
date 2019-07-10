@@ -29,6 +29,7 @@ DETAILS DE LA COMMANDE cmd1
                         <tr>
                             <th>Article</th>
                             <th>Quantite</th>
+                            <th>Détails de l'article</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,7 @@ DETAILS DE LA COMMANDE cmd1
                             @for($i=0; $i<$limit; $i++)
                                 <tr>
                                     <td>Article {{$i+1}}</td>
+                                    <td>{{$i+1}}</td>
                                     <td>{{$i+1}}</td>
                                 </tr>
                             @endfor

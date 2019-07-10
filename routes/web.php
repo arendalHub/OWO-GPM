@@ -35,16 +35,11 @@ Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list');
 Route::get('/stock/fournisseur/create_update/{id_fournisseur?}', 'FournisseurController@create_update');
 Route::post('/stock/fournisseur/do_create_update','FournisseurController@do_create_update'); // Traitememt du formulaire d'ajout/modification des fournisseurs
 
-Route::get('/stock/commande/create_update', function () {
-    return view('stock.commande.create_update');
-});
-Route::get('/stock/commande/list', function () {
-    return view('stock.commande.list');
-});
-
-Route::get('/stock/commande/details/{id}', function () {
-    return view('stock.commande.details');
-});
+Route::get('/stock/commande/create_update/{id_commande?}', 'CommandeController@create_update');
+Route::post('/stock/commande/do_create_update', 'CommandeController@do_create_update');
+Route::get('/stock/commande/list/{num_page?}', 'CommandeController@list');
+Route::get('/stock/commande/details/{id}', 'CommandeController@details');
+Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
 Route::get('/stock/livraison/create_update', function () {
     return view('stock.livraison.create_update');
