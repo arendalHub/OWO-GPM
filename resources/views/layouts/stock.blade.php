@@ -1,4 +1,4 @@
-[<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
@@ -10,7 +10,7 @@
 
         <meta charset="UTF-8">
         <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-        <title>OWO-GPM | @yield('titre_page', '[TITRE DE PAGE]')</title>
+        <title>OWO-GPM | STOCKS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -46,6 +46,357 @@
 
     <body>
         <div id="sb-site">
+            
+            <!-- BEGIN SideBars -->
+            <div class="sb-slidebar bg-black sb-left sb-style-overlay">
+                <div class="scrollable-content scrollable-slim-sidebar">
+                    <div class="pad10A">
+                        <div class="divider-header">Online</div>
+                        <ul class="chat-box">
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial1.jpg') }}" alt="">
+                                    <div class="small-badge bg-green"></div>
+                                </div>
+                                <b>
+                                    Grace Padilla
+                                </b>
+                                <p>On the other hand, we denounce...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial2.jpg') }}" alt="">
+                                    <div class="small-badge bg-green"></div>
+                                </div>
+                                <b>
+                                    Carl Gamble
+                                </b>
+                                <p>Dislike men who are so beguiled...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial3.jpg') }}" alt="">
+                                    <div class="small-badge bg-green"></div>
+                                </div>
+                                <b>
+                                    Michael Poole
+                                </b>
+                                <p>Of pleasure of the moment, so...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial4.jpg') }}" alt="">
+                                    <div class="small-badge bg-green"></div>
+                                </div>
+                                <b>
+                                    Bill Green
+                                </b>
+                                <p>That they cannot foresee the...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial5.jpg') }}" alt="">
+                                    <div class="small-badge bg-green"></div>
+                                </div>
+                                <b>
+                                    Cheryl Soucy
+                                </b>
+                                <p>Pain and trouble that are bound...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                        </ul>
+                        <div class="divider-header">Idle</div>
+                        <ul class="chat-box">
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial6.jpg') }}" alt="">
+                                    <div class="small-badge bg-orange"></div>
+                                </div>
+                                <b>
+                                    Jose Kramer
+                                </b>
+                                <p>Equal blame belongs to those...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial7.jpg') }}" alt="">
+                                    <div class="small-badge bg-orange"></div>
+                                </div>
+                                <b>
+                                    Dan Garcia
+                                </b>
+                                <p>Weakness of will, which is same...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial8.jpg') }}" alt="">
+                                    <div class="small-badge bg-orange"></div>
+                                </div>
+                                <b>
+                                    Edward Bridges
+                                </b>
+                                <p>These cases are perfectly simple...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                        </ul>
+                        <div class="divider-header">Offline</div>
+                        <ul class="chat-box">
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial1.jpg') }}" alt="">
+                                    <div class="small-badge bg-red"></div>
+                                </div>
+                                <b>
+                                    Randy Herod
+                                </b>
+                                <p>In a free hour, when our power...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                            <li>
+                                <div class="status-badge">
+                                    <img class="img-circle" width="40" src="{{ url('asset_delight/assets-minified/image-resources/people/testimonial2.jpg') }}" alt="">
+                                    <div class="small-badge bg-red"></div>
+                                </div>
+                                <b>
+                                    Patricia Bagley
+                                </b>
+                                <p>when nothing prevents our being...</p>
+                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sb-slidebar bg-black sb-right sb-style-overlay">
+                <div class="scrollable-content scrollable-slim-sidebar">
+                    <div class="pad15A">
+                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-1" class="popover-title">
+                            Cloud status
+                            <span class="caret"></span>
+                        </a>
+                        <div id="sidebar-toggle-1" class="collapse in">
+                            <div class="pad15A">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="text-center font-gray pad5B text-transform-upr font-size-12">New visits</div>
+                                        <div class="chart-alt-3 font-gray-dark" data-percent="55"><span>55</span>%</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center font-gray pad5B text-transform-upr font-size-12">Bounce rate</div>
+                                        <div class="chart-alt-3 font-gray-dark" data-percent="46"><span>46</span>%</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center font-gray pad5B text-transform-upr font-size-12">Server load</div>
+                                        <div class="chart-alt-3 font-gray-dark" data-percent="92"><span>92</span>%</div>
+                                    </div>
+                                </div>
+                                <div class="divider mrg15T mrg15B"></div>
+                                <div class="text-center">
+                                    <a href="#" class="btn center-div btn-info mrg5T btn-sm text-transform-upr updateEasyPieChart">
+                                        <i class="glyph-icon icon-refresh"></i>
+                                        Update charts
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-6" class="popover-title">
+                            Latest transfers
+                            <span class="caret"></span>
+                        </a>
+                        <div id="sidebar-toggle-6" class="collapse in">
+
+                            <ul class="files-box">
+                                <li>
+                                    <i class="files-icon glyph-icon font-red icon-file-archive-o"></i>
+                                    <div class="files-content">
+                                        <b>blog_export.zip</b>
+                                        <div class="files-date">
+                                            <i class="glyph-icon icon-clock-o"></i>
+                                            added on <b>22.10.2014</b>
+                                        </div>
+                                    </div>
+                                    <div class="files-buttons">
+                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
+                                            <i class="glyph-icon icon-cloud-download"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
+                                            <i class="glyph-icon icon-times"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <i class="files-icon glyph-icon icon-file-code-o"></i>
+                                    <div class="files-content">
+                                        <b>homepage-test.html</b>
+                                        <div class="files-date">
+                                            <i class="glyph-icon icon-clock-o"></i>
+                                            added  <b>19.10.2014</b>
+                                        </div>
+                                    </div>
+                                    <div class="files-buttons">
+                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
+                                            <i class="glyph-icon icon-cloud-download"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
+                                            <i class="glyph-icon icon-times"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <i class="files-icon glyph-icon font-yellow icon-file-image-o"></i>
+                                    <div class="files-content">
+                                        <b>monthlyReport.jpg</b>
+                                        <div class="files-date">
+                                            <i class="glyph-icon icon-clock-o"></i>
+                                            added on <b>10.9.2014</b>
+                                        </div>
+                                    </div>
+                                    <div class="files-buttons">
+                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
+                                            <i class="glyph-icon icon-cloud-download"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
+                                            <i class="glyph-icon icon-times"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <i class="files-icon glyph-icon font-green icon-file-word-o"></i>
+                                    <div class="files-content">
+                                        <b>new_presentation.doc</b>
+                                        <div class="files-date">
+                                            <i class="glyph-icon icon-clock-o"></i>
+                                            added on <b>5.9.2014</b>
+                                        </div>
+                                    </div>
+                                    <div class="files-buttons">
+                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
+                                            <i class="glyph-icon icon-cloud-download"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
+                                            <i class="glyph-icon icon-times"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-3" class="popover-title">
+                            Tasks for today
+                            <span class="caret"></span>
+                        </a>
+                        <div id="sidebar-toggle-3" class="collapse in">
+
+                            <ul class="progress-box">
+                                <li>
+                                    <div class="progress-title">
+                                        New features development
+                                        <b>87%</b>
+                                    </div>
+                                    <div class="progressbar-smaller progressbar" data-value="87">
+                                        <div class="progressbar-value bg-azure">
+                                            <div class="progressbar-overlay"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="progress-title">
+                                        Finishing uploading files
+                                        <b>66%</b>
+                                    </div>
+                                    <div class="progressbar-smaller progressbar" data-value="66">
+                                        <div class="progressbar-value bg-red">
+                                            <div class="progressbar-overlay"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="progress-title">
+                                        Creating tutorials
+                                        <b>58%</b>
+                                    </div>
+                                    <div class="progressbar-smaller progressbar" data-value="58">
+                                        <div class="progressbar-value bg-blue-alt"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="progress-title">
+                                        Frontend bonus theme
+                                        <b>74%</b>
+                                    </div>
+                                    <div class="progressbar-smaller progressbar" data-value="74">
+                                        <div class="progressbar-value bg-purple"></div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-4" class="popover-title">
+                            Pending notifications
+                            <span class="bs-label bg-orange tooltip-button" title="Label example">New</span>
+                            <span class="caret"></span>
+                        </a>
+                        <div id="sidebar-toggle-4" class="collapse in">
+                            <ul class="notifications-box notifications-box-alt">
+                                <li>
+                                    <span class="bg-purple icon-notification glyph-icon icon-users"></span>
+                                    <span class="notification-text">This is an error notification</span>
+                                    <div class="notification-time">
+                                        a few seconds ago
+                                        <span class="glyph-icon icon-clock-o"></span>
+                                    </div>
+                                    <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
+                                        <i class="glyph-icon icon-arrow-right"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
+                                    <span class="notification-text">This is a warning notification</span>
+                                    <div class="notification-time">
+                                        <b>15</b> minutes ago
+                                        <span class="glyph-icon icon-clock-o"></span>
+                                    </div>
+                                    <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
+                                        <i class="glyph-icon icon-arrow-right"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="bg-green icon-notification glyph-icon icon-random"></span>
+                                    <span class="notification-text font-green">A success message example.</span>
+                                    <div class="notification-time">
+                                        <b>2 hours</b> ago
+                                        <span class="glyph-icon icon-clock-o"></span>
+                                    </div>
+                                    <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
+                                        <i class="glyph-icon icon-arrow-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END SideBars -->
+
 
             <div id="page-wrapper">
 
@@ -55,7 +406,7 @@
                 </div>
                 <div id="page-sidebar">
                     <div id="header-logo" class="logo-bg">
-                        <a href="{{ url('/menu_modulaire') }}" class="logo-content-big" title="OWO-GPM">
+                        <a href="#" class="logo-content-big" title="OWO-GPM">
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>
@@ -69,8 +420,59 @@
                     </div>
                     <div class="scroll-sidebar">
                         <ul id="sidebar-menu">
+                            <li class="header"><span>GESTION STOCK</span></li>
+                            <li>
+                                <a href="{{url('/stock/article/list')}}" title="Articles">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Articles</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/stock/commande/list')}}" title="Commandes">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Commandes</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/stock/livraison/list')}}" title="Livraisons">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Livraisons</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/stock/stock/list')}}" title="Stocks">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Stocks</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/stock/rebus/list')}}" title="Rebus">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Rebus</span>
+                                </a>
+                            </li>
+                            <li class="header"><span>GESTION FOURNISSEURS</span></li>
+                            <li>
+                                <a href="{{url('/stock/fournisseur/list')}}" title="Fournisseurs">
+                                    <i class="glyph-icon icon-linecons-tv"></i>
+                                    <span>Fournisseurs</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" title="Elements 2">
+                                    <i class="glyph-icon icon-linecons-diamond"></i>
+                                    <span>Element 2</span>
+                                </a>
+                                <div class="sidebar-submenu">
 
-                            @yield('menu')
+                                    <ul>
+                                        <li><a href="#" title="Sous-Element 2.1"><span>Sous-Element 2.1</span></a></li>
+                                        <li><a href="#" title="Sous-Element 2.2"><span>Sous-Element 2.2</span></a></li>
+                                        <li><a href="#" title="Sous-Element 2.3"><span>Sous-Element 2.3</span></a></li>
+                                    </ul>
+
+                                </div><!-- .sidebar-submenu -->
+                            </li>
 
                         </ul><!-- #sidebar-menu -->
                     </div>
@@ -101,18 +503,37 @@
                                                 <div class="user-info">
                                                     <span>
                                                         [UTILISATEUR]
-                                                        <i>[PROFIL]</i>
+                                                        <i>UX/UI developer</i>
                                                     </span>
-                                                    <a href="#" title="Edit profile">Modifier informations de compte</a>
-                                                    <a href="#" title="View notifications">Verrouiller</a>
+                                                    <a href="#" title="Edit profile">Edit profile</a>
+                                                    <a href="#" title="View notifications">View notifications</a>
                                                 </div>
                                             </div>
                                             <div class="divider"></div>
-
+                                            <ul class="reset-ul mrg5B">
+                                                <li>
+                                                    <a href="#">
+                                                        View login page example
+                                                        <i class="glyph-icon float-right icon-caret-right"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        View lockscreen example
+                                                        <i class="glyph-icon float-right icon-caret-right"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        View account details
+                                                        <i class="glyph-icon float-right icon-caret-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                             <div class="button-pane button-pane-alt pad5L pad5R text-center">
-                                                <a href="{{ url('/login') }}" class="btn btn-flat display-block font-normal btn-danger">
+                                                <a href="#" class="btn btn-flat display-block font-normal btn-danger">
                                                     <i class="glyph-icon icon-power-off"></i>
-                                                    Deconnexion
+                                                    Logout
                                                 </a>
                                             </div>
                                         </div>
@@ -208,7 +629,12 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <a href="#" class="hdr-btn" id="fullscreen-btn" title="Fullscreen">
+                                    <i class="glyph-icon icon-arrows-alt"></i>
+                                </a>
+                                <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Chat sidebar">
+                                    <i class="glyph-icon icon-linecons-paper-plane"></i>
+                                </a>
                                 <div class="dropdown" id="notifications-btn">
                                     <a data-toggle="dropdown" href="#" title="">
                                         <span class="small-badge bg-yellow"></span>
@@ -421,6 +847,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="dropdown" id="cloud-btn">
+                                    <a href="#" data-placement="bottom" class="tooltip-button sb-toggle-right" title="Statistics Sidebar">
+                                        <i class="glyph-icon icon-linecons-cloud"></i>
+                                    </a>
+                                </div>
 
                             </div><!-- #header-nav-right -->
 
@@ -448,138 +879,19 @@
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/calendar/calendar.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/calendar/calendar-demo.js') }}"></script>
 
-                        <!-- Data tables -->
+                        <div id="page-title">
+                            <h2>@yield('titre_contenu', 'STOCKS')</h2>
+                            <p>@yield('sous_titre_contenu', '[SOUS MODULE]')</p>
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.css') }}">
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-bootstrap.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-tabletools.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-reorder.js') }}"></script>
+                        </div>
 
-                        <script type="text/javascript">
-
-                            /* Datatables export */
-
-                            $(document).ready(function() {
-                                var table = $('#datatable-tabletools').DataTable();
-                                var tt = new $.fn.dataTable.TableTools( table );
-
-                                $( tt.fnContainer() ).insertBefore('#datatable-tabletools_wrapper div.dataTables_filter');
-
-                                $('.DTTT_container').addClass('btn-group');
-                                $('.DTTT_container a').addClass('btn btn-default btn-md');
-
-                                $('.dataTables_filter input').attr("placeholder", "Recherche...");
-
-                            } );
-
-                            /* Datatables reorder */
-
-                            $(document).ready(function() {
-                                $('#datatable-reorder').DataTable( {
-                                    dom: 'Rlfrtip'
-                                });
-
-                                $('#datatable-reorder_length').hide();
-                                $('#datatable-reorder_filter').hide();
-
-                            });
-
-                            $(document).ready(function() {
-                                $('.dataTables_filter input').attr("placeholder", "Recherche...");
-                            });
-
-                        </script>
+                        <div class="row">
+                            @yield('contenu_page', '[-EN COURS DE DEVELOPPEMENT-]')
+                            
+                        </div>
 
 
-                        <!-- jQueryUI Spinner -->
-
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/spinner/spinner.js') }}"></script>
-                        <script type="text/javascript">
-                            /* jQuery UI Spinner */
-
-                            $(function() { "use strict";
-                                $(".spinner-input").spinner();
-                            });
-                        </script>
-
-                        <!-- jQueryUI Autocomplete -->
-
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/autocomplete/autocomplete.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/autocomplete/menu.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/autocomplete/autocomplete-demo.js') }}"></script>
-
-                        <!-- Touchspin -->
-
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin.css') }}">
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin-demo.js') }}"></script>
-
-                        <!-- Input switch -->
-
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/input-switch/inputswitch.css') }}">
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/input-switch/inputswitch.js') }}"></script>
-                        <script type="text/javascript">
-                            /* Input switch */
-
-                            $(function() { "use strict";
-                                $('.input-switch').bootstrapSwitch();
-                            });
-                        </script>
-
-                        <!-- Textarea -->
-
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/textarea/textarea.js') }}"></script>
-                        <script type="text/javascript">
-                            /* Textarea autoresize */
-
-                            $(function() { "use strict";
-                                $('.textarea-autosize').autosize();
-                            });
-                        </script>
-
-                        <!-- Multi select -->
-
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/multi-select/multiselect.css') }}">
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/multi-select/multiselect.js') }}"></script>
-                        <script type="text/javascript">
-                            /* Multiselect inputs */
-
-                            $(function() { "use strict";
-                                $(".multi-select").multiSelect();
-                                $(".ms-container").append('<i class="glyph-icon icon-exchange"></i>');
-                            });
-                        </script>
-
-                        <!-- Uniform -->
-
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/uniform/uniform.css') }}">
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/uniform/uniform.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/uniform/uniform-demo.js') }}"></script>
-
-                        <!-- Chosen -->
-
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/chosen/chosen.css') }}">
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/chosen/chosen.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/chosen/chosen-demo.js') }}"></script>
-
-
-                        <!-- Input masks -->
-
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/input-mask/inputmask.js') }}"></script>
-
-                        <script type="text/javascript">
-                            /* Input masks */
-
-                            $(function() { "use strict";
-                                $(".input-mask").inputmask();
-                            });
-
-                        </script>
-
-
-                        @yield('contenu_page')
-
+                        
 
                     </div>
                 </div>
