@@ -101,3 +101,20 @@ Route::get('/parametre/profil/create_update', function () {
 Route::get('/test', function () {
     return view('test');
 });
+
+
+Route::get('/page', function () {
+    return view('page');
+});
+
+Route::get('/default', function () {
+    return view('layouts.default');
+});
+
+Route::get('/blocks', function () {
+    return view('layouts.blocks');
+});
+
+Route::get('/login', function () {
+    return view('layouts.login');
+});
