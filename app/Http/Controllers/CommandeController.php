@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Commande ;
 use App\Models\Fournisseur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Ce controlleur est responsable de toute les actions sur les commandes.
@@ -25,6 +26,25 @@ class CommandeController extends Controller
     {
         $fournisseurs = Fournisseur::all() ;
         return view('stock.commande.create_update')->with(['update'=>false, 'fournisseurs'=>$fournisseurs]) ;
+    }
+
+    public function details(string $id_commande)
+    {
+        $commande = Commande::find($id_commande) ;
+        $fournisseur = Fournisseur::where('id_fournisseur','=',$commande->id_fournisseur)->get()[0] ;
+        $articles = DB::table("Article")
+            ->select(["Article.id_article", "Article.designation_article", 'ArticleCommande.quantite'])
+            ->leftJoin('ArticleCommande', 'ArticleCommande.id_article', '=', 'Article.id_article')
+            ->where('ArticleCommande.id_commande', '=', $commande->id_commande)
+            ->get() ;
+
+        return view('/stock/commande/details')->with(
+            [
+                "commande"=>$commande,
+                "fournisseur"=>$fournisseur,
+                "articles"=>$articles,
+            ]
+        ) ;
     }
 
     /**
