@@ -41,12 +41,9 @@ Route::get('/stock/commande/list/{num_page?}', 'CommandeController@list');
 Route::get('/stock/commande/details/{id}', 'CommandeController@details');
 Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
-Route::get('/stock/livraison/create_update', function () {
-    return view('stock.livraison.create_update');
-});
-Route::get('/stock/livraison/list', function () {
-    return view('stock.livraison.list');
-});
+Route::get('/stock/livraison/create_update', 'LivraisonController@create_update');
+Route::get('/stock/livraison/list','LivraisonController@list');
+Route::get('/stock/livraison/items/{id}','LivraisonController@getItemsPart');
 Route::get('/stock/livraison/details/{id}', function () {
     return view('stock.livraison.details');
 });
