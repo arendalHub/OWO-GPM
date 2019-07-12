@@ -55,6 +55,9 @@ class ArticleController extends Controller
             $creat_update_message = "L'article {$postData['designation_article']} a été enregistré !" ;
         }
         $item->designation_article = $postData['designation_article'] ;
+        if(array_key_exists('emplacement_stock', $postData))
+            $item->emplacement_stock = $postData['emplacement_stock'] ;
+
         $item->consommable = array_key_exists('consommable', $postData) ? true : false ;
         $item->id_famille = $postData['id_famille'] ;
         $item->supprime = false ;

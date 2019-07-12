@@ -27,6 +27,12 @@ CREATION / MODIFICATION D'UN ARTICLE
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Emplacement de stock</label>
+                            <div class="col-sm-6">
+                                <input required type="text" value="@if(($item != null && $update)) {{$item->emplacement_stock}}@else {{old('emplacement_stock')}} @endif" name="emplacement_stock" placeholder="Saisir l'emplacement de stockage de l'article" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Famille</label>
                             <div class="col-sm-6">
                                 <select required="" class="form-control" name="id_famille">

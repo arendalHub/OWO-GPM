@@ -63,7 +63,6 @@ class CommandeController extends Controller
         $commande = new Commande() ;
         $commande->id_fournisseur = $postData["id_fournisseur"] ;
         $commande->date_commande = date("d-m-Y H:i:s") ;
-        $commande->emplacement_stock = $postData["emplacement_stock"] ;
         if(!$commande->save()) {
             back()->with('error', 'Une erreur est survenue, veuillez rééssayer !') ;
         }

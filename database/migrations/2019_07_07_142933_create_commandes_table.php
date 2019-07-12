@@ -15,7 +15,6 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('Commande', function (Blueprint $table) {
             $table->bigIncrements('id_commande');
-            $table->string('emplacement_stock')->nullable();
             $table->timestamp('date_commande');
             $table->bigInteger('id_fournisseur');
             $table->boolean('supprime')->default(false);
