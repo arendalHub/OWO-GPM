@@ -55,12 +55,12 @@ DETAILS DE LA COMMANDE cmd1
                         </tr>
                     </thead>
                     <tbody>
-                        @for($i = 0; $i<5; $i++)
-                            <tr>
-                                <td><a href="{{url('stock/livraison/details/l')}}">liv{{$i+1}}</a></td>
-                                <td>{{date('d m Y H:i:s')}}</td>
-                            </tr>
-                        @endfor
+                    @if($livraisons != null && count($livraisons) > 0)
+                        @foreach($livraisons as $livraison)
+                            <td><a href="{{url("stock/livraison/details/{$livraison->id_livraison}")}}">liv-{{$livraison->id_livraison}}</a></td>
+                            <td>{{$livraison->date_livraison}}</td>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

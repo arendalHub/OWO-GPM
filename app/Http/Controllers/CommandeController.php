@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Livraison;
 use App\Models\ArticleCommande;
 use App\Models\Article;
 use App\Models\Commande ;
@@ -38,11 +39,14 @@ class CommandeController extends Controller
             ->where('ArticleCommande.id_commande', '=', $commande->id_commande)
             ->get() ;
 
+        $livraisons = Livraison::where('id_commande', '=', $commande->id_commande)->get(['date_livraison', 'id_livraison']) ;
+
         return view('/stock/commande/details')->with(
             [
                 "commande"=>$commande,
                 "fournisseur"=>$fournisseur,
                 "articles"=>$articles,
+                "livraisons"=>$livraisons
             ]
         ) ;
     }
