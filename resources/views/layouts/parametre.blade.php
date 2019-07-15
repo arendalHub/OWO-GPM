@@ -27,7 +27,6 @@ PARAMETRES
 @endsection('menu')
 
 
-
 @section('contenu_page')
     <div id="page-title">
         <h2>@yield('titre_contenu', 'PARAMETRAGE')</h2>

@@ -1,4 +1,4 @@
-[<!DOCTYPE html> 
+<!DOCTYPE html>
 <html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
@@ -18,14 +18,20 @@
 
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-144-precomposed.png') }}">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url
+        ('asset_delight/assets-minified/images/icons/apple-touch-icon-72-precomposed.png') }}">
         <link rel="apple-touch-icon-precomposed" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-57-precomposed.png') }}">
         <link rel="shortcut icon" href="{{ url('asset_delight/assets-minified/images/icons/favicon.png') }}">
 
 
 
         <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/admin-all-demo.css') }}">
-
+{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/chosen/chosen.css') }}">--}}
+{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.css') }}">--}}
+{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin.css') }}">--}}
+{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/input-switch/inputswitch.css') }}">--}}
+{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/multi-select/multiselect.css') }}">--}}
+{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/uniform/uniform.css') }}">--}}
         <!-- JS Core -->
 
         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/js-core.js') }}"></script>
@@ -450,7 +456,7 @@
 
                         <!-- Data tables -->
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.css') }}">
+
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-bootstrap.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-tabletools.js') }}"></script>
@@ -459,6 +465,12 @@
                         <script type="text/javascript">
 
                             /* Datatables export */
+
+                            $(document).ready(function() {
+                                alert('YOOOO');
+                                console.log('TOOT');
+                                $('#datatable-example').dataTable();
+                            });
 
                             $(document).ready(function() {
                                 var table = $('#datatable-tabletools').DataTable();
@@ -511,13 +523,13 @@
 
                         <!-- Touchspin -->
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin.css') }}">
+
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin-demo.js') }}"></script>
 
                         <!-- Input switch -->
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/input-switch/inputswitch.css') }}">
+
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/input-switch/inputswitch.js') }}"></script>
                         <script type="text/javascript">
                             /* Input switch */
@@ -540,7 +552,7 @@
 
                         <!-- Multi select -->
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/multi-select/multiselect.css') }}">
+
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/multi-select/multiselect.js') }}"></script>
                         <script type="text/javascript">
                             /* Multiselect inputs */
@@ -553,13 +565,13 @@
 
                         <!-- Uniform -->
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/uniform/uniform.css') }}">
+
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/uniform/uniform.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/uniform/uniform-demo.js') }}"></script>
 
                         <!-- Chosen -->
 
-                        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/chosen/chosen.css') }}">
+
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/chosen/chosen.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/chosen/chosen-demo.js') }}"></script>
 
@@ -578,6 +590,38 @@
                         </script>
 
 
+                        <!-- Bootstrap Modal -->
+
+                        <!--<link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/modal/modal.css')}}
+                        ">-->
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/modal/modal.js')}}"></script>
+
+                        <!-- JS Interactions -->
+
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/interactions-ui/resizable.js')}}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/interactions-ui/draggable.js')}}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/interactions-ui/sortable.js')}}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/interactions-ui/selectable.js')}}"></script>
+
+                        <!-- jQueryUI Dialog -->
+
+                        <!--<link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/dialog/dialog.css')}}">-->
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/dialog/dialog.js')}}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/dialog/dialog-demo.js')}}"></script>
+                        
+                        <!-- jGrowl notifications -->
+
+                        <!--<link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/jgrowl-notifications/jgrowl.css')}}">-->
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/jgrowl-notifications/jgrowl.js')}}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/jgrowl-notifications/jgrowl-demo.js')}}"></script>
+                        
+                        <!-- Noty notifications -->
+                        
+                        <!--<link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/noty-notifications/noty.css')}}">-->
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/noty-notifications/noty.js')}}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/noty-notifications/noty-demo.js')}}"></script>
+                        
+                        
                         @yield('contenu_page')
 
 

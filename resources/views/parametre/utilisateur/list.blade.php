@@ -30,67 +30,100 @@ LISTE DES UTILISATEURS
                     <td>001</td>
                     <td>test 1</td>
                     <td>Comptable</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>002</td>
                     <td>test 2</td>
                     <td>Administrateur</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>003</td>
                     <td>test 3</td>
                     <td>Caissier</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>004</td>
                     <td>test 4</td>
                     <td>Comptable</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>004</td>
                     <td>test 4</td>
                     <td>Caissier</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>005</td>
                     <td>test 5</td>
                     <td>Secretaire</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>006</td>
                     <td>test 6</td>
                     <td>Comptable</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>007</td>
                     <td>test 7</td>
                     <td>Super Administrateur</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>008</td>
                     <td>test 8</td>
                     <td>Gerant</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>009</td>
                     <td>test 9</td>
                     <td>Directeur</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>
+                    </td>
                 </tr>
                 <tr class="odd gradeX">
                     <td>0010</td>
                     <td>test 10</td>
                     <td>Administrateur</td>
-                    <td class="center"> </td>
+                    <td class="center">
+                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
+                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>
+                    </td>
                 </tr>
                 </tbody>
                 </table>

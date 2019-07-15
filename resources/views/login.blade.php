@@ -6,7 +6,6 @@ CONNEXION
 @endsection('titre_page')
 
 
-
 @section('contenu_page')
     <div class="center-vertical bg-black" style="margin-top: 6%">
         <div class="center-content">
