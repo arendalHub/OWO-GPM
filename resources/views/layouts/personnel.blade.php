@@ -7,21 +7,27 @@ PERSONNEL
 @section('menu')
     <li class="header"><span>GESTION OPERATIONS PERSONNEL</span></li>
     <li>
-        <a href="#" title="Employes">
+        <a href="{{ url('/personnel/employe') }}" title="Employes">
             <i class="glyph-icon icon-linecons-tv"></i>
             <span>Employes</span>
         </a>
     </li>
      <li>
-         <a href="#" title="Zones">
+         <a href="{{ url('/personnel/zone') }}" title="Zones">
              <i class="glyph-icon icon-linecons-tv"></i>
              <span>Zones</span>
          </a>
      </li>
      <li>
-         <a href="#" title="Affectations">
+         <a href="{{ url('/personnel/section') }}" title="Sections">
              <i class="glyph-icon icon-linecons-tv"></i>
-             <span>Affectations</span>
+             <span>Sections</span>
+         </a>
+     </li>
+     <li>
+         <a href="{{ url('/personnel/site') }}" title="Sites">
+             <i class="glyph-icon icon-linecons-tv"></i>
+             <span>Sites</span>
          </a>
      </li>
 @endsection('menu')

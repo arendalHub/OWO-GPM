@@ -13,7 +13,7 @@ PARAMETRES
         </a>
     </li>
      <li>
-         <a href="{{ url('Parametre') }}" title="Profils">
+         <a href="{{ url('/parametre/profil') }}" title="Profils">
              <i class="glyph-icon icon-linecons-tv"></i>
              <span>Profils</span>
          </a>
@@ -25,7 +25,6 @@ PARAMETRES
          </a>
      </li>
 @endsection('menu')
-
 
 
 @section('contenu_page')

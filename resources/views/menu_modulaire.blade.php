@@ -116,7 +116,7 @@ MODULES
                                 PARAMETRAGE
                             </div>
                         </div>
-                        <a href="{{ url('Parametre') }}" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
+                        <a href="{{ url('parametre') }}" class="tile-footer tooltip-button" data-placement="bottom" title="This is a link example!">
                             Accès au module
                             <i class="glyph-icon icon-arrow-right"></i>
                         </a>
