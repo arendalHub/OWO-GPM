@@ -18,6 +18,9 @@ LISTE DES COMMANDES
             </form>
         </div>
         <div class="panel-body">
+            @if(Session::has('message'))
+                @include('stock.error', ['type'=>'info', 'key'=>'message'])
+            @endif
             <div style="width: 100%" class="example-box-wrapper">
                 <a href="{{url('/stock/commande/create_update')}}" class="btn btn-primary">Creer une nouvelle commande</a>
 
@@ -30,11 +33,11 @@ LISTE DES COMMANDES
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7; sleep(1);?>
-                            @for($i=0; $i<$limit; $i++)
+                        @if($commandes != null && count($commandes) > 0)
+                            @foreach($commandes as $commande)
                                 <tr>
-                                    <td>{{date('d m Y H:i:s')}}</td>
-                                    <td>Commande {{$i++}}</td>
+                                    <td>{{$commande->date_commande}}</td>
+                                    <td>cmd-{{$commande->id_commande}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-link" type="button" data-toggle="dropdown">
@@ -42,29 +45,22 @@ LISTE DES COMMANDES
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a title="supprimer la commande" href="#">supprimer</a></li>
-                                                <li><a title="modifier la commande" href="{{url('/stock/commane/create_update')}}">modifier</a></li>
-                                                <li><a title="voir les details de la commande" href="{{url('/stock/commande/details/i')}}">details</a></li>
+                                                <li><a title="modifier la commande" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>
+                                                <li><a title="voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">details</a></li>
                                                 <!--<li><a href="#">JavaScript</a></li>-->
                                             </ul>
                                         </div>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                </ul>
+                {{$commande->paginate()}}
             </div>
         </div>
     </div>

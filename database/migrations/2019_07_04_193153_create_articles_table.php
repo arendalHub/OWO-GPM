@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
         {
             $table->bigIncrements('id_article');
             $table->string('code_article', 45)->nullable();
+            $table->string('emplacement_stock', 45)->nullable();
             $table->string('designation_article', 128);
             $table->boolean('consommable');
             $table->boolean('supprime')->nullable();

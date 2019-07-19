@@ -25,36 +25,31 @@ LISTE DES LIVRAISONS
                     <thead>
                         <tr>
                             <th>Date de livraison</th>
+                            <th>État de la livraison</th>
                             <th>Reference de la commande</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7; sleep(1);?>
-                            @for($i=0; $i<$limit; $i++)
-                                <tr>
-                                    <td>{{date('d m Y H:i:s')}}</td>
-                                    <td>Commande {{$i++}}</td>
-                                    <td>
-                                        <a title="voir les details de la livraison" href="{{url('/stock/livraison/details/l')}}">Details</a>
-                                    </td>
-                                </tr>
-                            @endfor
+                    @if($livraisons != null && count($livraisons) > 0)
+                        @foreach($livraisons as $livraison)
+                            <tr>
+                                <td>{{$livraison->date_livraison}}</td>
+                                <td>@if($livraison->supprime)Annulée @else En cours @endif</td>
+                                <td><a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">cmd-{{$livraison->id_commande}}</a></td>
+                                <td>
+                                    <a title="voir les details de la livraison" href="{{url('/stock/livraison/details/l')}}">Details</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                </ul>
+                {{$livraisons->links()}}
             </div>
         </div>
     </div>

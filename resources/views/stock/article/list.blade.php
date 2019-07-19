@@ -40,7 +40,7 @@ List des articles
                         @if(count($items) > 0)
                             @foreach($items as $item)
                                 <tr>
-                                    <td>{{$item->code_article}}</td>
+                                    <td>{{strtoupper(substr($item->designation_article, 0, 3))}}-{{$item->id_article}}</td>
                                     <td>{{$item->designation_article}}</td>
                                     <td>Savon de marseille</td>
                                     <td>
@@ -56,8 +56,9 @@ List des articles
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a title="supprimer" href="#">supprimer</a></li>
+                                                <li><a title="details" href="#">details</a></li>
                                                 <li><a title="modifier" href="{{url("/stock/article/create_update/{$item->id_article}")}}">modifier</a></li>
+                                                <li><a title="supprimer" href="#">supprimer</a></li>
                                             </ul>
                                         </div>
                                     </td>
