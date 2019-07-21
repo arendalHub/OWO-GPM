@@ -5,7 +5,7 @@ COMMANDES
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-DETAILS DE LA COMMANDE cmd1
+DETAILS DE LA COMMANDE cmd-{{$commande->id_commande}}
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -57,8 +57,12 @@ DETAILS DE LA COMMANDE cmd1
                     <tbody>
                     @if($livraisons != null && count($livraisons) > 0)
                         @foreach($livraisons as $livraison)
-                            <td><a href="{{url("stock/livraison/details/{$livraison->id_livraison}")}}">liv-{{$livraison->id_livraison}}</a></td>
-                            <td>{{$livraison->date_livraison}}</td>
+                            <tr>
+                                <td>
+                                    <a title="consulter la livraison liv-{{$livraison->id_livraison}}" href="{{url("stock/livraison/details/{$livraison->id_livraison}")}}">liv-{{$livraison->id_livraison}}</a>
+                                </td>
+                                <td>{{$livraison->date_livraison}}</td>
+                            </tr>
                         @endforeach
                     @endif
                     </tbody>

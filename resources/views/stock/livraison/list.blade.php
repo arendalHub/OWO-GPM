@@ -42,7 +42,7 @@ LISTE DES LIVRAISONS
                                 <td>{{$livraison->date_livraison}}</td>
                                 <td><a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">cmd-{{$livraison->id_commande}}</a></td>
                                 <td>
-                                    <a title="voir les details de la livraison" href="{{url('/stock/livraison/details/l')}}">Details</a>
+                                    <a title="voir les details de la livraison" href="{{url("/stock/livraison/details/{$livraison->id_livraison}")}}">Details</a>
                                 </td>
                             </tr>
                         @endforeach

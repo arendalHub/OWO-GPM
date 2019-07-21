@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ArticleLivraison;
 use App\Models\Commande;
+use App\Models\Fournisseur;
 use App\Models\Livraison;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -17,6 +18,29 @@ class LivraisonController extends Controller
         return view("stock/livraison/list")->with(['livraisons'=>$livraisons]) ;
     }
 
+    public function details(string $id_livraison)
+    {
+        $livraison = Livraison::find($id_livraison) ;
+        $articles = DB::table("ArticleLivraison")
+            ->select([
+                    "Article.id_article",
+                    "ArticleLivraison.prix_unitaire",
+                    "Article.designation_article",
+                    "ArticleLivraison.quantite",
+                    "ArticleLivraison.date_peremption",
+                    "ArticleLivraison.date_fabrication"
+                ])
+            ->leftJoin('Article', 'ArticleLivraison.id_article', '=', 'Article.id_article')
+            ->where('ArticleLivraison.id_livraison', '=', $id_livraison)
+            ->get() ;
+
+        return view("stock/livraison/details")->with(['livraison'=>$livraison, 'articles'=>$articles]) ;
+    }
+
+    /**
+     * Afficher le formulaire d'enregistrement d'un commande.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create_update()
     {
         // Affichage
