@@ -13,6 +13,9 @@
             @if(Session::has('error'))
                 @include('stock.error', ['type'=>'warning', 'key'=>'error'])
             @endif
+            @if(Session::has('message'))
+                @include('stock.error', ['type'=>'info', 'key'=>'message'])
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <form method="post" action="{{url("/stock/commande/do_create_update")}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate>

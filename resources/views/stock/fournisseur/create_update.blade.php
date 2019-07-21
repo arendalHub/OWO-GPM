@@ -15,6 +15,9 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
         @if(Session::has('error'))
             @include('stock.error', ['type'=>'warning', 'key'=>'error'])
         @endif
+        @if(Session::has('message'))
+            @include('stock.error', ['type'=>'info', 'key'=>'message'])
+        @endif
         <div class="example-box-wrapper">
             <form class="form-horizontal bordered-row" method="POST" action="{{url('/stock/fournisseur/do_create_update')}}" id="demo-form" data-parsley-validate>
                 <div class="row">

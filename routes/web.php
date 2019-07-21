@@ -42,6 +42,7 @@ Route::get('/stock/commande/details/{id}', 'CommandeController@details');
 Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
 Route::get('/stock/livraison/create_update', 'LivraisonController@create_update');
+Route::post('/stock/livraison/do_create_update', 'LivraisonController@do_create_update');
 Route::get('/stock/livraison/list','LivraisonController@list');
 Route::get('/stock/livraison/items/{id}','LivraisonController@getItemsPart');
 Route::get('/stock/livraison/details/{id}', function () {

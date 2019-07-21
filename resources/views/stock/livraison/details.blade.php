@@ -14,7 +14,7 @@ DETAILS DE LA LIVRAISON liv1
             <h2>liv1</h2>
             <hr/>
             <p>
-                <h3>Reference de commande : <a href="{{url('/stock/commande/details/i')}}">cmd 1</a></h3>
+                <h3>Reference de commande : <a href="{{url('/stock/commande/details/i')}}">{{$livraison->i}}</a></h3>
                 <hr/>
                 <h3>Date : {{date('d m Y H:i:s')}}</h3>
             </p>
