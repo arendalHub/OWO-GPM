@@ -64,7 +64,7 @@ Route::get('/stock/rebus/create_update', function () {
 });
 Route::get('/stock/rebus/list', function () {
     return view('stock.rebus.list');
-
+});
 // PERSONNEL
 Route::get('/personnel', function () {
     return view('personnel.accueil');
