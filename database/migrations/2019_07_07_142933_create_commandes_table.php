@@ -18,6 +18,7 @@ class CreateCommandesTable extends Migration
             $table->timestamp('date_commande');
             $table->bigInteger('id_fournisseur');
             $table->boolean('supprime')->default(false);
+            $table->boolean('livre')->default(false);
             $table->timestamps();
 
             $table->foreign("id_fournisseur")->on("Fournisseur")

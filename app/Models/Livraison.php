@@ -8,4 +8,5 @@ class Livraison extends Model
 {
     protected $table ='Livraison' ;
     protected $primaryKey ='id_livraison' ;
+    public $timestamps = false ;
 }

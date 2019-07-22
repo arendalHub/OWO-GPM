@@ -42,12 +42,28 @@ Route::get('/stock/commande/details/{id}', 'CommandeController@details');
 Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
 Route::get('/stock/livraison/create_update', 'LivraisonController@create_update');
+Route::post('/stock/livraison/do_create_update', 'LivraisonController@do_create_update');
 Route::get('/stock/livraison/list','LivraisonController@list');
 Route::get('/stock/livraison/items/{id}','LivraisonController@getItemsPart');
-Route::get('/stock/livraison/details/{id}', function () {
-    return view('stock.livraison.details');
-});
 
+Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
+Route::get('/stock/entree/create_update/', function () {
+    return view('stock.entreesimple.create_update');
+});
+Route::get('/stock/stock/list', function () {
+    return view('stock.stock.list');
+});
+Route::get('/stock/stock/create_update', function () {
+    return view('stock.stock.create_update');
+});
+Route::get('/stock/stock/details/{id}', function () {
+    return view('stock.stock.details');
+});
+Route::get('/stock/rebus/create_update', function () {
+    return view('stock.rebus.create_update');
+});
+Route::get('/stock/rebus/list', function () {
+    return view('stock.rebus.list');
 
 // PERSONNEL
 Route::get('/personnel', function () {
