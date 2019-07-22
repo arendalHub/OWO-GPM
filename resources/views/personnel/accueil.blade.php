@@ -1,19 +1,20 @@
-@extends('layouts.parametre')
+@extends('layouts.personnel')
 
 @section('titre_contenu')
-PARAMETRES
+PERSONNEL
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-PARAMETRAGE DE L'APPLICATION
+OPERATIONS DU PERSONNEL
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
     <div class="row">
         <div class="col-md-6">
-            <a href="{{ url('Parametre') }}" title="Example tile shortcut" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-danger">
+            <a href="{{ url('personnel/employe') }}" title="Employés" class="col-md-8 col-md-offset-2 tile-box
+            tile-box-shortcut btn-danger">
                 <div class="tile-header">
-                    UTILISATEURS
+                    EMPLOYES
                 </div>
                 <div class="tile-content-wrapper">
                     <i class="glyph-icon icon-file-photo-o"></i>
@@ -21,9 +22,10 @@ PARAMETRAGE DE L'APPLICATION
             </a>
         </div>
         <div class="col-md-6">
-            <a href="{{ url('/parametre/profil') }}" title="Example tile shortcut" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-success">
+            <a href="{{ url('/personnel/zone') }}" title="Zones et Sections" class="col-md-8 col-md-offset-2 tile-box
+             tile-box-shortcut btn-success">
                 <div class="tile-header">
-                    PROFILS
+                    ZONES
                 </div>
                 <div class="tile-content-wrapper">
                     <i class="glyph-icon icon-desktop"></i>
@@ -39,9 +41,10 @@ PARAMETRAGE DE L'APPLICATION
 
     <div class="row">
         <div class="col-md-12">
-            <a href="#" title="Example tile shortcut" class="col-md-4 col-md-offset-4 tile-box tile-box-shortcut btn-info">
+            <a href="{{ url('/personnel/site') }}" title="Sites" class="col-md-4 col-md-offset-4 tile-box
+            tile-box-shortcut btn-info">
                <div class="tile-header">
-                    SOCIETE
+                    SITE
                 </div>
                 <div class="tile-content-wrapper">
                     <i class="glyph-icon icon-download"></i>

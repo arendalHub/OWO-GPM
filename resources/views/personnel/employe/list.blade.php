@@ -1,11 +1,11 @@
-@extends('layouts.parametre')
+@extends('layouts.personnel')
 
 @section('titre_contenu')
-    PROFILS
+    EMPLOYES
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    LISTE DES PROFILS
+    LISTE DES EMPLOYES
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -13,9 +13,10 @@
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url('/parametre/profil/create_update') }}" title=""><span>NOUVEAU PROFIL</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
+                ('personnel/employe/create_update') }}" title=""><span>NOUVEL EMPLOYE</span></a>
                 <h3 class="col-md-10 col-md-push-7">
-                    LISTE DES PROFILS
+                    LISTE DES EMPLOYES
                 </h3>
                 <br><br>
 {{--                    <div class="alert alert-close alert-success col-md-6 col-md-push-3">--}}
@@ -30,38 +31,34 @@
             </div>
             <div class="example-box-wrapper">
 
-                
-
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>LIBELLE</th>
-                        <th>DROITS</th>
+                        <th>NOM</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
                 <tbody>
 
-                    @foreach($profils as $profil)
+                    @foreach($employes as $employe)
                         <tr class="odd gradeX">
-                            <td>{{$profil->id_profil}}</td>
-                            <td>{{$profil->libelle_profil}}</td>
-                            <td> [DROITS]</td>
+                            <td>{{$employe->id_employe}}</td>
+                            <td>{{$employe->nom_employe}}</td>
                             <td class="center">
                                 <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
                                    href="{{url
-                                ('/parametre/profil/create_update/'.$profil->id_profil)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_profil')}}">
+                                ('/personnel/employe/create_update/'.$employe->id_employe)}}"><span>Modifier</span></a>
+                                <form method="post" action=" {{url('delete_employe')}}">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$profil->id_profil}}">
+                                    <input type="hidden" name="id" value="{{$employe->id_employe}}">
 
                                     <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
                                     col-md-5 col-md-push-2"
                                             data-toggle="modal"
-                                            data-target="#myModal{{$profil->id_profil}}">Supprimer</button>
+                                            data-target="#myModal{{$employe->id_employe}}">Supprimer</button>
 
-                                    <div class="modal fade bs-example-modal-sm" id="myModal{{$profil->id_profil}}"
+                                    <div class="modal fade bs-example-modal-sm" id="myModal{{$employe->id_employe}}"
                                          tabindex="-1" role="dialog"
                                          aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">

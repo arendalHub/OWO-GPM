@@ -1,11 +1,11 @@
-@extends('layouts.parametre')
+@extends('layouts.personnel')
 
 @section('titre_contenu')
-    PROFILS
+    ZONES
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    LISTE DES PROFILS
+    LISTE DES ZONES
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -13,55 +13,52 @@
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url('/parametre/profil/create_update') }}" title=""><span>NOUVEAU PROFIL</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
+                ('personnel/zone/create_update') }}" title=""><span>NOUVELLE ZONE</span></a>
                 <h3 class="col-md-10 col-md-push-7">
-                    LISTE DES PROFILS
+                    LISTE DES ZONES
                 </h3>
                 <br><br>
-{{--                    <div class="alert alert-close alert-success col-md-6 col-md-push-3">--}}
-{{--                        <a href="#" title="Fermer" class="glyph-icon alert-close-btn icon-remove"></a>--}}
-{{--                        <div class="bg-green alert-icon">--}}
-{{--                            <i class="glyph-icon icon-check"></i>--}}
-{{--                        </div>--}}
-{{--                        <div class="alert-content">--}}
-{{--                            <h4 class="alert-title">Profil ajouté avec succès!</h4>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="alert alert-close alert-success col-md-6 col-md-push-3">
+                        <a href="#" title="Fermer" class="glyph-icon alert-close-btn icon-remove"></a>
+                        <div class="bg-green alert-icon">
+                            <i class="glyph-icon icon-check"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Profil ajouté avec succès!</h4>
+                        </div>
+                    </div>
             </div>
             <div class="example-box-wrapper">
-
-                
 
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>LIBELLE</th>
-                        <th>DROITS</th>
+                        <th>NOM</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
                 <tbody>
 
-                    @foreach($profils as $profil)
+                    @foreach($zones as $zone)
                         <tr class="odd gradeX">
-                            <td>{{$profil->id_profil}}</td>
-                            <td>{{$profil->libelle_profil}}</td>
-                            <td> [DROITS]</td>
+                            <td>{{$zone->id_zone}}</td>
+                            <td>{{$zone->nom_zone}}</td>
                             <td class="center">
                                 <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
                                    href="{{url
-                                ('/parametre/profil/create_update/'.$profil->id_profil)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_profil')}}">
+                                ('/personnel/zone/create_update/'.$zone->id_zone)}}"><span>Modifier</span></a>
+                                <form method="post" action=" {{url('delete_zone')}}">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$profil->id_profil}}">
+                                    <input type="hidden" name="id" value="{{$zone->id_zone}}">
 
                                     <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
                                     col-md-5 col-md-push-2"
                                             data-toggle="modal"
-                                            data-target="#myModal{{$profil->id_profil}}">Supprimer</button>
+                                            data-target="#myModal{{$zone->id_zone}}">Supprimer</button>
 
-                                    <div class="modal fade bs-example-modal-sm" id="myModal{{$profil->id_profil}}"
+                                    <div class="modal fade bs-example-modal-sm" id="myModal{{$zone->id_zone}}"
                                          tabindex="-1" role="dialog"
                                          aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">
