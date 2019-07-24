@@ -12,32 +12,22 @@ MISE EN REBUS
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate>
+                    <form action="{{url('/stock/rebus/do_create_update')}}" method="POST" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate>
                         <span id="items-index" hidden>0</span>
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Désignation du stock</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="stock" required>
-                                        <option>stock 1</option>
-                                        <option>stock 2</option>
-                                        <option>stock 3</option>
-                                        <option>stock 4</option>
-                                        <option>Chercher un stock</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
                         <fieldset>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Désignation de l'article</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="article" required>
-                                        <option>article 1</option>
-                                        <option>article 2</option>
-                                        <option>article 3</option>
-                                        <option>article 4</option>
-                                        <option>Chercher un article</option>
+                                    <select onchange="document.getElementById('number_input').max = this.value.split(';')[1]" required="" class="form-control" name="id_article">
+                                        <option value="0"></option>
+                                        @if($articles != null && count($articles) > 0)
+                                            @for($i = 0; $i<count($articles); $i++)
+                                                <option class="{{$articles[$i]["article_quantity"]}}"
+                                                        value="{{$articles[$i]["article_item"]->id_article}};{{$articles[$i]["article_quantity"]}}">
+                                                    {{$articles[$i]["article_item"]->designation_article}}
+                                                </option>
+                                            @endfor
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -45,13 +35,13 @@ MISE EN REBUS
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Quantité</label>
                             <div class="col-sm-6">
-                                <input type="number" min="1" class="form-control"/>
+                                <input id="number_input" type="number" name="quantite_mouvement" max="" min="1" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="bg-default content-box text-center pad20A mrg25T">
                             <button type="submit" class="btn btn-lg btn-primary">Valider</button>
-                            <button type="reset" onclick="resetForm()" class="btn btn-lg btn-default">Effacer</button>
+                            <button type="reset" class="btn btn-lg btn-default">Effacer</button>
                         </div>
                     </form>
                 </div>
