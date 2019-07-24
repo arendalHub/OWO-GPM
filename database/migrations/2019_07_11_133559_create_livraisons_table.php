@@ -18,8 +18,8 @@ class CreateLivraisonsTable extends Migration
             $table->bigInteger('id_commande');
             $table->timestamp('date_livraison');
 
-            $table->foreign('id_commande')->on('Commande')
-                ->references('id_commande') ;
+//            $table->foreign('id_commande')->on('Commande')
+//                ->references('id_commande') ;
         });
     }
 

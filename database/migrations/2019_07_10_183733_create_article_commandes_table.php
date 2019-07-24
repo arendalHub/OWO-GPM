@@ -20,10 +20,10 @@ class CreateArticleCommandesTable extends Migration
             $table->bigInteger('quantite');
             $table->timestamps();
 
-            $table->foreign('id_commande')->on("Commande")
-                ->references('id_commande') ;
-            $table->foreign("id_article")->on("Article")
-                ->references("id_article") ;
+//            $table->foreign('id_commande')->on("Commande")
+//                ->references('id_commande') ;
+//            $table->foreign("id_article")->on("Article")
+//                ->references("id_article") ;
         });
     }
 

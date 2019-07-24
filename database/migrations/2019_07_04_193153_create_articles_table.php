@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('supprime')->nullable();
 
             $table->bigInteger('id_famille') ;
-            $table->foreign('id_famille')->references('id_famille')->on('FamilleArticle') ;
+//            $table->foreign('id_famille')->references('id_famille')->on('FamilleArticle') ;
 
             $table->timestamps();
         });
