@@ -13,6 +13,8 @@
 
 
 // AUTHENTIFICATION
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('login');
 });
@@ -50,9 +52,8 @@ Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
 Route::get('/stock/entree/create_update/', function () {
     return view('stock.entreesimple.create_update');
 });
-Route::get('/stock/stock/list', function () {
-    return view('stock.stock.list');
-});
+Route::get('/stock/stock/list/{page_num?}', 'StockController@list');
+
 Route::get('/stock/stock/create_update', function () {
     return view('stock.stock.create_update');
 });
