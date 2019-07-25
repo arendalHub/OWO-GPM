@@ -65,12 +65,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => 'postgres://cwezxcoxugohuz:8f1831556e6d0a05aa285d2e485713c26d5794bf50bde79bbb12e211375622a2@ec2-107-21-120-104.compute-1.amazonaws.com:5432/d19scorvdf0eb6',
-            'host' => 'ec2-107-21-120-104.compute-1.amazonaws.com',
-            'port' =>  '5432',
-            'database' => 'd19scorvdf0eb6',
-            'username' => 'cwezxcoxugohuz',
-            'password' => '8f1831556e6d0a05aa285d2e485713c26d5794bf50bde79bbb12e211375622a2',
+            'url' => 'postgres://owogpm:owogpm@localhost:5436/owogpm',
+            'host' => 'localhost',
+            'port' =>  '5436',
+            'database' => 'owogpm',
+            'username' => 'owogpm',
+            'password' => 'owogpm',
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

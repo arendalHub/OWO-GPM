@@ -37,19 +37,19 @@ LISTE DES COMMANDES
                             @foreach($commandes as $commande)
                                 <tr>
                                     <td>{{$commande->date_commande}}</td>
-                                    <td>cmd-{{$commande->id_commande}}</td>
+                                    <td>CMD-{{$commande->id_commande}}</td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a title="supprimer la commande" href="#">supprimer</a></li>
-                                                <li><a title="modifier la commande" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>
-                                                <li><a title="voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">details</a></li>
+{{--                                        <div class="dropdown">--}}
+{{--                                            <button class="btn btn-link" type="button" data-toggle="dropdown">--}}
+{{--                                                <span class="caret"></span>--}}
+{{--                                            </button>--}}
+{{--                                            <ul class="dropdown-menu">--}}
+{{--                                                <li><a title="supprimer la commande" disabled="">supprimer</a></li>--}}
+{{--                                                <li><a title="modifier la commande" disabled="" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>--}}
+                                                <a title="voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">Details</a>
                                                 <!--<li><a href="#">JavaScript</a></li>-->
-                                            </ul>
-                                        </div>
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -60,7 +60,7 @@ LISTE DES COMMANDES
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                {{$commande->paginate()}}
+                {{$commandes->links()}}
             </div>
         </div>
     </div>

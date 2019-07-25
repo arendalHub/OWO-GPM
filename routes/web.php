@@ -13,6 +13,8 @@
 
 
 // AUTHENTIFICATION
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('connexion');
 });
@@ -58,21 +60,17 @@ Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
 Route::get('/stock/entree/create_update/', function () {
     return view('stock.entreesimple.create_update');
 });
-Route::get('/stock/stock/list', function () {
-    return view('stock.stock.list');
-});
+Route::get('/stock/stock/list/{page_num?}', 'StockController@list');
 Route::get('/stock/stock/create_update', function () {
     return view('stock.stock.create_update');
 });
 Route::get('/stock/stock/details/{id}', function () {
     return view('stock.stock.details');
 });
-Route::get('/stock/rebus/create_update', function () {
-    return view('stock.rebus.create_update');
-});
-Route::get('/stock/rebus/list', function () {
-    return view('stock.rebus.list');
-});
+Route::get('/stock/rebus/create_update', "Stock\RebusController@create_update") ;
+Route::post('/stock/rebus/do_create_update', "Stock\RebusController@do_create_update") ;
+Route::get('/stock/rebus/list/{page_num?}', "Stock\RebusController@list") ;
+
 // PERSONNEL
 Route::get('/personnel', function () {
     return view('personnel.accueil');

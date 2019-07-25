@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Ce controlleur est responsable de toute les actions sur les commandes.
- * @todo migration Commande et ArticleCommande.
  * @author fatigba72@mail.com
  */
 class CommandeController extends Controller

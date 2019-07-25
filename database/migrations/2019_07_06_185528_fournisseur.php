@@ -15,12 +15,13 @@ class Fournisseur extends Migration
     {
         Schema::create('Fournisseur', function (Blueprint $table)
         {
-            $table->bigIncrements('id_founisseur');
+            $table->bigIncrements('id_fournisseur');
             $table->string('designation_fournisseur', 75);
             $table->string('adresse_fournisseur', 150)->nullable();
             $table->string('contact_fournisseur', 35);
             $table->string('email_fournisseur', 100)->nullable();
             $table->integer('bp_fournisseur')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -31,6 +32,6 @@ class Fournisseur extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('Fournisseur');
     }
 }

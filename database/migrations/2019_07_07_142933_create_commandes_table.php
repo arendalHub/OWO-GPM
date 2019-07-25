@@ -15,14 +15,14 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('Commande', function (Blueprint $table) {
             $table->bigIncrements('id_commande');
-            $table->timestamp('date_commande');
+            $table->string('date_commande', 128);
             $table->bigInteger('id_fournisseur');
             $table->boolean('supprime')->default(false);
             $table->boolean('livre')->default(false);
             $table->timestamps();
 
-            $table->foreign("id_fournisseur")->on("Fournisseur")
-                ->references("id_fournisseur") ;
+//            $table->foreign("id_fournisseur")->on("Fournisseur")
+//                ->references("id_fournisseur") ;
         });
     }
 
