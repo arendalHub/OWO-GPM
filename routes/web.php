@@ -35,46 +35,44 @@ Route::get('/deconnexion', 'ConnexionController@deconnexion');
 Route::get('/stock', function () {
     return view('stock.accueil');
 });
-Route::get('/stock/article', function () {
-    return view('stock.article.list');
-});
-Route::get('/stock/article/list', function () {
-    return view('stock.article.list');
-});
-Route::get('/stock/article/create_update', function () {
-    return view('stock.article.create_update');
-});
-Route::get('/stock/fournisseur/list', function () {
-    return view('stock.fournisseur.list');
-});
-Route::get('/stock/fournisseur/list', function () {
-    return view('stock.fournisseur.list');
-});
-Route::get('/stock/fournisseur/create_update', function () {
-    return view('stock.fournisseur.create_update');
-});
-Route::get('/stock/commande/create_update', function () {
-    return view('stock.commande.create_update');
-});
-Route::get('/stock/commande/list', function () {
-    return view('stock.commande.list');
-});
+Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
+Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
+Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
 
-Route::get('/stock/commande/details/{id}', function () {
-    return view('stock.commande.details');
-});
+Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list');
+Route::get('/stock/fournisseur/create_update/{id_fournisseur?}', 'FournisseurController@create_update');
+Route::post('/stock/fournisseur/do_create_update','FournisseurController@do_create_update'); // Traitememt du formulaire d'ajout/modification des fournisseurs
 
-Route::get('/stock/livraison/create_update', function () {
-    return view('stock.livraison.create_update');
-});
-Route::get('/stock/livraison/list', function () {
-    return view('stock.livraison.list');
-});
-Route::get('/stock/livraison/details/{id}', function () {
-    return view('stock.livraison.details');
-});
+Route::get('/stock/commande/create_update/{id_commande?}', 'CommandeController@create_update');
+Route::post('/stock/commande/do_create_update', 'CommandeController@do_create_update');
+Route::get('/stock/commande/list/{num_page?}', 'CommandeController@list');
+Route::get('/stock/commande/details/{id}', 'CommandeController@details');
+Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
+Route::get('/stock/livraison/create_update', 'LivraisonController@create_update');
+Route::post('/stock/livraison/do_create_update', 'LivraisonController@do_create_update');
+Route::get('/stock/livraison/list','LivraisonController@list');
+Route::get('/stock/livraison/items/{id}','LivraisonController@getItemsPart');
 
+Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
+Route::get('/stock/entree/create_update/', function () {
+    return view('stock.entreesimple.create_update');
+});
+Route::get('/stock/stock/list', function () {
+    return view('stock.stock.list');
+});
+Route::get('/stock/stock/create_update', function () {
+    return view('stock.stock.create_update');
+});
+Route::get('/stock/stock/details/{id}', function () {
+    return view('stock.stock.details');
+});
+Route::get('/stock/rebus/create_update', function () {
+    return view('stock.rebus.create_update');
+});
+Route::get('/stock/rebus/list', function () {
+    return view('stock.rebus.list');
+});
 // PERSONNEL
 Route::get('/personnel', function () {
     return view('personnel.accueil');
@@ -155,5 +153,3 @@ Route::post('delete_droit', 'Parametre\DroitController@supprimer');
 Route::get('/test', function () {
     return view('test');
 });
-
-

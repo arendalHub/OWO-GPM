@@ -12,12 +12,15 @@ LISTE DES FOURNISSEURS
     <div class="panel">
         <div class="panel panel-heading">
             <form class="form-inline">
-                    <div class="form-group">
-                        <input  class="form-control" required placeholder="rechercher un fournisseur" type="search"/>
+                <div class="form-group">
+                    <input  class="form-control" required placeholder="rechercher un fournisseur" type="search"/>
                 </div>
             </form>
         </div>
         <div class="panel-body">
+            @if(Session::has('message'))
+                @include('stock.error', ['type'=>'info', 'key'=>'message'])
+            @endif
             <div style="width: 100%" class="example-box-wrapper">
                 <a href="{{url('/stock/fournisseur/create_update')}}" class="btn btn-primary">Ajouter un nouveau fournisseur</a>
 
@@ -29,47 +32,31 @@ LISTE DES FOURNISSEURS
                             <th>Contact</th>
                             <th>Email</th>
                             <th>Boite postale</th>
-                            <th>Actions</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7?>
-                            @for($i=0; $i<$limit; $i++)
+                        @if($fournisseurs != null && count($fournisseurs) > 0)
+                            @foreach($fournisseurs as $fournisseur)
                                 <tr>
-                                    <td>Tictac Corp.</td>
-                                    <td>132 Lomé, Rue la tortue</td>
-                                    <td>+228 99-99-99-99</td>
-                                    <td>titaccorp@tictac.com</td>
-                                    <td>1265</td>
+                                    <td>{{$fournisseur->designation_fournisseur}}</td>
+                                    <td>{{$fournisseur->adresse_fournisseur}}</td>
+                                    <td>{{$fournisseur->contact_fournisseur}}</td>
+                                    <td>{{$fournisseur->email_fournisseur}}</td>
+                                    <td>{{$fournisseur->bp_fournisseur}}</td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a title="supprimer" href="#">supprimer</a></li>
-                                                <li><a title="modifier" href="{{url('/stock/fournisseur/create_update')}}">modifier</a></li>
-                                                <!--<li><a href="#">JavaScript</a></li>-->
-                                            </ul>
-                                        </div>
+                                        <a title="modifier" href="{{url("/stock/fournisseur/create_update/{$fournisseur->id_fournisseur}")}}">Modifier</a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                </ul>
+                {{$fournisseurs->links()}}
             </div>
         </div>
     </div>
