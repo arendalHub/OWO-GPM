@@ -5,18 +5,18 @@ LIVRAISON
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-DETAILS DE LA LIVRAISON liv1
+DETAILS DE LA LIVRAISON liv-{{$livraison->id_livraison}}
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
     <div class="panel">
         <div class="panel panel-heading">
-            <h2>liv1</h2>
+            <h2>liv-{{$livraison->id_livraison}}</h2>
             <hr/>
             <p>
-                <h3>Reference de commande : <a href="{{url('/stock/commande/details/i')}}">cmd 1</a></h3>
+                <h3>Reference de commande : <a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">{{$livraison->id_commande}}</a></h3>
                 <hr/>
-                <h3>Date : {{date('d m Y H:i:s')}}</h3>
+                <h3>Date : {{$livraison->date_livraison}}</h3>
             </p>
         </div>
         <div class="panel-body">
@@ -27,17 +27,22 @@ DETAILS DE LA LIVRAISON liv1
                             <th>Article</th>
                             <th>Quantite</th>
                             <th>Prix (XOF)</th>
+                            <th>Date de péremption</th>
+                            <th>Date de fabrication</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7; sleep(1);?>
-                            @for($i=0; $i<$limit; $i++)
-                                <tr>
-                                    <td>Article {{$i+1}}</td>
-                                    <td>{{$i+1}}</td>
-                                    <td>1200</td>
-                                </tr>
-                            @endfor
+                    @if($articles != null && count($articles) > 0)
+                        @foreach($articles as $article)
+                            <tr>
+                                <td>{{$article->designation_article}}</td>
+                                <td>{{$article->quantite}}</td>
+                                <td>{{$article->prix_unitaire}}</td>
+                                <td>{{$article->date_peremption}}</td>
+                                <td>{{$article->date_fabrication}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

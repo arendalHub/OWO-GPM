@@ -1,1 +1,19 @@
-<tr <?php $uuid = uniqid(); ?> id="item-row-{{$uuid}}"><td><select class="form-control">@for($i=0; $i<5; $i++)<option>Article {{$i+1}}</option>@endfor<option class="btn btn-link">Rechercher un article</option></select></td><td><input type="number" min="1" class="form-control"/></td><td><button class="btn btn-warning" type="button" onclick="<?php echo "removeItemRow(\'item-row-{$uuid}\')" ?>">supprimer</button></td></tr>
+<tr id="item-row-{{$id}}">
+    <td>
+        <select required name="id_article-item-row-{{$id}}" class="form-control">
+            @if($articles != null && count($articles) > 0)
+                @foreach($articles as $article)
+                    <option value="{{$article->id_article}}">{{$article->designation_article}}</option>
+                @endforeach
+            @endif
+        </select>
+    </td>
+    <td>
+        <input required name="quantite-item-row-{{$id}}" type="number" min="1" class="form-control"/>
+    </td>
+    <td>
+        <button class="btn btn-warning" type="button" onclick="<?php echo "removeItemRow('item-row-{$id}')" ?>">
+            supprimer
+        </button>
+    </td>
+</tr>

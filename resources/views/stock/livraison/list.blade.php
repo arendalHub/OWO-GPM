@@ -18,6 +18,12 @@ LISTE DES LIVRAISONS
             </form>
         </div>
         <div class="panel-body">
+            @if(Session::has('error'))
+                @include('stock.error', ['type'=>'warning', 'key'=>'error'])
+            @endif
+            @if(Session::has('message'))
+                @include('stock.error', ['type'=>'info', 'key'=>'message'])
+            @endif
             <div style="width: 100%" class="example-box-wrapper">
                 <a href="{{url('/stock/livraison/create_update')}}" class="btn btn-primary">Enregister une nouvelle livraison</a>
 
@@ -30,31 +36,24 @@ LISTE DES LIVRAISONS
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7; sleep(1);?>
-                            @for($i=0; $i<$limit; $i++)
-                                <tr>
-                                    <td>{{date('d m Y H:i:s')}}</td>
-                                    <td>Commande {{$i++}}</td>
-                                    <td>
-                                        <a title="voir les details de la livraison" href="{{url('/stock/livraison/details/l')}}">Details</a>
-                                    </td>
-                                </tr>
-                            @endfor
+                    @if($livraisons != null && count($livraisons) > 0)
+                        @foreach($livraisons as $livraison)
+                            <tr>
+                                <td>{{$livraison->date_livraison}}</td>
+                                <td><a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">cmd-{{$livraison->id_commande}}</a></td>
+                                <td>
+                                    <a title="voir les details de la livraison" href="{{url("/stock/livraison/details/{$livraison->id_livraison}")}}">Details</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                </ul>
+                {{$livraisons->links()}}
             </div>
         </div>
     </div>

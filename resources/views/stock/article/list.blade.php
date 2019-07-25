@@ -12,6 +12,10 @@ List des articles
     <div class="panel">
         <div class="panel-body">
             <div class="panel panel-heading">
+                @if(Session::has('message'))
+                    @include('stock.error', ['type'=>'info', 'key'=>'message'])
+                @endif
+
                 <form class="form-inline">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Rechercher un article">
@@ -33,27 +37,34 @@ List des articles
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $limit=5; ?>
-                        @for($i=0; $i<$limit; $i++)
-                            <tr>
-                                <td>SAV 00{{$i+1}}</td>
-                                <td>Savon Anamousse</td>
-                                <td>Savon de marseille</td>
-                                <td>Oui</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a title="supprimer" href="#">supprimer</a></li>
-                                            <li><a title="modifier" href="#">modifier</a></li>
-                                            <!--<li><a href="#">JavaScript</a></li>-->
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endfor
+                        @if(count($items) > 0)
+                            @foreach($items as $item)
+                                <tr>
+                                    <td>{{strtoupper(substr($item->designation_article, 0, 3))}}-{{$item->id_article}}</td>
+                                    <td>{{$item->designation_article}}</td>
+                                    <td>Savon de marseille</td>
+                                    <td>
+                                        @if($item->consommable == null)
+                                            Non
+                                        @else
+                                            Oui
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a title="details" href="#">details</a></li>
+                                                <li><a title="modifier" href="{{url("/stock/article/create_update/{$item->id_article}")}}">modifier</a></li>
+                                                <li><a title="supprimer" href="#">supprimer</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -61,15 +72,9 @@ List des articles
         <div class="panel-footer">
             <div class="text-center">
                 <ul class="pagination">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
+                    {{$items->links()}}
                 </ul>
             </div>
         </div>
-    </div>    
+    </div>
 @endsection('contenu_page')
