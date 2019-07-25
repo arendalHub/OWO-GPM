@@ -27,6 +27,7 @@
                     <tr>
                         <th>ID</th>
                         <th>NOM</th>
+                        <th>ZONE</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -36,10 +37,15 @@
                         <tr class="odd gradeX">
                             <td>{{$section->id_section}}</td>
                             <td>{{$section->nom_section}}</td>
+                            <td>
+                                @foreach($zones as $zone)
+                                    {{$section->id_zone==$zone->id_zone ? $zone->nom_zone:''}}
+                                @endforeach
+                            </td>
                             <td class="center">
                                 <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
                                    href="{{url
-                                ('personnel'.$section->id_section)}}"><span>Modifier</span></a>
+                                ('personnel/section/create_update/'.$section->id_section)}}"><span>Modifier</span></a>
                                 <form method="post" action=" {{url('delete_section')}}">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$section->id_section}}">

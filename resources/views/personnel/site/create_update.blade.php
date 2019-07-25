@@ -42,6 +42,68 @@
                                     >
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">ADRESSE</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="adresse" name="adresse" placeholder="Adresse du site"
+                                           required class="form-control"
+                                    @if(isset($site))
+                                        value="{{old('nom',$site->adresse_site)}}"
+                                    @endif
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">DATE DEBUT TRAVAUX</label>
+                                <div class="col-sm-6">
+                                    <input type="date" id="date_debut_travaux" name="date_debut_travaux" placeholder="Nom du site" required class="form-control"
+                                    @if(isset($site))
+                                        value="{{old('date_debut_travaux',$site->date_debut_travaux_site)}}"
+                                    @endif
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">DATE FIN TRAVAUX</label>
+                                <div class="col-sm-6">
+                                    <input type="date" id="date_fin_travaux" name="date_fin_travaux" placeholder="Nom
+                                     du site" required class="form-control"
+                                    @if(isset($site))
+                                        value="{{old('date_fin_travaux',$site->date_fin_travaux_site)}}"
+                                    @endif
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">DUREE</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="duree_travaux" name="duree_travaux" placeholder="Durée des
+                                     travaux"
+                                           required class="form-control"
+                                    @if(isset($site))
+                                        value="{{old('duree_travaux',$site->duree_travaux_site)}}"
+                                    @endif
+                                    >
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">SECTION</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="section" name="section">
+                                        <option>--Choissisez une section--</option>
+                                        @foreach($sections as $section)
+                                            {{$selected = ''}}
+                                            @if(isset($section) && ($section->id_section == $section->id_section))
+                                                {{$selected = 'selected'}}
+                                            @endif
+                                            <option value="{{$section->id_section}}"
+                                                    {{$selected}}>{{$section->nom_section}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
                         </div>
 

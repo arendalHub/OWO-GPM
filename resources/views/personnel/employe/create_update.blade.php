@@ -257,11 +257,11 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">TYPE CONTRAT</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="type_contrat" name="type_contrat" placeholder="Type de
+                                    <input type="text" id="contrat" name="contrat" placeholder="Type de
                                     contrat"
                                            required class="form-control"
                                            @if(isset($employe))
-                                           value="{{old('type_contrat',$employe->type_contrat_employe)}}"
+                                           value="{{old('contrat',$employe->contrat_employe)}}"
                                             @endif
                                     >
                                 </div>
