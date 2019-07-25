@@ -14,20 +14,11 @@
         <div class="panel-body">
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
-                ('personnel/site/create_update') }}" title=""><span>NOUVEAU SITE</span></a>
+                ('personnel/site/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU SITE</span></a>
                 <h3 class="col-md-10 col-md-push-7">
                     LISTE DES SITES
                 </h3>
                 <br><br>
-{{--                    <div class="alert alert-close alert-success col-md-6 col-md-push-3">--}}
-{{--                        <a href="#" title="Fermer" class="glyph-icon alert-close-btn icon-remove"></a>--}}
-{{--                        <div class="bg-green alert-icon">--}}
-{{--                            <i class="glyph-icon icon-check"></i>--}}
-{{--                        </div>--}}
-{{--                        <div class="alert-content">--}}
-{{--                            <h4 class="alert-title">Profil ajouté avec succès!</h4>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
             </div>
             <div class="example-box-wrapper">
 

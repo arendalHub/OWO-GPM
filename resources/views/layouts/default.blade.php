@@ -65,7 +65,7 @@
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>
-                        <a href="#" class="logo-content-small" title="OWO-GPM">
+                        <a href="{{ url('/menu_modulaire') }}" class="logo-content-small" title="OWO-GPM">
                             OWO-GPM
                             <span>Gestion de Processus Métiers</span>
                         </a>

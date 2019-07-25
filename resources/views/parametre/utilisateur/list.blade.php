@@ -11,11 +11,17 @@ LISTE DES UTILISATEURS
 @section('contenu_page')
     <div class="panel">
         <div class="panel-body">
-            <h3 class="title-hero">
-                LISTE DES UTILISATEURS
-            </h3>
-            <div class="example-box-wrapper">
+            <div class=" title-hero">
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
+                ('/parametre/utilisateur/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEL
+                        UTILISATEUR</span></a>
+                <h3 class="col-md-10 col-md-push-7">
+                    LISTE DES UTILISATEURS
+                </h3>
+                <br><br>
+            </div>
 
+            <div class="example-box-wrapper">
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                 <thead>
                 <tr>
@@ -26,105 +32,48 @@ LISTE DES UTILISATEURS
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="odd gradeX">
-                    <td>001</td>
-                    <td>test 1</td>
-                    <td>Comptable</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>002</td>
-                    <td>test 2</td>
-                    <td>Administrateur</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>003</td>
-                    <td>test 3</td>
-                    <td>Caissier</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>004</td>
-                    <td>test 4</td>
-                    <td>Comptable</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>004</td>
-                    <td>test 4</td>
-                    <td>Caissier</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>005</td>
-                    <td>test 5</td>
-                    <td>Secretaire</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>006</td>
-                    <td>test 6</td>
-                    <td>Comptable</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>007</td>
-                    <td>test 7</td>
-                    <td>Super Administrateur</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>008</td>
-                    <td>test 8</td>
-                    <td>Gerant</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>  
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>009</td>
-                    <td>test 9</td>
-                    <td>Directeur</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>
-                    </td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>0010</td>
-                    <td>test 10</td>
-                    <td>Administrateur</td>
-                    <td class="center">
-                        <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt" href="#" title=""><span>Modifier</span></a>
-                        <a class="btn btn-border btn-alt border-red btn-link font-red" href="#" title=""><span>Supprimer</span></a>
-                    </td>
-                </tr>
+                    @foreach($utilisateurs as $utilisateur)
+                        <tr class="odd gradeX">
+                            <td>{{$utilisateur->id_utilisateur}}</td>
+                            <td>{{$utilisateur->login_utilisateur}}</td>
+                            <td>
+                                @foreach($profils as $profil)
+                                    {{$utilisateur->id_profil==$profil->id_profil ? $profil->libelle_profil:''}}
+                                @endforeach
+                            </td>
+                            <td class="center">
+                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
+                                   href="{{url('/parametre/utilisateur/create_update/'.$utilisateur->id_utilisateur)}}"><span>Modifier</span></a>
+                                <form method="post" action=" {{url('delete_utilisateur')}}">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$utilisateur->id_utilisateur}}">
+
+                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
+                                    col-md-5 col-md-push-2" data-toggle="modal" data-target="#myModal{{$utilisateur->id_utilisateur}}">Supprimer</button>
+
+                                    <div class="modal fade bs-example-modal-sm"
+                                         id="myModal{{$utilisateur->id_utilisateur}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Confirmation</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>VOULEZ VOUS VRAIMENT SUPPRIMER?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                                    <button type="submit" class="btn btn-primary">Oui</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
                 </table>
             </div>

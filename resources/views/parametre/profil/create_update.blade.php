@@ -7,6 +7,7 @@
 @section('sous_titre_contenu')
     {{$sous_titre = 'CREATION DE PROFIL'}}
     {{$action = url('/add_profil')}}
+{{--        {{dd(var_dump($profil))}}--}}
     @if(isset($profil))
         {{$sous_titre = 'MODIFICATION DE PROFIL'}}
         {{$action = url('/update_profil')}}
@@ -19,7 +20,9 @@
         <div class="panel-body">
 
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url('/parametre/profil/list') }}" title=""><span>LISTE DES PROFILS</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
+                ('/parametre/profil/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES
+                        PROFILS</span></a>
                 <h3 class="col-md-9 col-md-push-5">
                     {{$sous_titre}}
                 </h3>
@@ -35,19 +38,20 @@
                                 <div class="col-sm-6">
                                     <input type="text" id="libelle" name="libelle" placeholder="Libellé du profil" required class="form-control"
                                     @if(isset($profil))
-                                        value="{{old('libelle',$profil->libelle_profil)}}"
+                                        value="{{$profil->libelle_profil}}"
                                     @endif
                                     >
                                 </div>
                             </div>
 
-                            <hr>
-                            <i class="text-center">DROITS</i>
+                            <br>
+                            <label class="col-md-12 control-label col-md-pull-6">DROITS</label>
+                            <br>
                             <hr>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Articles</label>
-                                <div class="col-sm-6">
+                            <div class="form-group col-md-push-2">
+                                <label class="col-sm-4 control-label">Articles</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_article" name="read_article" value="read">
                                         Afficher
@@ -67,8 +71,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Fournisseurs</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Fournisseurs</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_fournisseur" name="read_fournisseur" value="read">
                                         Afficher
@@ -88,8 +92,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Commandes</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Commandes</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_commande" name="read_commande" value="read">
                                         Afficher
@@ -109,8 +113,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Livraisons</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Livraisons</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_livraison" name="read_livraison" value="read">
                                         Afficher
@@ -130,8 +134,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Personnel</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Personnel</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_personnel" name="read_personnel" value="read">
                                         Afficher
@@ -151,8 +155,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Zones</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Zones</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_zone" name="read_zone" value="read">
                                         Afficher
@@ -172,8 +176,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Sites</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Sites</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_site" name="read_site" value="read">
                                         Afficher
@@ -193,8 +197,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Clients</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">Clients</label>
+                                <div class="col-sm-8">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="read_client" name="read_client" value="read">
                                         Afficher
