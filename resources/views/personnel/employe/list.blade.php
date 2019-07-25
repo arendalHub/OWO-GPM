@@ -14,20 +14,12 @@
         <div class="panel-body">
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
-                ('personnel/employe/create_update') }}" title=""><span>NOUVEL EMPLOYE</span></a>
+                ('personnel/employe/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEL EMPLOYE</span></a>
                 <h3 class="col-md-10 col-md-push-7">
                     LISTE DES EMPLOYES
                 </h3>
                 <br><br>
-{{--                    <div class="alert alert-close alert-success col-md-6 col-md-push-3">--}}
-{{--                        <a href="#" title="Fermer" class="glyph-icon alert-close-btn icon-remove"></a>--}}
-{{--                        <div class="bg-green alert-icon">--}}
-{{--                            <i class="glyph-icon icon-check"></i>--}}
-{{--                        </div>--}}
-{{--                        <div class="alert-content">--}}
-{{--                            <h4 class="alert-title">Profil ajouté avec succès!</h4>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+
             </div>
             <div class="example-box-wrapper">
 
@@ -35,20 +27,78 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NOM</th>
+                        <th>MATRICULE</th>
+                        <th>NOM & PRENOM(S)</th>
+                        <th>DATE & LIEU NAISSANCE</th>
+                        <th>SEXE</th>
+                        <th>TELEPHONE</th>
+                        <th>ADRESSE</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
-                <tbody>
+                    <tbody>
 
                     @foreach($employes as $employe)
                         <tr class="odd gradeX">
                             <td>{{$employe->id_employe}}</td>
-                            <td>{{$employe->nom_employe}}</td>
+                            <td>{{$employe->matricule_employe}}</td>
+                            <td>{{$employe->nom_employe.' '.$employe->prenom_employe}}</td>
+                            <td>{{$employe->date_naiss_employe.' à '.$employe->lieu_naiss_employe}}</td>
+                            <td>{{$employe->sexe_employe}}</td>
+                            <td>{{$employe->num_tel_employe}}</td>
+                            <td>{{$employe->adresse_employe}}</td>
                             <td class="center">
+
+                                <button class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt " data-toggle="modal" data-target="
+                                .bs-example-modal-lg">Autres Informations</button>
+
+                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Informations Supplémentaires</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table>
+                                                    <thead>
+                                                    <th>PERE</th>
+                                                    <th>MERE</th>
+                                                    <th>CONTACT URGENCE</th>
+                                                    <th>SITUATION MATRIMONIALE</th>
+                                                    <th>NOMBRE ENFANTS</th>
+                                                    <th>N° IDENTITE</th>
+                                                    <th>DATE ENTREE</th>
+                                                    <th>DATE SORTIE</th>
+                                                    <th>N° CNSS</th>
+                                                    <th>TYPE CONTRAT</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td>{{$employe->pere_employe}}</td>
+                                                        <td>{{$employe->mere_employe}}</td>
+                                                        <td>{{$employe->num_tel_urgence_employe}}</td>
+                                                        <td>{{$employe->situation_mat_employe}}</td>
+                                                        <td>{{$employe->nb_enfant_employe}}</td>
+                                                        <td>{{$employe->num_identite_employe}}</td>
+                                                        <td>{{$employe->date_entree_employe}}</td>
+                                                        <td>{{$employe->date_sortie_employe}}</td>
+                                                        <td>{{$employe->num_cnss_employe}}</td>
+                                                        <td>{{$employe->contrat_employe}}</td>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">Fermer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url
-                                ('/personnel/employe/create_update/'.$employe->id_employe)}}"><span>Modifier</span></a>
+                                   href="{{url('/personnel/employe/create_update/'.$employe->id_employe)}}"><span>Modifier</span></a>
                                 <form method="post" action=" {{url('delete_employe')}}">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$employe->id_employe}}">
@@ -83,7 +133,7 @@
                         </tr>
                     @endforeach
 
-                </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>

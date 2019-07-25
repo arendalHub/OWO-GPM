@@ -14,7 +14,7 @@
 
 // AUTHENTIFICATION
 Route::get('/', function () {
-    return view('login');
+    return view('connexion');
 });
 Route::get('/accueil', function () {
     return view('accueil');
@@ -22,6 +22,14 @@ Route::get('/accueil', function () {
 Route::get('/menu_modulaire', function () {
     return view('menu_modulaire');
 });
+
+Route::post('connexion', 'ConnexionController@connexion');
+Route::get('/deconnexion', 'ConnexionController@deconnexion');
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
 
 // Gestion de stocks
 Route::get('/stock', function () {
@@ -144,21 +152,4 @@ Route::post('delete_droit', 'Parametre\DroitController@supprimer');
 //TESTS
 Route::get('/test', function () {
     return view('test');
-});
-
-
-Route::get('/page', function () {
-    return view('page');
-});
-
-Route::get('/default', function () {
-    return view('layouts.default');
-});
-
-Route::get('/blocks', function () {
-    return view('layouts.blocks');
-});
-
-Route::get('/login', function () {
-    return view('layouts.login');
 });

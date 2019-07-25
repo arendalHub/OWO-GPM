@@ -11,7 +11,8 @@ PARAMETRAGE DE L'APPLICATION
 @section('contenu_page')
     <div class="row">
         <div class="col-md-6">
-            <a href="{{ url('Parametre') }}" title="Example tile shortcut" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-danger">
+            <a href="{{ url('/parametre/utilisateur') }}" title="Utilisateurs" class="col-md-8 col-md-offset-2 tile-box
+            tile-box-shortcut btn-danger">
                 <div class="tile-header">
                     UTILISATEURS
                 </div>
@@ -21,7 +22,7 @@ PARAMETRAGE DE L'APPLICATION
             </a>
         </div>
         <div class="col-md-6">
-            <a href="{{ url('/parametre/profil') }}" title="Example tile shortcut" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-success">
+            <a href="{{ url('/parametre/profil') }}" title="Profils" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-success">
                 <div class="tile-header">
                     PROFILS
                 </div>
@@ -39,7 +40,7 @@ PARAMETRAGE DE L'APPLICATION
 
     <div class="row">
         <div class="col-md-12">
-            <a href="#" title="Example tile shortcut" class="col-md-4 col-md-offset-4 tile-box tile-box-shortcut btn-info">
+            <a href="#" title="Societe" class="col-md-4 col-md-offset-4 tile-box tile-box-shortcut btn-info">
                <div class="tile-header">
                     SOCIETE
                 </div>

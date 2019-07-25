@@ -20,7 +20,7 @@
 
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
-                ('personnel/zone/list') }}" title=""><span>LISTE DES ZONES</span></a>
+                ('personnel/zone/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES ZONES</span></a>
                 <h3 class="col-md-9 col-md-push-5">
                     {{$sous_titre}}
                 </h3>
@@ -32,12 +32,12 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">LIBELLE</label>
+                                <label class="col-sm-3 control-label">NOM</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="libelle" name="libelle" placeholder="Libellé du zone"
+                                    <input type="text" id="nom" name="nom" placeholder="Nom de la zone"
                                            required class="form-control"
                                     @if(isset($zone))
-                                        value="{{old('libelle',$zone->libelle_zone)}}"
+                                        value="{{$zone->nom_zone}}"
                                     @endif
                                     >
                                 </div>

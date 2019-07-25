@@ -20,7 +20,7 @@
 
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
-                ('personnel/site/list') }}" title=""><span>LISTE DES SITES</span></a>
+                ('personnel/site/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES SITES</span></a>
                 <h3 class="col-md-9 col-md-push-5">
                     {{$sous_titre}}
                 </h3>
