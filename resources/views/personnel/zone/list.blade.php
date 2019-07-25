@@ -45,9 +45,7 @@
                                     <input type="hidden" name="id" value="{{$zone->id_zone}}">
 
                                     <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2"
-                                            data-toggle="modal"
-                                            data-target="#myModal{{$zone->id_zone}}">Supprimer</button>
+                                    col-md-5 col-md-push-2" data-toggle="modal" data-target="#myModal{{$zone->id_zone}}">Supprimer</button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal{{$zone->id_zone}}"
                                          tabindex="-1" role="dialog"

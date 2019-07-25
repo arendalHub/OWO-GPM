@@ -35,7 +35,7 @@ class UtilisateurController extends Controller
         $utilisateur = Utilisateur::where(['id_utilisateur'=>$request->input('id'), 'supprime'=>0])->first();
         $utilisateur->login_utilisateur = $request->input('login');
 //        $utilisateur->password_utilisateur = $request->input('password');
-        $utilisateur->profil_utilisateur = $request->input('profil');
+        $utilisateur->id_profil= $request->input('profil');
         $utilisateur->save();
 
         return redirect('/parametre/utilisateur/list');
@@ -43,7 +43,7 @@ class UtilisateurController extends Controller
 
     public function supprimer(Request $request)
     {
-        $utilisateur = Utilisateur::where(['id_utilisateur'=>$request->input('id'), 'supprime'=>0])->get();
+        $utilisateur = Utilisateur::where(['id_utilisateur'=>$request->input('id'), 'supprime'=>0])->first();
         $utilisateur->supprime = 1;
 
         return redirect('/parametre/utilisateur/list');
@@ -55,7 +55,7 @@ class UtilisateurController extends Controller
     	if (!is_null($id))
         {
             $utilisateur = Utilisateur::join('profils', 'profils.id_profil', '=', 'utilisateurs.id_profil')->where
-        (['utilisateurs.supprime'=>0])->first();
+        (['id_utilisateur'=>$id, 'utilisateurs.supprime'=>0])->first();
             return view('parametre.utilisateur.create_update')->with(['utilisateur'=>$utilisateur])->with(['profils'=>$profils]);
         }else
             return view('parametre.utilisateur.create_update')->with(['profils'=>$profils]);

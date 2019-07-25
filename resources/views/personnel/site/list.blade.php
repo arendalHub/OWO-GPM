@@ -27,6 +27,11 @@
                     <tr>
                         <th>ID</th>
                         <th>NOM</th>
+                        <th>ADRESSE</th>
+                        <th>DATE DEBUT TRAVAUX</th>
+                        <th>DATE FIN TRAVAUX</th>
+                        <th>DUREE</th>
+                        <th>SECTION</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -36,6 +41,15 @@
                         <tr class="odd gradeX">
                             <td>{{$site->id_site}}</td>
                             <td>{{$site->nom_site}}</td>
+                            <td>{{$site->adresse_site}}</td>
+                            <td>{{$site->date_deb_travaux_site}}</td>
+                            <td>{{$site->date_fin_travaux_site}}</td>
+                            <td>{{$site->duree_travaux_site}}</td>
+                            <td>
+                                @foreach($sections as $section)
+                                    {{$site->id_section==$section->id_section ? $section->nom_section:''}}
+                                @endforeach
+                            </td>
                             <td class="center">
                                 <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
                                    href="{{url

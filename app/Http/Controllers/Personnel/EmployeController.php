@@ -19,6 +19,7 @@ class EmployeController extends Controller
     public function ajouter(Request $request)
     {
         $employe = new Employe;
+        $employe->matricule_employe = $request->input('nom').$request->input('num_identite');
         $employe->nom_employe = $request->input('nom');
         $employe->prenom_employe = $request->input('prenom');
         $employe->date_naiss_employe = $request->input('date_naiss');
@@ -28,11 +29,13 @@ class EmployeController extends Controller
         $employe->adresse_employe = $request->input('adresse');
         $employe->pere_employe = $request->input('pere');
         $employe->mere_employe = $request->input('mere');
-        $employe->num_tel_employe = $request->input('num_tel');
+        $employe->num_tel_urgence_employe = $request->input('num_tel_urgence');
         $employe->situation_mat_employe = $request->input('situation_mat');
         $employe->nb_enfant_employe = $request->input('nb_enfant');
         $employe->num_identite_employe = $request->input('num_identite');
         $employe->date_entree_employe = $request->input('date_entree');
+        $employe->date_sortie_employe = date('Y-m-d');
+
         $employe->num_cnss_employe = $request->input('num_cnss');
         $employe->contrat_employe = $request->input('contrat');
         $employe->save();
@@ -42,7 +45,8 @@ class EmployeController extends Controller
 
     public function modifier(Request $request)
     {
-        $employe = Employe::where(['id_employe'=>$request->input('id'), 'supprime'=>0])->get();
+        $employe = Employe::where(['id_employe'=>$request->input('id'), 'supprime'=>0])->first();
+        $employe->matricule_employe = $request->input('nom').$request->input('num_identite');
         $employe->nom_employe = $request->input('nom');
         $employe->prenom_employe = $request->input('prenom');
         $employe->date_naiss_employe = $request->input('date_naiss');
@@ -52,11 +56,12 @@ class EmployeController extends Controller
         $employe->adresse_employe = $request->input('adresse');
         $employe->pere_employe = $request->input('pere');
         $employe->mere_employe = $request->input('mere');
-        $employe->num_tel_employe = $request->input('num_tel');
+        $employe->num_tel_urgence_employe = $request->input('num_tel_urgence');
         $employe->situation_mat_employe = $request->input('situation_mat');
         $employe->nb_enfant_employe = $request->input('nb_enfant');
         $employe->num_identite_employe = $request->input('num_identite');
         $employe->date_entree_employe = $request->input('date_entree');
+        $employe->date_sortie_employe = date('Y-m-d');
         $employe->num_cnss_employe = $request->input('num_cnss');
         $employe->contrat_employe = $request->input('contrat');
         $employe->save();
@@ -66,7 +71,7 @@ class EmployeController extends Controller
 
     public function supprimer(Request $request)
     {
-        $employe = Employe::where(['id_employe'=>$request->input('id'), 'supprime'=>0])->get();
+        $employe = Employe::where(['id_employe'=>$request->input('id'), 'supprime'=>0])->first();
         $employe->supprime = 1;
 
         return redirect('/personnel/employe/list');
@@ -76,7 +81,7 @@ class EmployeController extends Controller
     {
     	if (!is_null($id))
         {
-            $employe = Employe::where(['supprime'=>0])->get();
+            $employe = Employe::where(['id_employe'=>$id, 'supprime'=>0])->first();
             return view('personnel.employe.create_update')->with(['employe'=>$employe]);
         }else
             return view('personnel.employe.create_update');
