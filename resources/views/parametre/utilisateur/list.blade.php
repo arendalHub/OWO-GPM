@@ -42,17 +42,21 @@ LISTE DES UTILISATEURS
                                 @endforeach
                             </td>
                             <td class="center">
-                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url('/parametre/utilisateur/create_update/'.$utilisateur->id_utilisateur)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_utilisateur')}}">
+                                <a class="btn btn-blue-alt col-md-5" href="{{url('/parametre/utilisateur/create_update/'
+                                .$utilisateur->id_utilisateur)}}" title="MODIFIER">
+                                    <i class="glyph-icon icon-pencil"></i>
+                                </a>
+                                <form method="post" action=" {{url('delete_utilisateur')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$utilisateur->id_utilisateur}}">
 
-                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2" data-toggle="modal" data-target="#myModal{{$utilisateur->id_utilisateur}}">Supprimer</button>
+                                    <button type="button" class="btn btn-danger col-md-12" data-toggle="modal"
+                                            title="SUPPRIMER"
+                                            data-target="#myModal{{$utilisateur->id_utilisateur}}">
+                                        <i class="glyph-icon icon-trash"></i>
+                                    </button>
 
-                                    <div class="modal fade bs-example-modal-sm"
-                                         id="myModal{{$utilisateur->id_utilisateur}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                    <div class="modal fade bs-example-modal-sm" id="myModal{{$utilisateur->id_utilisateur}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content">
                                                 <div class="modal-header">

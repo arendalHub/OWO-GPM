@@ -43,17 +43,19 @@
                                 @endforeach
                             </td>
                             <td class="center">
-                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url
-                                ('personnel/section/create_update/'.$section->id_section)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_section')}}">
+                                <a class="btn btn-blue-alt col-md-5" href="{{url('/parametre/personnel/create_update/'
+                                .$section->id_section)}}" title="MODIFIER">
+                                    <i class="glyph-icon icon-pencil"></i>
+                                </a>
+                                <form method="post" action=" {{url('delete_section')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$section->id_section}}">
 
-                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2"
-                                            data-toggle="modal"
-                                            data-target="#myModal{{$section->id_section}}">Supprimer</button>
+                                    <button type="button" class="btn btn-danger col-md-12" data-toggle="modal"
+                                            title="SUPPRIMER"
+                                            data-target="#myModal{{$section->id_section}}">
+                                        <i class="glyph-icon icon-trash"></i>
+                                    </button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal{{$section->id_section}}"
                                          tabindex="-1" role="dialog"
