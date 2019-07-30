@@ -22,6 +22,21 @@ class ArticleController extends Controller
     }
 
     /**
+     * Cette fonction affiche les informations détaillées d'un article.
+     * @param string $item_id L'identifiant de l'article.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function details(string $item_id)
+    {
+        $item = Article::where("id_article", $item_id)
+            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=","Article.id_article")
+            ->leftJoin("Magasin", "Magasin.id_magasin", "=", "Article.id_magasin")
+            ->get()[0] ;
+
+        return view("stock.article.details", ["article"=>$item]) ;
+    }
+
+    /**
      * Cette fonction affiche le formulaire de modification/ajout d'un article.
      */
     public function create_update(string $item_id = null)
