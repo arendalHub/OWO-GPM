@@ -17,7 +17,8 @@ class ArticleController extends Controller
     {
         $items = Article::orderBy('id_article', 'desc')
             ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
-            ->where('supprime', false)->paginate() ;
+            ->leftJoin("Magasin", "Magasin.id_magasin", "=", "Article.id_magasin")
+            ->where('Article.supprime', false)->paginate() ;
         return view('stock.article.list')->with('items', $items) ;
     }
 
