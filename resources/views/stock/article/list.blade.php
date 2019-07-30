@@ -42,7 +42,7 @@ List des articles
                                 <tr>
                                     <td>{{strtoupper(substr($item->designation_article, 0, 3))}}-{{$item->id_article}}</td>
                                     <td>{{$item->designation_article}}</td>
-                                    <td>Savon de marseille</td>
+                                    <td>{{$item->description_famille}}</td>
                                     <td>
                                         @if($item->consommable == null)
                                             Non
@@ -51,16 +51,15 @@ List des articles
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a title="details" href="#">details</a></li>
-                                                <li><a title="modifier" href="{{url("/stock/article/create_update/{$item->id_article}")}}">modifier</a></li>
-                                                <li><a title="supprimer" href="#">supprimer</a></li>
-                                            </ul>
-                                        </div>
+                                        <a class="btn btn" title="voir les details de l'article" href="#">
+                                            <i class="icon-elusive-eye"></i>
+                                        </a>
+                                        <a class="btn" title="modifier l'article" href="{{url("/stock/article/create_update/{$item->id_article}")}}">
+                                            <i class="icon-elusive-pencil"></i>
+                                        </a>
+                                        <a class="btn" title="supprimer l'article" href="#">
+                                            <i class="icon-elusive-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
