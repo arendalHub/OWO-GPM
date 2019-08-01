@@ -1,11 +1,11 @@
 @extends('layouts.stock')
 
 @section('titre_contenu')
-LIVRAISON
+    LIVRAISON
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-DETAILS DE LA LIVRAISON liv-{{$livraison->id_livraison}}
+    DETAILS DE LA LIVRAISON liv-{{$livraison->id_livraison}}
 @endsection('sous_titre_contenu')
 
 @section('contenu_page')
@@ -14,7 +14,7 @@ DETAILS DE LA LIVRAISON liv-{{$livraison->id_livraison}}
             <h2>liv-{{$livraison->id_livraison}}</h2>
             <hr/>
             <p>
-                <h3>Reference de commande : <a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">{{$livraison->id_commande}}</a></h3>
+                <h3>Reference de commande : <a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">CMD-{{$livraison->id_commande}}</a></h3>
                 <hr/>
                 <h3>Date : {{$livraison->date_livraison}}</h3>
             </p>
@@ -26,7 +26,8 @@ DETAILS DE LA LIVRAISON liv-{{$livraison->id_livraison}}
                         <tr>
                             <th>Article</th>
                             <th>Quantite</th>
-                            <th>Prix (XOF)</th>
+                            <th>Prix d'entree(XOF)</th>
+                            <th>Prix de sortie(XOF)</th>
                             <th>Date de péremption</th>
                             <th>Date de fabrication</th>
                         </tr>
@@ -37,7 +38,8 @@ DETAILS DE LA LIVRAISON liv-{{$livraison->id_livraison}}
                             <tr>
                                 <td>{{$article->designation_article}}</td>
                                 <td>{{$article->quantite}}</td>
-                                <td>{{$article->prix_unitaire}}</td>
+                                <td>{{$article->prix_entree}}</td>
+                                <td>{{$article->prix_sortie}}</td>
                                 <td>{{$article->date_peremption}}</td>
                                 <td>{{$article->date_fabrication}}</td>
                             </tr>

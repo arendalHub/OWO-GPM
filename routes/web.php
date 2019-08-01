@@ -58,6 +58,7 @@ Route::get('/stock/livraison/list','LivraisonController@list');
 Route::get('/stock/livraison/items/{id}','LivraisonController@getItemsPart');
 
 Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
+
 Route::get('/stock/entree/create_update/', function () {
     return view('stock.entreesimple.create_update');
 });

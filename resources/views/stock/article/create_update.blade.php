@@ -17,6 +17,10 @@ CREATION / MODIFICATION D'UN ARTICLE
         @endif
 
         <div class="example-box-wrapper">
+            <a href="{{url('/stock/article/list')}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green" data-toggle="modal" data-target="#myModal">
+                <i class="glyph-icon icon-list"></i>
+                <span>Liste des articles</span>
+            </a>
             <form method="POST" action="{{url('/stock/article/do_create_update')}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate>
                 <div class="row">
                     <fieldset>

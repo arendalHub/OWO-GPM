@@ -23,21 +23,21 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Désignation</label>
+                            <label class="col-sm-3 control-label">Raison sociale</label>
                             <div class="col-sm-6">
                                 <input 
-                                 value="@if(($fournisseur != null && $update)){{$fournisseur->designation_fournisseur}}@else{{old('designation_fournisseur')}} @endif"
+                                 value="@if(($fournisseur != null && $update)){{$fournisseur->designation_fournisseur}}@else{{old('designation_fournisseur')}}@endif"
                                  class="form-control"
                                  required
                                  name="designation_fournisseur"
-                                 placeholder="Désignation du fournisseur" type="text"/>
+                                 placeholder="Raison sociale du fournisseur" type="text"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Adresse</label>
                             <div class="col-sm-6">
                                 <input 
-                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->adresse_fournisseur}}@else {{old('adresse_fournisseur')}} @endif"
+                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->adresse_fournisseur}}@else{{old('adresse_fournisseur')}}@endif"
                                  name="adresse_fournisseur"
                                  class="form-control" 
                                  placeholder="Adresse du fournisseur" 
@@ -48,7 +48,7 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
                             <label class="col-sm-3 control-label">Contact</label>
                             <div class="col-sm-6">
                                 <input 
-                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->contact_fournisseur}}@else {{old('contact_fournisseur')}} @endif"
+                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->contact_fournisseur}}@else{{old('contact_fournisseur')}}@endif"
                                  name="contact_fournisseur"
                                  class="form-control" 
                                  required placeholder="Contact du fournisseur" 
@@ -59,7 +59,7 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
                             <label class="col-sm-3 control-label">Email</label>
                             <div class="col-sm-6">
                                 <input 
-                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->email_fournisseur}}@else {{old('email_fournisseur')}} @endif"
+                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->email_fournisseur}}@else{{old('email_fournisseur')}}@endif"
                                  name="email_fournisseur" 
                                  class="form-control" 
                                  placeholder="Email du fournisseur" 
@@ -70,7 +70,7 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
                             <label class="col-sm-3 control-label">Boite postale</label>
                             <div class="col-sm-6">
                                 <input 
-                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->bp_fournisseur}}@else {{old('bp_fournisseur')}} @endif"
+                                 value="@if(($fournisseur != null && $update)) {{$fournisseur->bp_fournisseur}}@else{{old('bp_fournisseur')}}@endif"
                                  name="bp_fournisseur" 
                                  class="form-control" 
                                  placeholder="Boite postale du fournisseur" 

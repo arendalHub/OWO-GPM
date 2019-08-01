@@ -32,6 +32,7 @@ LISTE DES LIVRAISONS
                         <tr>
                             <th>Date de livraison</th>
                             <th>Reference de la commande</th>
+                            <th>Total de la livraison</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,8 +42,11 @@ LISTE DES LIVRAISONS
                             <tr>
                                 <td>{{$livraison->date_livraison}}</td>
                                 <td><a href="{{url("/stock/commande/details/{$livraison->id_commande}")}}">cmd-{{$livraison->id_commande}}</a></td>
+                                <td>{{$livraison->total_livraison}}</td>
                                 <td>
-                                    <a title="voir les details de la livraison" href="{{url("/stock/livraison/details/{$livraison->id_livraison}")}}">Details</a>
+                                    <a title="voir les details de la livraison" href="{{url("/stock/livraison/details/{$livraison->id_livraison}")}}">
+                                        <i class="glyph-icon icon-eye"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
