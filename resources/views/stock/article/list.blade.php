@@ -15,6 +15,9 @@ List des articles
                 @if(Session::has('message'))
                     @include('stock.error', ['type'=>'info', 'key'=>'message'])
                 @endif
+                @if(Session::has('error'))
+                    @include('stock.error', ['type'=>'warning', 'key'=>'error'])
+                @endif
 
                 <form class="form-inline">
                     <div class="form-group">
@@ -65,7 +68,7 @@ List des articles
                                         <a class="btn" title="modifier l'article" href="{{url("/stock/article/create_update/{$item->id_article}")}}">
                                             <i class="glyph-icon icon-pencil"></i>
                                         </a>
-                                        <a class="btn" title="supprimer l'article" href="#">
+                                        <a class="btn" title="supprimer l'article" href="{{url("/stock/article/delete/{$item->id_article}")}}">
                                             <i class="glyph-icon icon-trash"></i>
                                         </a>
                                     </td>

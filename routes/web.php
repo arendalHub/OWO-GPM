@@ -40,6 +40,7 @@ Route::get('/stock', function () {
 Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
 Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
 Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
+Route::get('/stock/article/delete/{item_id}','ArticleController@softDelete');
 Route::get('/stock/article/details/{item_id}','ArticleController@details');
 
 Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list');

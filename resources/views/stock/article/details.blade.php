@@ -68,7 +68,7 @@ DETAILS DE L'ARTICLE {{$article->code_article}}-{{$article->designation_article}
                         </a>
                     </td>
                     <td>
-                        <a style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
+                        <a href="{{url("/stock/article/delete/{$article->id_article}")}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
                             <i class="glyph-icon icon-trash"></i>
                             <span>Supprimer</span>
                         </a>

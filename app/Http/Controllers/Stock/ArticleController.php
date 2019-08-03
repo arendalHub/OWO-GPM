@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FamilleArticle;
 use App\Models\Article;
 use App\Models\Magasin;
+use foo\bar;
 use Illuminate\Http\Request;
 
 /**
@@ -20,6 +21,16 @@ class ArticleController extends Controller
             ->leftJoin("Magasin", "Magasin.id_magasin", "=", "Article.id_magasin")
             ->where('Article.supprime', false)->paginate() ;
         return view('stock.article.list')->with('items', $items) ;
+    }
+
+    public function softDelete(string $item_id)
+    {
+        $article = Article::find($item_id) ;
+        $article->supprime = true ;
+        if($article->save()) {
+            return redirect('/stock/article/list')->with("message", "L'article {$article->designation_article} a été supprimé !") ;
+        }
+        return back()->with("error", "Ooops, une erreur est survenue ! veuillez reprendre") ;
     }
 
     /**
