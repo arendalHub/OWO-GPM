@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Parametre;
 use App\Http\Controllers\Controller;
 use App\Models\Profil;
 use App\Models\Utilisateur;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UtilisateurController extends Controller
 {
@@ -21,10 +23,17 @@ class UtilisateurController extends Controller
 
     public function ajouter(Request $request)
     {
+        $this->validate($request, ['login'=>'unique:utilisateurs'], ['login.unique'=>'Le nom d\'utilisateur doit être unique']);
+
         $utilisateur = new Utilisateur;
-        $utilisateur->login_utilisateur = $request->input('login');
-        $utilisateur->password_utilisateur = bcrypt($request->input('login'));
-        $utilisateur->id_profil = $request->input('profil');
+        $utilisateur->nom_utilisateur = $request->input('nom');
+        $utilisateur->prenom_utilisateur = $request->input('prenom');
+        $utilisateur->login = $request->input('login');
+        $utilisateur->service_utilisateur = $request->input('service');
+        $utilisateur->poste_utilisateur = $request->input('poste');
+        $utilisateur->password = bcrypt($request->input('login'));
+        // $utilisateur->id_profil = $request->input('profil');
+        $utilisateur->profil_temporaire = $request->input('profil_temporaire');
         $utilisateur->save();
 
         return redirect('/parametre/utilisateur/list');
@@ -33,9 +42,15 @@ class UtilisateurController extends Controller
     public function modifier(Request $request)
     {
         $utilisateur = Utilisateur::where(['id_utilisateur'=>$request->input('id'), 'supprime'=>0])->first();
-        $utilisateur->login_utilisateur = $request->input('login');
-//        $utilisateur->password_utilisateur = $request->input('password');
-        $utilisateur->id_profil= $request->input('profil');
+        $utilisateur->nom_utilisateur = $request->input('nom');
+        $utilisateur->prenom_utilisateur = $request->input('prenom');
+        // $utilisateur->login = $request->input('login');
+        $utilisateur->service_utilisateur = $request->input('service');
+        $utilisateur->poste_utilisateur = $request->input('poste');
+        $utilisateur->password = bcrypt($request->input('login'));
+//        $utilisateur->password_utilisateur = $request->input('login');
+        // $utilisateur->id_profil= $request->input('profil');
+        $utilisateur->profil_temporaire= $request->input('profil_temporaire');
         $utilisateur->save();
 
         return redirect('/parametre/utilisateur/list');
@@ -59,6 +74,21 @@ class UtilisateurController extends Controller
             return view('parametre.utilisateur.create_update')->with(['utilisateur'=>$utilisateur])->with(['profils'=>$profils]);
         }else
             return view('parametre.utilisateur.create_update')->with(['profils'=>$profils]);
+    }
+
+    public function connexion(Request $request)
+    {
+        if(Auth::attempt(['login'=>$request['login'], 'password'=>$request['password']]))
+        {
+            return redirect('/menu_modulaire');
+        }
+        return redirect()->back()->with(['message'=>'Nom d\'utilisateur et/ou Mot de passe incorrect(s).']);
+    }
+
+    public function deconnexion()
+    {
+        Auth::logout();
+        return view('/connexion');
     }
 
 }

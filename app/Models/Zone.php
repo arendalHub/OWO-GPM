@@ -9,5 +9,5 @@ class Zone extends Model
     protected $table = 'zones';
 	public $timestamps = false;
     protected $primaryKey = 'id_zone';
-    protected $fillable = ['id_zone','nom_zone','supprime'];
+    protected $fillable = ['id_zone','nom_zone','situation_geo_zone','supprime'];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FamilleArticle;
 use App\Models\Article;
+use App\Models\Magasin;
 use Illuminate\Http\Request;
 
 /**
@@ -14,8 +15,26 @@ class ArticleController extends Controller
 {
     public function list(string $num_page = '1')
     {
-        $items = Article::orderBy('id_article', 'desc')->where('supprime', false)->paginate() ;
+        $items = Article::orderBy('id_article', 'desc')
+            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
+            ->leftJoin("Magasin", "Magasin.id_magasin", "=", "Article.id_magasin")
+            ->where('Article.supprime', false)->paginate() ;
         return view('stock.article.list')->with('items', $items) ;
+    }
+
+    /**
+     * Cette fonction affiche les informations détaillées d'un article.
+     * @param string $item_id L'identifiant de l'article.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function details(string $item_id)
+    {
+        $item = Article::where("id_article", $item_id)
+            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=","Article.id_article")
+            ->leftJoin("Magasin", "Magasin.id_magasin", "=", "Article.id_magasin")
+            ->get()[0] ;
+
+        return view("stock.article.details", ["article"=>$item]) ;
     }
 
     /**
@@ -24,12 +43,20 @@ class ArticleController extends Controller
     public function create_update(string $item_id = null)
     {
         $familles = FamilleArticle::orderBy('id_famille', 'asc')->get() ;
+        $magasins = Magasin::orderBy('id_magasin', 'asc')->get() ;
         if($item_id != null)
         {
             $item = Article::find($item_id) ;
-            return view('stock.article.create_update')->with(['item'=>$item, 'update'=>true, 'familles'=>$familles]) ;
+            return view('stock.article.create_update')->with(
+                ['item'=>$item, 'update'=>true,
+                    'familles'=>$familles,
+                    'magasins'=>$magasins
+                ]) ;
         }
-        return view('stock.article.create_update')->with(['item'=>null, 'update'=>false, 'familles'=>$familles]) ;
+        return view('stock.article.create_update')->with(['item'=>null, 'update'=>false,
+            'familles'=>$familles,
+            'magasins'=>$magasins
+        ]) ;
     }
 
     /**
@@ -60,7 +87,16 @@ class ArticleController extends Controller
 
         $item->consommable = array_key_exists('consommable', $postData) ? true : false ;
         $item->id_famille = $postData['id_famille'] ;
-        $item->supprime = false ;
+        $item->id_magasin = $postData['id_magasin'] ;
+        $item->prix_achat = $postData['prix_achat'] ;
+        $item->prix_vente = $postData['prix_vente'] ;
+        $item->seuil_alert = $postData['seuil_alert'] ;
+        $item->seuil_critique = $postData['seuil_critique'] ;
+        $item->stock_etagere = $postData['stock_etagere'] ;
+        $item->stock_range = $postData['stock_range'] ;
+        $item->stock_box = $postData['stock_box'] ;
+        $item->code_article = $postData['code_article'] ;
+
         if($item->save()) {
             return redirect('/stock/article/list')->with(['message'=> $creat_update_message]) ;
         }

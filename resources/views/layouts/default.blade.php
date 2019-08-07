@@ -16,23 +16,16 @@
 
         <!-- Favicons -->
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url
-        ('asset_delight/assets-minified/images/icons/apple-touch-icon-72-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" href="{{ url('asset_delight/assets-minified/images/icons/apple-touch-icon-57-precomposed.png') }}">
-        <link rel="shortcut icon" href="{{ url('asset_delight/assets-minified/images/icons/favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url('asset_delight/assets-minified/images/icons/owo_gpm_logo_favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url('asset_delight/assets-minified/images/icons/owo_gpm_logo_favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url('asset_delight/assets-minified/images/icons/owo_gpm_logo_favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ url('asset_delight/assets-minified/images/icons/owo_gpm_logo_favicon.png') }}">
+        <link rel="shortcut icon" href="{{ url('asset_delight/assets-minified/images/icons/owo_gpm_logo_favicon.png') }}">
 
 
 
         <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/admin-all-demo.css') }}">
-{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/chosen/chosen.css') }}">--}}
-{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.css') }}">--}}
-{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/touchspin/touchspin.css') }}">--}}
-{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/input-switch/inputswitch.css') }}">--}}
-{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/multi-select/multiselect.css') }}">--}}
-{{--        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/uniform/uniform.css') }}">--}}
-        <!-- JS Core -->
+
 
         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/js-core.js') }}"></script>
 
@@ -88,132 +81,24 @@
                     <div id="page-content">
                         <div id="page-header">
                             <div id="header-nav-left">
-                                <a class="header-btn" id="logout-btn" href="lockscreen-4.html" title="Lockscreen page example">
-                                    <i class="glyph-icon icon-linecons-lock"></i>
+                                @if (Auth::User() && !is_null(Auth::User()) )
+                                    
+                                <a class="header-btn" id="logout-btn" href="{{ url('/deconnexion') }}" title="Déconnexion">
+                                    <i class="glyph-icon icon-sign-out"></i>
                                 </a>
+                                
                                 <div class="user-account-btn dropdown">
-                                    <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-                                        <img width="28" src="{{ url('asset_delight/assets-minified/image-resources/gravatar.jpg') }}" alt="Profile image">
-                                        <span>[UTILISATEUR]</span>
+                                    <a href="{{url('/parametre/utilisateur/create_update/'.Auth::User()->id_utilisateur)}}" title="Editer les informations de mon compte" class="user-profile clearfix" data-toggle="dropdown">
+                                        <span>{{Auth::User()->nom_utilisateur.' '.Auth::User()->prenom_utilisateur}}</span>
                                         <i class="glyph-icon icon-angle-down"></i>
                                     </a>
-                                    <div class="dropdown-menu float-right">
-                                        <div class="box-sm">
-                                            <div class="login-box clearfix">
-                                                <div class="user-img">
-                                                    <a href="#" title="" class="change-img">Change photo</a>
-                                                    <img src="{{ url('asset_delight/assets-minified/image-resources/gravatar.jpg') }}" alt="">
-                                                </div>
-                                                <div class="user-info">
-                                                    <span>
-                                                        [UTILISATEUR]
-                                                        <i>[PROFIL]</i>
-                                                    </span>
-                                                    <a href="#" title="Edit profile">Modifier informations de compte</a>
-                                                    <a href="#" title="View notifications">Verrouiller</a>
-                                                </div>
-                                            </div>
-                                            <div class="divider"></div>
-
-                                            <div class="button-pane button-pane-alt pad5L pad5R text-center">
-                                                <a href="{{ url('/login') }}" class="btn btn-flat display-block font-normal btn-danger">
-                                                    <i class="glyph-icon icon-power-off"></i>
-                                                    Deconnexion
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
+                                @endif
+
                             </div><!-- #header-nav-left -->
 
                             <div id="header-nav-right">
-
-                                <div class="dropdown" id="dashnav-btn">
-                                    <a href="#" data-toggle="dropdown" data-placement="bottom" class="popover-button-header tooltip-button" title="Dashboard Quick Menu">
-                                        <i class="glyph-icon icon-linecons-cog"></i>
-                                    </a>
-                                    <div class="dropdown-menu float-left">
-                                        <div class="box-sm">
-                                            <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                                                <a href="#" class="btn vertical-button hover-blue-alt" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Dashboard
-                                                </a>
-                                                <a href="#" class="btn vertical-button hover-green" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Widgets
-                                                </a>
-                                                <a href="#" class="btn vertical-button hover-orange" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Tables
-                                                </a>
-                                                <a href="#" class="btn vertical-button hover-orange" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Charts
-                                                </a>
-                                                <a href="#" class="btn vertical-button hover-purple" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Buttons
-                                                </a>
-                                                <a href="#" class="btn vertical-button hover-azure" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Panels
-                                                </a>
-                                            </div>
-                                            <div class="divider"></div>
-                                            <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                                                <a href="#" class="btn vertical-button remove-border btn-info" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Dashboard
-                                                </a>
-                                                <a href="#" class="btn vertical-button remove-border btn-danger" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Widgets
-                                                </a>
-                                                <a href="#" class="btn vertical-button remove-border btn-purple" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Tables
-                                                </a>
-                                                <a href="#" class="btn vertical-button remove-border btn-azure" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Charts
-                                                </a>
-                                                <a href="#" class="btn vertical-button remove-border btn-yellow" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Buttons
-                                                </a>
-                                                <a href="#" class="btn vertical-button remove-border btn-warning" title="">
-                                                    <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                        <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                                                    </span>
-                                                    Panels
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="dropdown" id="notifications-btn">
                                     <a data-toggle="dropdown" href="#" title="">
@@ -327,117 +212,61 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="dropdown" id="progress-btn">
-                                    <a data-toggle="dropdown" href="#" title="">
-                                        <span class="small-badge bg-azure"></span>
-                                        <i class="glyph-icon icon-linecons-params"></i>
-                                    </a>
-                                    <div class="dropdown-menu pad0A box-sm float-left" id="progress-dropdown">
-                                        <div class="scrollable-content scrollable-slim-box">
-                                            <ul class="no-border progress-box progress-box-links">
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            Finishing uploading files
-                                                            <b>23%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="23">
-                                                            <div class="progressbar-value bg-blue-alt">
-                                                                <div class="progressbar-overlay"></div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            Roadmap progress
-                                                            <b>91%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="91">
-                                                            <div class="progressbar-value bg-red">
-                                                                <div class="progressbar-overlay"></div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            Images upload
-                                                            <b>58%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="58">
-                                                            <div class="progressbar-value bg-green"></div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            WordPress migration
-                                                            <b>74%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="74">
-                                                            <div class="progressbar-value bg-purple"></div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            Agile development procedures
-                                                            <b>91%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="91">
-                                                            <div class="progressbar-value bg-black">
-                                                                <div class="progressbar-overlay"></div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            Systems integration
-                                                            <b>58%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="58">
-                                                            <div class="progressbar-value bg-azure"></div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" title="">
-                                                        <div class="progress-title">
-                                                            Code optimizations
-                                                            <b>97%</b>
-                                                        </div>
-                                                        <div class="progressbar-smaller progressbar" data-value="97">
-                                                            <div class="progressbar-value bg-yellow"></div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-pane button-pane-alt pad5A text-center">
-                                            <a href="#" class="btn btn-flat display-block font-normal hover-green" title="View all notifications">
-                                                View all notifications
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div><!-- #header-nav-right -->
 
                         </div>
-                        
+                        <!-- Data tables -->
 
+                        <!--<link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.css') }}">-->
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.js') }}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-bootstrap.js') }}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-responsive.js') }}"></script>
+
+                        <script type="text/javascript">
+
+                            /* Datatables responsive */
+
+                            $(document).ready(function() {
+                                $('#datatable-responsive').DataTable( {
+                                    responsive: true,
+                                    "language":{
+                                        "lengthMenu": "_MENU_ éléments par page",
+                                        "zeroRecords": "Aucun élément à afficher",
+                                        "info": "Affichage de _START_ à _END_ éléments",
+                                        "infoEmpty": "Aucun élément dans la base",
+                                        "infoFiltered": "Aucun élément dans la base",
+                                        "paginate":{
+                                            "first": "Premier",
+                                            "last": "Dernier",
+                                            "next": "Suivant",
+                                            "previous": "Précédent"
+                                        }
+                                    }
+
+                                } );
+                            } );
+
+                            $(document).ready(function() {
+                                $('.dataTables_filter input').attr("placeholder", "Rechercher...");
+                            });
+
+                        </script>
+                        <!-- Bootstrap Wizard -->
+                        
+                        <!--<link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/widgets/wizard/wizard.css') }}">-->
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/wizard/wizard.js') }}"></script>
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/wizard/wizard-demo.js') }}"></script>
+                        
+                        <!-- Boostrap Tabs -->
+                        
+                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/tabs/tabs.js') }}"></script>
+                        
                         <!-- xCharts -->
 
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/js-core/d3.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/charts/xcharts/xcharts.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/charts/xcharts/xcharts-demo-1.js') }}"></script>
+{{--                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/js-core/d3.js') }}"></script>--}}
+{{--                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/charts/xcharts/xcharts.js') }}"></script>--}}
+{{--                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/charts/xcharts/xcharts-demo-1.js') }}"></script>--}}
 
                         <!-- Sparklines charts -->
 
@@ -454,54 +283,6 @@
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/calendar/calendar.js') }}"></script>
                         <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/calendar/calendar-demo.js') }}"></script>
 
-                        <!-- Data tables -->
-
-
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-bootstrap.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-tabletools.js') }}"></script>
-                        <script type="text/javascript" src="{{ url('asset_delight/assets-minified/widgets/datatable/datatable-reorder.js') }}"></script>
-
-                        <script type="text/javascript">
-
-                            /* Datatables export */
-
-                            $(document).ready(function() {
-                                alert('YOOOO');
-                                console.log('TOOT');
-                                $('#datatable-example').dataTable();
-                            });
-
-                            $(document).ready(function() {
-                                var table = $('#datatable-tabletools').DataTable();
-                                var tt = new $.fn.dataTable.TableTools( table );
-
-                                $( tt.fnContainer() ).insertBefore('#datatable-tabletools_wrapper div.dataTables_filter');
-
-                                $('.DTTT_container').addClass('btn-group');
-                                $('.DTTT_container a').addClass('btn btn-default btn-md');
-
-                                $('.dataTables_filter input').attr("placeholder", "Recherche...");
-
-                            } );
-
-                            /* Datatables reorder */
-
-                            $(document).ready(function() {
-                                $('#datatable-reorder').DataTable( {
-                                    dom: 'Rlfrtip'
-                                });
-
-                                $('#datatable-reorder_length').hide();
-                                $('#datatable-reorder_filter').hide();
-
-                            });
-
-                            $(document).ready(function() {
-                                $('.dataTables_filter input').attr("placeholder", "Recherche...");
-                            });
-
-                        </script>
 
 
                         <!-- jQueryUI Spinner -->

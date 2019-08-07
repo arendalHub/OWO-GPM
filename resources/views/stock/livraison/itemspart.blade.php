@@ -18,7 +18,16 @@
                 </td>
                 <td>
                     <input required
-                           name="prix_unitaire-{{$article->id_article}}"
+                           name="prix_entree-{{$article->id_article}}"
+                           id="prix_entree-{{$article->id_article}}"
+                           type="number"
+                           min="0"
+                           value="0"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input required
+                           name="prix_sortie-{{$article->id_article}}"
                            type="number"
                            min="0"
                            value="0"
@@ -34,3 +43,14 @@
         @endif
     @endforeach
 @endif
+
+<script type="application/javascript">
+    function writeBothPrixEntreeSortie(prix_entree_input_id, prix_sortie_input_id)
+    {
+        var prix_entree_input = document.getElementById(prix_entree_input_id) ;
+        var prix_sortie_input = document.getElementById(prix_sortie_input_id) ;
+        prix_entree_input.onkeydown = function () {
+             prix_sortie_input.value = prix_entree_input.value ;
+        } ;
+    }
+</script>

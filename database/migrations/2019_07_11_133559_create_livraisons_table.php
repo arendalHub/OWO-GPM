@@ -16,10 +16,13 @@ class CreateLivraisonsTable extends Migration
         Schema::create('Livraison', function (Blueprint $table) {
             $table->bigIncrements('id_livraison');
             $table->bigInteger('id_commande');
-            $table->timestamp('date_livraison');
+            $table->bigInteger('id_fournisseur');
+            $table->string('num_bordereau', 254);
+            $table->string('num_facture', 254);
+            $table->string('date_livraison', 128);
 
-            $table->foreign('id_commande')->on('Commande')
-                ->references('id_commande') ;
+//            $table->foreign('id_commande')->on('Commande')
+//                ->references('id_commande') ;
         });
     }
 

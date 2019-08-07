@@ -5,27 +5,25 @@
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    {{$sous_titre = 'CREATION DE PROFIL'}}
-    {{$action = url('/add_profil')}}
-{{--        {{dd(var_dump($profil))}}--}}
     @if(isset($profil))
-        {{$sous_titre = 'MODIFICATION DE PROFIL'}}
-        {{$action = url('/update_profil')}}
+        MODIFICATION D'UN PROFIL
+        @php($action = url('/update_profil'))
+    @else
+        CREATION D'UN PROFIL
+        @php($action = url('/add_profil'))
     @endif
+
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
 
     <div class="panel">
         <div class="panel-body">
 
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
-                ('/parametre/profil/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url('/parametre/profil/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES
                         PROFILS</span></a>
-                <h3 class="col-md-9 col-md-push-5">
-                    {{$sous_titre}}
-                </h3>
+
                 <br><br>
             </div>
             <div class="example-box-wrapper">
@@ -38,7 +36,7 @@
                                 <div class="col-sm-6">
                                     <input type="text" id="libelle" name="libelle" placeholder="Libellé du profil" required class="form-control"
                                     @if(isset($profil))
-                                        value="{{$profil->libelle_profil}}"
+                                        value="{{isset($profil)? $profil->libelle_profil : old('libelle')}}"
                                     @endif
                                     >
                                 </div>
@@ -233,4 +231,4 @@
             </div>
         </div>
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

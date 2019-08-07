@@ -8,7 +8,7 @@ PARAMETRES
 PARAMETRAGE DE L'APPLICATION
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
     <div class="row">
         <div class="col-md-6">
             <a href="{{ url('/parametre/utilisateur') }}" title="Utilisateurs" class="col-md-8 col-md-offset-2 tile-box
@@ -17,7 +17,7 @@ PARAMETRAGE DE L'APPLICATION
                     UTILISATEURS
                 </div>
                 <div class="tile-content-wrapper">
-                    <i class="glyph-icon icon-file-photo-o"></i>
+                    <i class="glyph-icon icon-users"></i>
                 </div>
             </a>
         </div>
@@ -27,7 +27,7 @@ PARAMETRAGE DE L'APPLICATION
                     PROFILS
                 </div>
                 <div class="tile-content-wrapper">
-                    <i class="glyph-icon icon-desktop"></i>
+                    <i class="glyph-icon icon-tags"></i>
                 </div>
             </a>
         </div>
@@ -39,15 +39,27 @@ PARAMETRAGE DE L'APPLICATION
         <br>
 
     <div class="row">
-        <div class="col-md-12">
-            <a href="#" title="Societe" class="col-md-4 col-md-offset-4 tile-box tile-box-shortcut btn-info">
+        <div class="col-md-6">
+            <a href="{{ url('/parametre/dictionnaire') }}" title="Dictionnaire" class="col-md-8 col-md-offset-2 tile-box
+            tile-box-shortcut btn-blue-alt">
+                <div class="tile-header">
+                    DICTIONNAIRE
+                </div>
+                <div class="tile-content-wrapper">
+                    <i class="glyph-icon icon-book"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{url('/parametre/societe')}}" title="Société" class="col-md-8 col-md-offset-2 tile-box tile-box-shortcut btn-black">
                <div class="tile-header">
                     SOCIETE
                 </div>
                 <div class="tile-content-wrapper">
-                    <i class="glyph-icon icon-download"></i>
+                    <i class="glyph-icon icon-institution"></i>
                 </div>
             </a>
         </div>
+
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

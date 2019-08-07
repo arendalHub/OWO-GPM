@@ -14,7 +14,9 @@ class LivraisonController extends Controller
 {
     public function list(string $num_page= null)
     {
-        $livraisons = Livraison::orderBy('id_livraison', 'desc')->paginate() ;
+        $livraisons = Livraison::orderBy('id_livraison', 'desc')
+
+            ->paginate() ;
         return view("stock/livraison/list")->with(['livraisons'=>$livraisons]) ;
     }
 
@@ -33,6 +35,9 @@ class LivraisonController extends Controller
             ->leftJoin('Article', 'ArticleLivraison.id_article', '=', 'Article.id_article')
             ->where('ArticleLivraison.id_livraison', '=', $id_livraison)
             ->get() ;
+        $total = 0 ;
+        for($i = 0; $i<count($articles); ++$i)
+            $total+= $articles[0]->prix_entree ;
 
         return view("stock/livraison/details")->with(['livraison'=>$livraison, 'articles'=>$articles]) ;
     }
@@ -45,7 +50,12 @@ class LivraisonController extends Controller
     {
         // Affichage
         $commandes = Commande::where('livre', false)->orderBy('id_commande', 'asc')->get() ;
-        return view('stock.livraison.create_update', ['commandes'=>$commandes]) ;
+        $fournisseurs = Fournisseur::all() ;
+        return view('stock.livraison.create_update',
+            [
+                'commandes'=>$commandes,
+                'fournisseurs'=>$fournisseurs
+            ]) ;
     }
 
     /**
@@ -59,22 +69,29 @@ class LivraisonController extends Controller
         $livraison = new Livraison  ;
         $livraison->date_livraison = date("d-m-Y H:i:s") ;
         $livraison->id_commande = $postData["id_commande"] ;
+        $livraison->id_fournisseur = $postData["id_fournisseur"] ;
+        $livraison->num_bordereau = $postData["num_bordereau"] ;
+        $livraison->num_facture = $postData["num_facture"] ;
         if($livraison->save())
         {
             $postDataKeys = array_keys($postData) ;
-            for($i=2; $i<count($postDataKeys); $i+=5)
+            for($i=0; $i<count($postDataKeys); $i++)
             {
                 if(strstr($postDataKeys[$i], "id_article-") !== false)
                 {
                     // Bulk insertion without verification
-                    $articleLivraison = new ArticleLivraison() ;
-                    $articleLivraison->id_article = $postData[$postDataKeys[$i]] ;
-                    $articleLivraison->quantite = $postData[$postDataKeys[$i+1]] ;
-                    $articleLivraison->prix_unitaire = $postData[$postDataKeys[$i+2]] ;
-                    $articleLivraison->date_peremption = $postData[$postDataKeys[$i+3]] ;
-                    $articleLivraison->date_fabrication = $postData[$postDataKeys[$i+4]] ;
-                    $articleLivraison->id_livraison = $livraison->id_livraison ;
-                    $articleLivraison->save() ;
+                    if($postData[$postDataKeys[$i+1]] != 0)
+                    {
+                        $articleLivraison = new ArticleLivraison() ;
+                        $articleLivraison->id_article = $postData[$postDataKeys[$i]] ;
+                        $articleLivraison->quantite = $postData[$postDataKeys[$i+1]] ;
+                        $articleLivraison->prix_entree = $postData[$postDataKeys[$i+2]] ;
+                        $articleLivraison->prix_sortie = $postData[$postDataKeys[$i+3]] ;
+                        $articleLivraison->date_peremption = $postData[$postDataKeys[$i+4]] ;
+                        $articleLivraison->date_fabrication = $postData[$postDataKeys[$i+5]] ;
+                        $articleLivraison->id_livraison = $livraison->id_livraison ;
+                        $articleLivraison->save() ;
+                    }
                 }
             }
 
@@ -144,7 +161,7 @@ class LivraisonController extends Controller
         $deliveredArr = Collection::unwrap($delivered) ;
         if(count($deliveredArr) > 0)
         {
-            for($i = 0; $i <count($articlesArr); $i++)
+            for($i = 0; $i <count($deliveredArr); $i++)
             {
                 if($deliveredArr[$i]->id_article == $articlesArr[$i]->id_article)
                 {

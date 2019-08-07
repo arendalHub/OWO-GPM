@@ -1,16 +1,20 @@
-@extends('layouts.personnel')
+@extends('layouts.parametre')
 
 @section('titre_contenu')
-    EMPLOYES
+    SOCIETE
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    @if(isset($employe))
-        MODIFICATION D'UN EMPLOYE
-        @php($action = url('/update_employe'))
+    @php($disabled = '')
+    @if(isset($societe))
+        @if(isset($todo))
+            EDITION DES INFORMATIONS DE LA SOCIETE
+        @else
+            INFORMATIONS DE LA SOCIETE
+            @php($disabled = 'disabled')
+        @endif
     @else
-        CREATION D'UN EMPLOYE
-        @php($action = url('/add_employe'))
+        AJOUT DES INFORMATIONS DE LA SOCIETE
     @endif
 @endsection('sous_titre_contenu')
 
@@ -19,25 +23,27 @@
     <div class="panel">
         <div class="panel-body">
 
-            <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
-                ('personnel/employe/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES EMPLOYES</span></a>
+            @if(!isset($todo))
+                <div class=" title-hero">
+                    <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
+                ('parametre/societe/edit/1') }}" title=""> <i class="glyph-icon icon-edit"></i>
+                        <span>EDITER</span></a>
 
-                <br><br>
-            </div>
+                    <br><br>
+
+                </div>
+            @endif
             <div class="example-box-wrapper">
-                <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8">
+                <form method="post" action="/edit_societe" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8">
                     @csrf
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">NOM</label>
+                                <label class="col-sm-3 control-label">RAISON SOCIALE</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="nom" name="nom" placeholder="Nom de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('nom',$employe->nom_employe)}}"
-                                            @endif
+                                    <input type="text" id="raison_sociale" name="raison_sociale" placeholder="Raison sociale de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->raison_sociale_societe : old('raison_sociale')}}"
                                     >
                                 </div>
                             </div>
@@ -45,81 +51,9 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">PRENOM(S)</label>
+                                <label class="col-sm-3 control-label">ACTIVITE(S)</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="prenom" name="prenom" placeholder="Nom de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('prenom',$employe->prenom_employe)}}"
-                                            @endif
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">DATE DE NAISSANCE</label>
-                                <div class="col-sm-6">
-                                    <input type="date" id="date_naiss" name="date_naiss" placeholder="Date de naissance de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('date_naiss',$employe->date_naiss_employe)}}"
-                                           @endif
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">LIEU DE NAISSANCE</label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="lieu_naiss" name="lieu_naiss" placeholder="Lieu de naissance de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('lieu_naiss',$employe->lieu_naiss_employe)}}"
-                                            @endif
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">SEXE</label>
-                                <div class="col-sm-6">
-                                    <label class="radio-inline">
-                                        <input type="radio" id="sexe" name="sexe" value="M"
-                                               @if(isset($employe) && $employe->sexe_employe=="M")
-                                               checked
-                                                @endif
-                                        >
-                                        Masculin
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" id="sexe" name="sexe" value="F"
-                                               @if(isset($employe) && $employe->sexe_employe=="M")
-                                               checked
-                                                @endif
-                                        >
-                                        Féminin
-                                    </label>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">TELEPHONE</label>
-                                <div class="col-sm-6">
-                                    <input type="number" id="num_tel" name="num_tel" placeholder="Téléphone de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('num_tel',$employe->num_tel_employe)}}"
-                                            @endif
-                                    >
+                                    <textarea name="activites" id="activites" class="form-control" {{$disabled}}>{{isset($societe)? $societe->activites_societe : old('activites')}}</textarea>
                                 </div>
                             </div>
 
@@ -128,11 +62,20 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">ADRESSE</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="adresse" name="adresse" placeholder="Adresse de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('adresse',$employe->adresse_employe)}}"
-                                            @endif
+                                    <textarea name="adresse" id="adresse" class="form-control" {{$disabled}}>{{isset
+                                    ($societe)? $societe->adresse_societe : old('adresse')}}</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="form-group">
+
+                                <label class="col-sm-3 control-label">BP</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="bp" name="bp" placeholder="Boite Postale de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->bp_societe : old('bp')}}"
                                     >
                                 </div>
                             </div>
@@ -140,12 +83,11 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">PÈRE</label>
+                                <label class="col-sm-3 control-label">TELEPHONE 1</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="pere" name="pere" placeholder="Père de l'employé" required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('pere',$employe->pere_employe)}}"
-                                           @endif
+                                    <input type="text" id="telephone1" name="telephone1" placeholder="Téléphone N°1 de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->telephone1_societe : old('telephone1')}}"
                                     >
                                 </div>
                             </div>
@@ -153,13 +95,22 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">MÈRE</label>
+                                <label class="col-sm-3 control-label">TELEPHONE 2</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="mere" name="mere" placeholder="Mère de l'employé"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('mere',$employe->mere_employe)}}"
-                                            @endif
+                                    <input type="text" id="telephone2" name="telephone2" placeholder="Téléphone N°2 de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->telephone2_societe : old('telephone2')}}"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">NIF</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="nif" name="nif" placeholder="NIF de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->nif_societe : old('nif')}}"
                                     >
                                 </div>
                             </div>
@@ -167,14 +118,12 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">TELEPHONE URGENCE</label>
+                                <label class="col-sm-3 control-label">NUMERO CFE</label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="num_tel_urgence" name="num_tel_urgence"
-                                           placeholder="Telephone d'urgence"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('num_tel_urgence',$employe->num_tel_urgence_employe)}}"
-                                            @endif
+                                    <input type="text" id="num_cfe" name="num_cfe"
+                                           placeholder="N° CFE"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->num_cfe_societe : old('num_cfe')}}"
                                     >
                                 </div>
                             </div>
@@ -182,14 +131,11 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">SITUATION MATRIMONIALE</label>
+                                <label class="col-sm-3 control-label">EMAIL</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="situation_mat" name="situation_mat" placeholder="Situation
-                                     matrimoniale"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('situation_mat',$employe->situation_mat_employe)}}"
-                                            @endif
+                                    <input type="email" id="email" name="email" placeholder="Email de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->email_societe : old('email')}}"
                                     >
                                 </div>
                             </div>
@@ -197,14 +143,11 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">NOMBRE D'ENFANTS</label>
+                                <label class="col-sm-3 control-label">SITE WEB</label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="nb_enfant" name="nb_enfant" placeholder="Nombre
-                                    d'enfants"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('nb_enfant',$employe->nb_enfant_employe)}}"
-                                            @endif
+                                    <input type="text" id="site_web" name="site_web" placeholder="Site web de la societe"
+                                           required class="form-control" {{$disabled}}
+                                           value="{{isset($societe)? $societe->site_web_societe : old('site_web')}}"
                                     >
                                 </div>
                             </div>
@@ -212,70 +155,26 @@
                         </div>
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">N° IDENTITÉ</label>
+                                <label class="col-sm-3 control-label">AUTRES INFORMATIONS</label>
                                 <div class="col-sm-6">
-                                    <input type="number" id="num_identite" name="num_identite" placeholder="Numéro d'identité"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('num_identite',$employe->num_identite_employe)}}"
-                                            @endif
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">DATE ENTRÉE</label>
-                                <div class="col-sm-6">
-                                    <input type="date" id="date_entree" name="date_entree" placeholder="Date d'entrée"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('date_entree',$employe->date_entree_employe)}}"
-                                            @endif
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">N° CNSS</label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="num_cnss" name="num_cnss" placeholder="N° CNSS"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('num_cnss',$employe->num_cnss_employe)}}"
-                                            @endif
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">TYPE CONTRAT</label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="contrat" name="contrat" placeholder="Type de
-                                    contrat"
-                                           required class="form-control"
-                                           @if(isset($employe))
-                                           value="{{old('contrat',$employe->contrat_employe)}}"
-                                            @endif
-                                    >
+                                    <textarea name="autres_infos" id="autres_infos" class="form-control"
+                                            {{$disabled}}>{{isset($societe)? $societe->autres_infos_societe : old('autres_infos')}}</textarea>
                                 </div>
                             </div>
 
                         </div>
 
                     </div>
-                    <div class="bg-default content-box text-center pad20A mrg25T">
-                        @if(isset($employe))
-                            <input type="hidden" id="id" name="id" value="{{$employe->id_employe}}">
-                        @endif
-                        <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
-                        <button class="btn btn-lg btn-default" type="reset">ANNULER</button>
-                    </div>
+                    @if(isset($todo))
+                        <div class="bg-default content-box text-center pad20A mrg25T">
+                            @if(isset($societe))
+                                <input type="hidden" id="id" name="id" value="{{$societe->id_societe}}">
+                            @endif
+                            <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
+{{--                            <button class="btn btn-lg btn-default" type="reset">ANNULER</button>--}}
+                            <a href="{{url('/parametre/societe')}}" class="btn btn-lg btn-default" >ANNULER</a>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>

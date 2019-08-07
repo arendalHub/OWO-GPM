@@ -12,14 +12,15 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Ce controlleur est responsable de toute les actions sur les commandes.
- * @todo migration Commande et ArticleCommande.
  * @author fatigba72@mail.com
  */
 class CommandeController extends Controller
 {
     public function list(string $num_page = null)
     {
-        $commandes = Commande::orderBy("id_commande", "desc")->paginate() ;
+        $commandes = Commande::join('Fournisseur', 'Commande.id_fournisseur','=','Fournisseur.id_fournisseur')
+                             ->select('Commande.*', 'Fournisseur.designation_fournisseur')
+                             ->orderBy("id_commande", "desc")->paginate() ;
         return view("stock/commande/list", ["commandes"=>$commandes]) ;
     }
 
@@ -34,7 +35,7 @@ class CommandeController extends Controller
         $commande = Commande::find($id_commande) ;
         $fournisseur = Fournisseur::where('id_fournisseur','=',$commande->id_fournisseur)->get()[0] ;
         $articles = DB::table("Article")
-            ->select(["Article.id_article", "Article.designation_article", 'ArticleCommande.quantite'])
+            ->select(["Article.id_article", "Article.designation_article", 'ArticleCommande.quantite', 'Article.prix_achat'])
             ->leftJoin('ArticleCommande', 'ArticleCommande.id_article', '=', 'Article.id_article')
             ->where('ArticleCommande.id_commande', '=', $commande->id_commande)
             ->get() ;

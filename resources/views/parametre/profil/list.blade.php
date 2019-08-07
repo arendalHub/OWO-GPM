@@ -8,7 +8,7 @@
     LISTE DES PROFILS
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
 
     <div class="panel">
         <div class="panel-body">
@@ -16,14 +16,14 @@
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
                 ('/parametre/profil/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU
                         PROFIL</span></a>
-                <h3 class="col-md-10 col-md-push-7">
-                    LISTE DES PROFILS
-                </h3>
+{{--                <h3 class="col-md-10 col-md-push-7">--}}
+{{--                    LISTE DES PROFILS--}}
+{{--                </h3>--}}
                 <br><br>
             </div>
             <div class="example-box-wrapper">
 
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -84,4 +84,4 @@
             </div>
         </div>
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

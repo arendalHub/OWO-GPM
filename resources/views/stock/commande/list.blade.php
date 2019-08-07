@@ -27,8 +27,9 @@ LISTE DES COMMANDES
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                         <tr>
+                            <th>Référence</th>
                             <th>Date</th>
-                            <th>Libelle</th>
+                            <th>Fournisseur</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -36,20 +37,22 @@ LISTE DES COMMANDES
                         @if($commandes != null && count($commandes) > 0)
                             @foreach($commandes as $commande)
                                 <tr>
+                                    <td>CMD-{{$commande->id_commande}}</td>
                                     <td>{{$commande->date_commande}}</td>
-                                    <td>cmd-{{$commande->id_commande}}</td>
+                                    <td>{{$commande->designation_fournisseur}}</td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a title="supprimer la commande" href="#">supprimer</a></li>
-                                                <li><a title="modifier la commande" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>
-                                                <li><a title="voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">details</a></li>
-                                                <!--<li><a href="#">JavaScript</a></li>-->
-                                            </ul>
-                                        </div>
+                                        {{--<div class="dropdown">--}}
+                                        {{--<button class="btn btn-link" type="button" data-toggle="dropdown">--}}
+                                        {{--<span class="caret"></span>--}}
+                                        {{--</button>--}}
+                                        {{--<ul class="dropdown-menu">--}}
+                                        {{--<li><a title="supprimer la commande" disabled="">supprimer</a></li>--}}
+                                        {{--<li><a title="modifier la commande" disabled="" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>--}}
+                                        <a title="Voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}"> <i class="glyph-icon icon-info"> Détails </i> </a>
+                                        <a title="Imprimer la commande"> <i class="glyph-icon icon-print"> Imprimer </i> </a>
+                                        <!--<li><a href="#">JavaScript</a></li>-->
+                                        {{--</ul>--}}
+                                        {{--</div>--}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -60,7 +63,7 @@ LISTE DES COMMANDES
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                {{$commande->paginate()}}
+                {{$commandes->links()}}
             </div>
         </div>
     </div>

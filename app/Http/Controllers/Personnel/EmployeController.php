@@ -33,9 +33,10 @@ class EmployeController extends Controller
         $employe->situation_mat_employe = $request->input('situation_mat');
         $employe->nb_enfant_employe = $request->input('nb_enfant');
         $employe->num_identite_employe = $request->input('num_identite');
+        $employe->niveau_etudes_employe = $request->input('niveau_etudes');
         $employe->date_entree_employe = $request->input('date_entree');
-        $employe->date_sortie_employe = date('Y-m-d');
-
+        $employe->date_depart_employe = $request->input('date_depart');
+//        $employe->date_sortie_employe = date('Y-m-d');
         $employe->num_cnss_employe = $request->input('num_cnss');
         $employe->contrat_employe = $request->input('contrat');
         $employe->save();
@@ -60,8 +61,10 @@ class EmployeController extends Controller
         $employe->situation_mat_employe = $request->input('situation_mat');
         $employe->nb_enfant_employe = $request->input('nb_enfant');
         $employe->num_identite_employe = $request->input('num_identite');
+        $employe->niveau_etudes_employe = $request->input('niveau_etudes');
         $employe->date_entree_employe = $request->input('date_entree');
-        $employe->date_sortie_employe = date('Y-m-d');
+        $employe->date_depart_employe = $request->input('date_depart');
+//        $employe->date_sortie_employe = date('Y-m-d');
         $employe->num_cnss_employe = $request->input('num_cnss');
         $employe->contrat_employe = $request->input('contrat');
         $employe->save();

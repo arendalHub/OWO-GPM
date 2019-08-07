@@ -29,7 +29,9 @@ class CreateEmployesTable extends Migration
             $table->string('situation_mat_employe');
             $table->integer('nb_enfant_employe');
             $table->string('num_identite_employe');
+            $table->string('niveau_etudes_employe');
             $table->date('date_entree_employe');
+            $table->date('date_depart_employe');
             $table->date('date_sortie_employe');
             $table->string('num_cnss_employe');
             $table->enum('contrat_employe',['Prestation de service', 'CDD', 'CDI']);

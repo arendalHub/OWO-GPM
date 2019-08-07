@@ -15,8 +15,13 @@ class CreateUtilisateursTable extends Migration
     {
         Schema::create('utilisateurs', function (Blueprint $table) {
             $table->bigIncrements('id_utilisateur');
-            $table->string('login_utilisateur')->unique();
-            $table->string('password_utilisateur');
+            $table->string('nom_utilisateur');
+            $table->string('prenom_utilisateur')();
+            $table->string('login')->unique();
+            $table->string('service_utilisateur');
+            $table->string('poste_utilisateur');
+            $table->string('password');
+            $table->string('profil_temporaire');
             $table->boolean('actif')->default(true);
             $table->boolean('supprime')->default(false);
             $table->timestamps();

@@ -8,30 +8,30 @@
     LISTE DES SITES
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
 
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
                 ('personnel/site/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU SITE</span></a>
-                <h3 class="col-md-10 col-md-push-7">
-                    LISTE DES SITES
-                </h3>
+
                 <br><br>
             </div>
             <div class="example-box-wrapper">
 
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th>NOM</th>
                         <th>ADRESSE</th>
+                        <th>COORDONNES GPS</th>
                         <th>DATE DEBUT TRAVAUX</th>
                         <th>DATE FIN TRAVAUX</th>
                         <th>DUREE</th>
                         <th>SECTION</th>
+                        <th>ZONE</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -42,6 +42,7 @@
                             <td>{{$site->id_site}}</td>
                             <td>{{$site->nom_site}}</td>
                             <td>{{$site->adresse_site}}</td>
+                            <td>{{$site->longitude_site.', '.$site->lattitude_site}}</td>
                             <td>{{$site->date_deb_travaux_site}}</td>
                             <td>{{$site->date_fin_travaux_site}}</td>
                             <td>{{$site->duree_travaux_site}}</td>
@@ -50,12 +51,17 @@
                                     {{$site->id_section==$section->id_section ? $section->nom_section:''}}
                                 @endforeach
                             </td>
+                            <td>
+                                @foreach($zones as $zone)
+                                    {{$site->id_zone==$zone->id_zone ? $zone->nom_zone:''}}
+                                @endforeach
+                            </td>
                             <td class="center">
                                 <a class="btn btn-blue-alt col-md-4" href="{{url('/parametre/personnel/create_update/'
                                 .$site->id_site)}}" title="MODIFIER">
                                     <i class="glyph-icon icon-pencil"></i>
                                 </a>
-                                <form method="post" action=" {{url('delete_site')}}" class="col-md-6">
+                                <form method="post" action="{{url('/delete_site')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$site->id_site}}">
 
@@ -93,4 +99,4 @@
             </div>
         </div>
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

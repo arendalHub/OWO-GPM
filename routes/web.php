@@ -13,22 +13,17 @@
 
 
 // AUTHENTIFICATION
-Route::get('/', function () {
-    return view('connexion');
-});
-Route::get('/accueil', function () {
-    return view('accueil');
-});
+use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\VerifieConnexion;
+
+Route::get('/',  'Parametre\UtilisateurController@deconnexion');
+
 Route::get('/menu_modulaire', function () {
     return view('menu_modulaire');
-});
+})/* ->middleware(VerifieConnexion::class) */;
 
-Route::post('connexion', 'ConnexionController@connexion');
-Route::get('/deconnexion', 'ConnexionController@deconnexion');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::post('connexion', 'Parametre\UtilisateurController@connexion');
+Route::get('/deconnexion', 'Parametre\UtilisateurController@deconnexion');
 
 
 // Gestion de stocks
@@ -38,6 +33,7 @@ Route::get('/stock', function () {
 Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
 Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
 Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
+Route::get('/stock/article/details/{item_id}','ArticleController@details');
 
 Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list');
 Route::get('/stock/fournisseur/create_update/{id_fournisseur?}', 'FournisseurController@create_update');
@@ -58,21 +54,18 @@ Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
 Route::get('/stock/entree/create_update/', function () {
     return view('stock.entreesimple.create_update');
 });
-Route::get('/stock/stock/list', function () {
-    return view('stock.stock.list');
-});
+Route::get('/stock/stock/list/{page_num?}', 'StockController@list');
 Route::get('/stock/stock/create_update', function () {
     return view('stock.stock.create_update');
 });
 Route::get('/stock/stock/details/{id}', function () {
     return view('stock.stock.details');
 });
-Route::get('/stock/rebus/create_update', function () {
-    return view('stock.rebus.create_update');
-});
-Route::get('/stock/rebus/list', function () {
-    return view('stock.rebus.list');
-});
+Route::get('/stock/rebus/create_update', "Stock\RebusController@create_update") ;
+Route::post('/stock/rebus/do_create_update', "Stock\RebusController@do_create_update") ;
+Route::get('/stock/rebus/list/{page_num?}', "Stock\RebusController@list") ;
+
+
 // PERSONNEL
 Route::get('/personnel', function () {
     return view('personnel.accueil');
@@ -96,15 +89,6 @@ Route::post('add_zone', 'Personnel\ZoneController@ajouter');
 Route::post('update_zone', 'Personnel\ZoneController@modifier');
 Route::post('delete_zone', 'Personnel\ZoneController@supprimer');
 
-//Sites
-Route::get('/personnel/site', 'Personnel\SiteController@afficher');
-Route::get('/personnel/site/list', 'Personnel\SiteController@afficher');
-Route::get('/personnel/site/create_update', 'Personnel\SiteController@formulaire');
-Route::get('/personnel/site/create_update/{id}', 'Personnel\SiteController@formulaire');
-Route::post('add_site', 'Personnel\SiteController@ajouter');
-Route::post('update_site', 'Personnel\SiteController@modifier');
-Route::post('delete_site', 'Personnel\SiteController@supprimer');
-
 //Sections
 Route::get('/personnel/section', 'Personnel\SectionController@afficher');
 Route::get('/personnel/section/list', 'Personnel\SectionController@afficher');
@@ -113,6 +97,15 @@ Route::get('/personnel/section/create_update/{id}', 'Personnel\SectionController
 Route::post('add_section', 'Personnel\SectionController@ajouter');
 Route::post('update_section', 'Personnel\SectionController@modifier');
 Route::post('delete_section', 'Personnel\SectionController@supprimer');
+
+//Sites
+Route::get('/personnel/site', 'Personnel\SiteController@afficher');
+Route::get('/personnel/site/list', 'Personnel\SiteController@afficher');
+Route::get('/personnel/site/create_update', 'Personnel\SiteController@formulaire');
+Route::get('/personnel/site/create_update/{id}', 'Personnel\SiteController@formulaire');
+Route::post('add_site', 'Personnel\SiteController@ajouter');
+Route::post('update_site', 'Personnel\SiteController@modifier');
+Route::post('delete_site', 'Personnel\SiteController@supprimer');
 
 
 // PARAMETRAGE
@@ -147,9 +140,15 @@ Route::post('add_droit', 'Parametre\DroitController@ajouter');
 Route::post('update_droit', 'Parametre\DroitController@modifier');
 Route::post('delete_droit', 'Parametre\DroitController@supprimer');
 
+//Societe
+Route::get('/parametre/societe', 'Parametre\SocieteController@formulaire');
+Route::get('/parametre/societe/edit', 'Parametre\SocieteController@formulaire');
+Route::get('/parametre/societe/edit/{id}', 'Parametre\SocieteController@formulaire');
+Route::post('edit_societe', 'Parametre\SocieteController@editer');
 
 
 //TESTS
 Route::get('/test', function () {
     return view('test');
 });
+

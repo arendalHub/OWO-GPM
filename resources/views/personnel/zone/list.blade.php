@@ -8,25 +8,23 @@
     LISTE DES ZONES
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
 
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
                 ('personnel/zone/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVELLE ZONE</span></a>
-                <h3 class="col-md-10 col-md-push-7">
-                    LISTE DES ZONES
-                </h3>
                 <br><br>
             </div>
             <div class="example-box-wrapper">
 
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th>NOM</th>
+                        <th>SITUATION GEOGRAPHIQUE</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -36,6 +34,7 @@
                         <tr class="odd gradeX">
                             <td>{{$zone->id_zone}}</td>
                             <td>{{$zone->nom_zone}}</td>
+                            <td>{{$zone->situation_geo_zone}}</td>
                             <td class="center">
                                 <a class="btn btn-blue-alt col-md-6" href="{{url('/parametre/personnel/create_update/'
                                 .$zone->id_zone)}}" title="MODIFIER">
@@ -80,4 +79,4 @@
             </div>
         </div>
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

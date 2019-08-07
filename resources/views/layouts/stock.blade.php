@@ -25,6 +25,9 @@
 
 
         <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/admin-all-demo.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url('asset_delight/assets-minified/icons/elusive/elusive.css') }}">
+        
+        <link rel="stylesheet" type="text/css" href="{{ url('css/main.css') }}">
 
         <!-- JS Core -->
 

@@ -20,6 +20,7 @@ class ZoneController extends Controller
     {
         $zone = new Zone;
         $zone->nom_zone = $request->input('nom');
+        $zone->situation_geo_zone = $request->input('situation_geo');
         $zone->save();
 
         return redirect('/personnel/zone/list');
@@ -29,6 +30,7 @@ class ZoneController extends Controller
     {
         $zone = Zone::where(['id_zone'=>$request->input('id'), 'supprime'=>0])->first();
         $zone->nom_zone = $request->input('nom');
+        $zone->situation_geo_zone = $request->input('situation_geo');
         $zone->save();
 
         return redirect('/personnel/zone/list');

@@ -28,22 +28,27 @@ DETAILS DE LA COMMANDE cmd-{{$commande->id_commande}}
                     <thead>
                         <tr>
                             <th>Article</th>
-                            <th>Quantite</th>
-{{--                            <th>Détails de l'article</th>--}}
+                            <th>Prix Unit.</th>
+                            <th>Quantité</th>
+                            <th>Total ligne</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if($articles != null && count($articles)>0)
+                            <?php $total=0; ?>
                             @foreach($articles as $article)
                                 <tr>
                                     <td>{{$article->designation_article}}</td>
+                                    <td>{{$article->prix_achat}}</td>
                                     <td>{{$article->quantite}}</td>
-{{--                                    <td>{{}}</td>--}}
+                                    <td>{{$article->prix_achat * $article->quantite}}</td>
+                                    <?php $total=$total+$article->prix_achat * $article->quantite; ?>
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
                 </table>
+                <h3>Coût de la commande: {{$total}} FCFA</h3>
             </div>
             <div style="width: 100%" class="example-box-wrapper">
                 <h2>Livraisons pour cette commande</h2>

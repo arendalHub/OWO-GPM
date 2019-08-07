@@ -14,18 +14,19 @@ class CreateLivraisonArticlesTable extends Migration
     public function up()
     {
         Schema::create('ArticleLivraison', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
-            $table->bigInteger('quantite');
-            $table->bigInteger('id_article');
-            $table->bigInteger('id_livraison');
-            $table->bigInteger('prix_unitaire');
-            $table->timestamp('date_peremption');
-            $table->timestamp('date_fabrication');
+            $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('quantite')->unsigned();
+            $table->bigInteger('id_article')->unsigned();
+            $table->bigInteger('id_livraison')->unsigned();
+            $table->bigInteger('prix_entree')->unsigned();
+            $table->bigInteger('prix_sortie')->unsigned();
+            $table->string('date_peremption', 128);
+            $table->string('date_fabrication', 128);
 
-            $table->foreign('id_article')->on('ArticleCommande')
-                ->references('id_article') ;
-            $table->foreign('id_livraison')->on('Livraison')
-                ->references('id_livraison') ;
+//            $table->foreign('id_article')->on('ArticleCommande')
+//                ->references('id_article') ;
+//            $table->foreign('id_livraison')->on('Livraison')
+//                ->references('id_livraison') ;
 
         });
     }

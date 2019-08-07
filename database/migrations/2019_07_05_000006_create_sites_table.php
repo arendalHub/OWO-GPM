@@ -17,6 +17,8 @@ class CreateSitesTable extends Migration
             $table->bigIncrements('id_site');
             $table->string('nom_site');
             $table->string('adresse_site');
+            $table->string('longitude_site');
+            $table->string('lattitude_site');
             $table->date('date_deb_travaux_site');
             $table->date('date_fin_travaux_site');
             $table->string('duree_travaux_site');

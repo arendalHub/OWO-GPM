@@ -17,15 +17,23 @@ class CreateArticlesTable extends Migration
 
         Schema::create('Article', function (Blueprint $table)
         {
-            $table->bigIncrements('id_article');
-            $table->string('code_article', 45)->nullable();
-            $table->string('emplacement_stock', 45)->nullable();
-            $table->string('designation_article', 128);
-            $table->boolean('consommable');
-            $table->boolean('supprime')->nullable();
-
+            $table->bigIncrements('id_article') ;
+            $table->string('code_article', 45) ;
             $table->bigInteger('id_famille') ;
-            $table->foreign('id_famille')->references('id_famille')->on('FamilleArticle') ;
+            $table->bigInteger('id_magasin') ;
+            $table->string('designation_article', 128) ;
+            $table->decimal('prix_vente') ;
+            $table->decimal('prix_achat') ;
+            $table->bigInteger('seuil_alert');
+            $table->bigInteger('seuil_critique');
+            $table->boolean('consommable');
+            $table->string('stock_etagere', 128);
+            $table->string('stock_range', 128);
+            $table->string('stock_box', 128);
+            $table->boolean('supprime')->default(false);
+
+//            $table->bigInteger('id_famille') ;
+//            $table->foreign('id_famille')->references('id_famille')->on('FamilleArticle') ;
 
             $table->timestamps();
         });

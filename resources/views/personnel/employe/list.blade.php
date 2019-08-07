@@ -8,22 +8,19 @@
     LISTE DES EMPLOYES
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
 
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
                 ('personnel/employe/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEL EMPLOYE</span></a>
-                <h3 class="col-md-10 col-md-push-7">
-                    LISTE DES EMPLOYES
-                </h3>
                 <br><br>
 
             </div>
             <div class="example-box-wrapper">
 
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -57,40 +54,53 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Informations Supplémentaires</h4>
+                                                <h4 class="modal-title">DETAILS</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <table table table-striped table-bordered>
-                                                    <thead>
-                                                    <th>PERE</th>
-                                                    <th>MERE</th>
-                                                    <th>CONTACT URGENCE</th>
-                                                    <th>SITUATION MATRIMONIALE</th>
-                                                    <th>NOMBRE ENFANTS</th>
-                                                    <th>N° IDENTITE</th>
-                                                    <th>DATE ENTREE</th>
-                                                    <th>DATE SORTIE</th>
-                                                    <th>N° CNSS</th>
-                                                    <th>TYPE CONTRAT</th>
-                                                    </thead>
+                                                <table class="table table-striped table-bordered">
                                                     <tbody>
-                                                        <td>{{$employe->pere_employe}}</td>
-                                                        <td>{{$employe->mere_employe}}</td>
-                                                        <td>{{$employe->num_tel_urgence_employe}}</td>
-                                                        <td>{{$employe->situation_mat_employe}}</td>
-                                                        <td>{{$employe->nb_enfant_employe}}</td>
-                                                        <td>{{$employe->num_identite_employe}}</td>
-                                                        <td>{{$employe->date_entree_employe}}</td>
-                                                        <td>{{$employe->date_sortie_employe}}</td>
-                                                        <td>{{$employe->num_cnss_employe}}</td>
-                                                        <td>{{$employe->contrat_employe}}</td>
+                                                    <tr>
+                                                        <td>ID: <b>{{$employe->id_employe}}</b></td>
+                                                        <td>MATRICULE: <b>{{$employe->matricule_employe}}</b></td>
+                                                        <td>NOM & PRENOM(S):<b>{{$employe->nom_employe.' '
+                                                        .$employe->prenom_employe}}</b></td>
+                                                        <td>DATE & LIEU DE
+                                                            NAISSANCE<b>{{$employe->date_naiss_employe.'
+                                                         à '
+                                                        .$employe->lieu_naiss_employe}}</b></td>
+                                                        <td>SEXE: <b>{{$employe->sexe_employe}}</b></td>
+                                                        <td>TELEPHONE: <b>{{$employe->num_tel_employe}}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>ADRESSE: <b>{{$employe->adresse_employe}}</b></td>
+                                                        <td>PERE: <b>{{$employe->pere_employe}}</b></td>
+                                                        <td>MERE: <b>{{$employe->mere_employe}}</b></td>
+                                                        <td>TELEPHONE URGENCE:
+                                                            <b>{{$employe->num_tel_urgence_employe}}</b></td>
+                                                        <td>SITUATION MATRIMONIALE:
+                                                            <b>{{$employe->situation_mat_employe}}</b></td>
+                                                        <td>NOMBRE D'ENFANTS:
+                                                            <b>{{$employe->nb_enfant_employe}}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>N° IDENTITE: <b>{{$employe->num_identite_employe}}</b></td>
+                                                        <td>NIVEAU D'ETUDES:
+                                                            <b>{{$employe->niveau_etudes_employe}}</b></td>
+                                                        <td>DATE ENTREE: <b>{{$employe->date_entree_employe}}</b></td>
+                                                        <td>DATE DE DEPART:
+                                                            <b>{{$employe->date_depart_employe}}</b></td>
+{{--                                                        <td>DATE DE SORTIE
+:<b>{{$employe->date_sortie_employe}}</b></td>--}}
+                                                        <td>N° CNSS: <b>{{$employe->num_cnss_employe}}</b></td>
+                                                        <td>TYPE DE CONTRAT: <b>{{$employe->contrat_employe}}</b></td>
+                                                    </tr>
 
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Fermer</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                                <button type="button" disabled class="btn btn-black">Imprimer <i class="glyph-icon icon-print"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -144,4 +154,4 @@
             </div>
         </div>
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

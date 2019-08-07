@@ -8,7 +8,7 @@ PERSONNEL
 OPERATIONS DU PERSONNEL
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
     <div class="row">
         <div class="col-md-6">
             <a href="{{ url('personnel/employe') }}" title="Employés" class="col-md-8 col-md-offset-2 tile-box
@@ -17,18 +17,18 @@ OPERATIONS DU PERSONNEL
                     EMPLOYES
                 </div>
                 <div class="tile-content-wrapper">
-                    <i class="glyph-icon icon-file-photo-o"></i>
+                    <i class="glyph-icon icon-group"></i>
                 </div>
             </a>
         </div>
         <div class="col-md-6">
-            <a href="{{ url('/personnel/zone') }}" title="Zones et Sections" class="col-md-8 col-md-offset-2 tile-box
+            <a href="{{ url('/personnel/zone') }}" title="Zones" class="col-md-8 col-md-offset-2 tile-box
              tile-box-shortcut btn-success">
                 <div class="tile-header">
                     ZONES
                 </div>
                 <div class="tile-content-wrapper">
-                    <i class="glyph-icon icon-desktop"></i>
+                    <i class="glyph-icon icon-globe"></i>
                 </div>
             </a>
         </div>
@@ -40,16 +40,28 @@ OPERATIONS DU PERSONNEL
         <br>
 
     <div class="row">
-        <div class="col-md-12">
-            <a href="{{ url('/personnel/site') }}" title="Sites" class="col-md-4 col-md-offset-4 tile-box
-            tile-box-shortcut btn-info">
-               <div class="tile-header">
-                    SITE
+        <div class="col-md-6">
+            <a href="{{ url('/personnel/section') }}" title="Sections" class="col-md-8 col-md-offset-2 tile-box
+             tile-box-shortcut btn-blue-alt">
+                <div class="tile-header">
+                   SECTIONS
                 </div>
                 <div class="tile-content-wrapper">
-                    <i class="glyph-icon icon-download"></i>
+                    <i class="glyph-icon icon-linecons-location"></i>
                 </div>
             </a>
         </div>
+        <div class="col-md-6">
+            <a href="{{ url('/personnel/site') }}" title="Sites" class="col-md-8 col-md-offset-2 tile-box
+            tile-box-shortcut btn-black">
+               <div class="tile-header">
+                    SITES
+                </div>
+                <div class="tile-content-wrapper">
+                    <i class="glyph-icon icon-building"></i>
+                </div>
+            </a>
+        </div>
+
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

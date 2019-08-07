@@ -18,44 +18,35 @@ LISTE DES STOCKS D'ARTICLES
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
 
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" id="datatable-example">
                     <thead>
                         <tr>
-                            <th>Designation</th>
-                            <th>Quantité</th>
-                            <th>Etat</th>
-                            <th>Details</th>
+                            <th width="18%">Référence</th>
+                            <th>Article</th>
+                            <th>Famille</th>
+                            <th width="15%">Quantité en stock</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <?php $limit=7; sleep(1);?>
-                            @for($i=0; $i<$limit; $i++)
-                                <tr>
-                                    <td>{{date('d m Y H:i:s')}}</td>
-                                    <td>Commande {{$i++}}</td>
-                                    <td>
-                                        FAIT
-                                    </td>
-                                    <td>
-                                        <a title="voir les details du stock" href="{{url('/stock/stock/details/l')}}">Details</a>
-                                    </td>
-                                </tr>
-                            @endfor
+                    @if($stocks != null && count($stocks) > 0)
+                        @php ($i=0)
+                        @foreach($stocks as $stock)
+                            @php ($i++)
+                            <tr class="@if($stock->qt == 0)stock_rupture @elseif($stock->qt <= $stock->seuil_critique)stock_critique @elseif($stock->qt <= $stock->seuil_alert)stock_alert @elseif($i%2)gris @endif" >
+                                <td>{{$stock->code_article}}</td>
+                                <td>{{$stock->designation_article}}</td>
+                                <td>{{$stock->description_famille}}</td>
+                                <td>{{$stock->qt}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                </ul>
+                {{$stocks->links()}}
             </div>
         </div>
     </div>
