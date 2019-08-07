@@ -9,6 +9,8 @@ use App\Models\Livraison;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
 use Spipu\Html2Pdf\Html2Pdf;
 
 class LivraisonController extends Controller
@@ -22,6 +24,11 @@ class LivraisonController extends Controller
         return view("stock/livraison/list")->with(['livraisons'=>$livraisons]) ;
     }
 
+    /**
+     * Afficher les details d'une livraison
+     * @param string $id_livraison l'id de la livraison.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function details(string $id_livraison)
     {
         $livraison = Livraison::where('Livraison.id_livraison', $id_livraison)
@@ -45,6 +52,50 @@ class LivraisonController extends Controller
             $total+= $articles[0]->prix_entree ;
 
         return view("stock/livraison/details")->with(['livraison'=>$livraison, 'articles'=>$articles, 'total'=>$total]) ;
+    }
+
+    /**
+     * Imprimer les details de la livraison.
+     * @param string $item_id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function print(string $item_id)
+    {
+        $livraison = Livraison::where('Livraison.id_livraison', $item_id)
+            ->leftJoin('Fournisseur', 'Fournisseur.id_fournisseur', '=', 'Livraison.id_fournisseur')->get()[0];
+
+        $articles = DB::table("ArticleLivraison")
+            ->select([
+                "Article.id_article",
+                "ArticleLivraison.prix_entree",
+                "ArticleLivraison.prix_sortie",
+                "Article.designation_article",
+                "ArticleLivraison.quantite",
+                "ArticleLivraison.date_peremption",
+                "ArticleLivraison.date_fabrication"])
+            ->leftJoin('Article', 'ArticleLivraison.id_article', '=', 'Article.id_article')
+            ->where('ArticleLivraison.id_livraison', '=', $item_id)
+            ->get() ;
+        $total = 0 ;
+        for($i = 0; $i<count($articles); ++$i)
+            $total+= $articles[0]->prix_entree ;
+//        return                 view("stock/livraison/detailspart")->with(['livraison'=>$livraison, 'articles'=>$articles, 'total'=>$total]);
+        try
+        {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(
+                view("stock/livraison/detailspart")->with(['livraison'=>$livraison, 'articles'=>$articles, 'total'=>$total])
+            );
+            $html2pdf->output('LIV-'.$livraison->id_livraison.'.pdf') ;
+            return back()->with(["message"=>"Impression faite"]) ;
+        }
+        catch (Html2PdfException $e)
+        {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('/stock/livraison/details/'.$livraison->id_livraison)->with(["error"=>$formatter->getHtmlMessage()]) ;
+        }
     }
 
     /**
