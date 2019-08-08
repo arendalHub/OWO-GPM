@@ -6,7 +6,7 @@ UTILISATEURS
 
 @section('sous_titre_contenu')
     {{$action = url('/add_utilisateur')}}
-    {{$selected = ''}}
+
     {{$sous_titre = 'CREATION D\'UN COMPTE D\'UTILISATEUR'}}
     @if(isset($utilisateur))
         {{$sous_titre = 'MODIFICATION D\'UN COMPTE D\'UTILISATEUR'}}
@@ -50,6 +50,7 @@ UTILISATEURS
                                 <select class="form-control" id="profil" name="profil">
                                     <option>--Choissisez un profil--</option>
                                 @foreach($profils as $profil)
+                                    {{$selected = ''}}
                                     @if(isset($utilisateur) && ($profil->id_profil == $utilisateur->id_profil))
                                         {{$selected = 'selected'}}
                                     @endif
@@ -73,10 +74,13 @@ UTILISATEURS
 {{--                        </div>--}}
                     </div>
                 </div>
-                <div class="bg-default content-box text-center pad20A mrg25T">
-                    <button class="btn btn-lg btn-primary">ENREGISTRER</button>
-                    <button class="btn btn-lg btn-default">ANNULER</button>
-                </div>
+                    <div class="bg-default content-box text-center pad20A mrg25T">
+                        @if(isset($utilisateur))
+                            <input type="hidden" id="id" name="id" value="{{$utilisateur->id_utilisateur}}">
+                        @endif
+                        <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
+                        <button class="btn btn-lg btn-default" type="reset">ANNULER</button>
+                    </div>
             </form>
         </div>
     </div>

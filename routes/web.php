@@ -40,6 +40,8 @@ Route::get('/stock', function () {
 Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
 Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
 Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
+Route::get('/stock/article/delete/{item_id}','ArticleController@softDelete');
+Route::get('/stock/article/details/{item_id}','ArticleController@details');
 
 Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list');
 Route::get('/stock/fournisseur/create_update/{id_fournisseur?}', 'FournisseurController@create_update');
@@ -49,14 +51,16 @@ Route::get('/stock/commande/create_update/{id_commande?}', 'CommandeController@c
 Route::post('/stock/commande/do_create_update', 'CommandeController@do_create_update');
 Route::get('/stock/commande/list/{num_page?}', 'CommandeController@list');
 Route::get('/stock/commande/details/{id}', 'CommandeController@details');
+Route::get('/stock/commande/delete/{id}', 'CommandeController@delete');
 Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
 Route::get('/stock/livraison/create_update', 'LivraisonController@create_update');
 Route::post('/stock/livraison/do_create_update', 'LivraisonController@do_create_update');
 Route::get('/stock/livraison/list','LivraisonController@list');
 Route::get('/stock/livraison/items/{id}','LivraisonController@getItemsPart');
-
 Route::get('/stock/livraison/details/{id}', 'LivraisonController@details');
+Route::get('/stock/livraison/print/{id}', 'LivraisonController@print');
+
 Route::get('/stock/entree/create_update/', function () {
     return view('stock.entreesimple.create_update');
 });

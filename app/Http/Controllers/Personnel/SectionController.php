@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personnel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Section;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -11,9 +12,11 @@ class SectionController extends Controller
 
     public function afficher($status=null)
     {
-    	$sections = Section::where(['supprime'=>0])->get();
+        $zones = Zone::where(['supprime'=>0])->get();
+    	$sections = Section::join('zones', 'zones.id_zone', '=', 'sections.id_zone')->where(['sections.supprime'=>0])
+            ->get();
 
-    	return view('personnel.section.list')->with(['sections'=>$sections]);
+    	return view('personnel.section.list')->with(['sections'=>$sections])->with(['zones'=>$zones]);
     }
 
     public function ajouter(Request $request)
@@ -28,7 +31,7 @@ class SectionController extends Controller
 
     public function modifier(Request $request)
     {
-        $section = Section::where(['id_section'=>$request->input('id'), 'supprime'=>0])->get();
+        $section = Section::where(['id_section'=>$request->input('id'), 'supprime'=>0])->first();
         $section->nom_section = $request->input('nom');
         $section->id_zone= $request->input('zone');
 
@@ -39,7 +42,7 @@ class SectionController extends Controller
 
     public function supprimer(Request $request)
     {
-        $section = Section::where(['id_section'=>$request->input('id'), 'supprime'=>0])->get();
+        $section = Section::where(['id_section'=>$request->input('id'), 'supprime'=>0])->first();
         $section->supprime = 1;
 
         return redirect('/personnel/section/list');
@@ -47,12 +50,14 @@ class SectionController extends Controller
 
     public function formulaire($id=null)
     {
+        $zones = Zone::where(['supprime'=>0])->get();
     	if (!is_null($id))
         {
-            $section = Section::where(['supprime'=>0])->first();
-            return view('personnel.section.create_update')->with(['section'=>$section]);
+            $section = Section::join('zones', 'zones.id_zone', '=', 'sections.id_zone')->where
+            (['sections.supprime'=>0])->first();
+            return view('personnel.section.create_update')->with(['section'=>$section])->with(['zones'=>$zones]);
         }else
-            return view('personnel.section.create_update');
+            return view('personnel.section.create_update')->with(['zones'=>$zones]);
     }
 
 }

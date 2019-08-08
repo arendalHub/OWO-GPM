@@ -15,6 +15,9 @@ List des articles
                 @if(Session::has('message'))
                     @include('stock.error', ['type'=>'info', 'key'=>'message'])
                 @endif
+                @if(Session::has('error'))
+                    @include('stock.error', ['type'=>'warning', 'key'=>'error'])
+                @endif
 
                 <form class="form-inline">
                     <div class="form-group">
@@ -23,16 +26,19 @@ List des articles
                 </form>
             </div>
             <div class="example-box-wrapper">
-                <a href="{{url('/stock/article/create_update')}}" style="float: left;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    Ajouter un nouveau produit
+                <a href="{{url('/stock/article/create_update')}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green" data-toggle="modal" data-target="#myModal">
+                    <i class="glyph-icon icon-plus"></i>
+                    <span>Ajouter un nouvel article</span>
                 </a>
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                         <tr>
+                            <th>Référence</th>
                             <th>Code article</th>
                             <th>Designation</th>
                             <th>Famille</th>
                             <th>Consommable</th>
+                            <th>emplacement</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,8 +47,9 @@ List des articles
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{strtoupper(substr($item->designation_article, 0, 3))}}-{{$item->id_article}}</td>
+                                    <td>{{$item->code_article}}</td>
                                     <td>{{$item->designation_article}}</td>
-                                    <td>Savon de marseille</td>
+                                    <td>{{$item->description_famille}}</td>
                                     <td>
                                         @if($item->consommable == null)
                                             Non
@@ -51,16 +58,19 @@ List des articles
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a title="details" href="#">details</a></li>
-                                                <li><a title="modifier" href="{{url("/stock/article/create_update/{$item->id_article}")}}">modifier</a></li>
-                                                <li><a title="supprimer" href="#">supprimer</a></li>
-                                            </ul>
-                                        </div>
+                                        Magasin {{$item->libelle_magasin}} à {{$item->adresse_magasin}}
+                                        <br/>
+                                        à l'emplacement Étagère {{$item->stock_etagere}} - Rangée {{$item->stock_range}} - Box {{$item->stock_box}}</td>
+                                    <td>
+                                        <a class="btn btn" title="voir les details de l'article" href="{{url("/stock/article/details/{$item->id_article}")}}">
+                                            <i class="glyph-icon icon-eye"></i>
+                                        </a>
+                                        <a class="btn" title="modifier l'article" href="{{url("/stock/article/create_update/{$item->id_article}")}}">
+                                            <i class="glyph-icon icon-pencil"></i>
+                                        </a>
+                                        <a class="btn" title="supprimer l'article" href="{{url("/stock/article/delete/{$item->id_article}")}}">
+                                            <i class="glyph-icon icon-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

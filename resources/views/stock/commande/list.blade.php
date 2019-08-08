@@ -39,17 +39,12 @@ LISTE DES COMMANDES
                                     <td>{{$commande->date_commande}}</td>
                                     <td>CMD-{{$commande->id_commande}}</td>
                                     <td>
-{{--                                        <div class="dropdown">--}}
-{{--                                            <button class="btn btn-link" type="button" data-toggle="dropdown">--}}
-{{--                                                <span class="caret"></span>--}}
-{{--                                            </button>--}}
-{{--                                            <ul class="dropdown-menu">--}}
-{{--                                                <li><a title="supprimer la commande" disabled="">supprimer</a></li>--}}
-{{--                                                <li><a title="modifier la commande" disabled="" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>--}}
-                                                <a title="voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">Details</a>
-                                                <!--<li><a href="#">JavaScript</a></li>-->
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
+                                        <a class="btn" title="supprimer l'article" href="{{url("/stock/commande/delete/{$commande->id_article}")}}">
+                                            <i class="glyph-icon icon-trash"></i>
+                                        </a>
+                                        <a class="btn" title="voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">
+                                            <i class="glyph-icon icon-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

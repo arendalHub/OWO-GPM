@@ -37,17 +37,18 @@
                             <td>{{$zone->id_zone}}</td>
                             <td>{{$zone->nom_zone}}</td>
                             <td class="center">
-                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url
-                                ('/personnel/zone/create_update/'.$zone->id_zone)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_zone')}}">
+                                <a class="btn btn-blue-alt col-md-6" href="{{url('/parametre/personnel/create_update/'
+                                .$zone->id_zone)}}" title="MODIFIER">
+                                    <i class="glyph-icon icon-pencil"></i>
+                                </a>
+                                <form method="post" action="{{url('delete_zone')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$zone->id_zone}}">
 
-                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2"
-                                            data-toggle="modal"
-                                            data-target="#myModal{{$zone->id_zone}}">Supprimer</button>
+                                    <button type="button" class="btn btn-danger col-md-12" data-toggle="modal"
+                                            title="SUPPRIMER" data-target="#myModal{{$zone->id_zone}}">
+                                        <i class="glyph-icon icon-trash"></i>
+                                    </button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal{{$zone->id_zone}}"
                                          tabindex="-1" role="dialog"

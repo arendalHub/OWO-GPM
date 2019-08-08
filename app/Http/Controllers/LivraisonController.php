@@ -9,22 +9,36 @@ use App\Models\Livraison;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class LivraisonController extends Controller
 {
     public function list(string $num_page= null)
     {
-        $livraisons = Livraison::orderBy('id_livraison', 'desc')->paginate() ;
+        $livraisons = DB::table('Livraison')
+            ->select(DB::raw('count(ArticleLivraison.prix_entree) as total_livraison, id_commande, date_livraison, id_livraison'))
+            ->leftJoin('ArticleLivraison', 'ArticleLivraison.id_livraison', '=', 'Livraison.id_livraison')
+            ->paginate() ;
         return view("stock/livraison/list")->with(['livraisons'=>$livraisons]) ;
     }
 
+    /**
+     * Afficher les details d'une livraison
+     * @param string $id_livraison l'id de la livraison.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function details(string $id_livraison)
     {
-        $livraison = Livraison::find($id_livraison) ;
+        $livraison = Livraison::where('Livraison.id_livraison', $id_livraison)
+            ->leftJoin('Fournisseur', 'Fournisseur.id_fournisseur', '=', 'Livraison.id_fournisseur')->get()[0];
+
         $articles = DB::table("ArticleLivraison")
             ->select([
                     "Article.id_article",
-                    "ArticleLivraison.prix_unitaire",
+                    "ArticleLivraison.prix_entree",
+                    "ArticleLivraison.prix_sortie",
                     "Article.designation_article",
                     "ArticleLivraison.quantite",
                     "ArticleLivraison.date_peremption",
@@ -33,8 +47,55 @@ class LivraisonController extends Controller
             ->leftJoin('Article', 'ArticleLivraison.id_article', '=', 'Article.id_article')
             ->where('ArticleLivraison.id_livraison', '=', $id_livraison)
             ->get() ;
+        $total = 0 ;
+        for($i = 0; $i<count($articles); ++$i)
+            $total+= $articles[0]->prix_entree ;
 
-        return view("stock/livraison/details")->with(['livraison'=>$livraison, 'articles'=>$articles]) ;
+        return view("stock/livraison/details")->with(['livraison'=>$livraison, 'articles'=>$articles, 'total'=>$total]) ;
+    }
+
+    /**
+     * Imprimer les details de la livraison.
+     * @param string $item_id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function print(string $item_id)
+    {
+        $livraison = Livraison::where('Livraison.id_livraison', $item_id)
+            ->leftJoin('Fournisseur', 'Fournisseur.id_fournisseur', '=', 'Livraison.id_fournisseur')->get()[0];
+
+        $articles = DB::table("ArticleLivraison")
+            ->select([
+                "Article.id_article",
+                "ArticleLivraison.prix_entree",
+                "ArticleLivraison.prix_sortie",
+                "Article.designation_article",
+                "ArticleLivraison.quantite",
+                "ArticleLivraison.date_peremption",
+                "ArticleLivraison.date_fabrication"])
+            ->leftJoin('Article', 'ArticleLivraison.id_article', '=', 'Article.id_article')
+            ->where('ArticleLivraison.id_livraison', '=', $item_id)
+            ->get() ;
+        $total = 0 ;
+        for($i = 0; $i<count($articles); ++$i)
+            $total+= $articles[0]->prix_entree ;
+//        return                 view("stock/livraison/detailspart")->with(['livraison'=>$livraison, 'articles'=>$articles, 'total'=>$total]);
+        try
+        {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(
+                view("stock/livraison/detailspart")->with(['livraison'=>$livraison, 'articles'=>$articles, 'total'=>$total])
+            );
+            $html2pdf->output('LIV-'.$livraison->id_livraison.'.pdf') ;
+            return back()->with(["message"=>"Impression faite"]) ;
+        }
+        catch (Html2PdfException $e)
+        {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('/stock/livraison/details/'.$livraison->id_livraison)->with(["error"=>$formatter->getHtmlMessage()]) ;
+        }
     }
 
     /**
@@ -45,7 +106,12 @@ class LivraisonController extends Controller
     {
         // Affichage
         $commandes = Commande::where('livre', false)->orderBy('id_commande', 'asc')->get() ;
-        return view('stock.livraison.create_update', ['commandes'=>$commandes]) ;
+        $fournisseurs = Fournisseur::all() ;
+        return view('stock.livraison.create_update',
+            [
+                'commandes'=>$commandes,
+                'fournisseurs'=>$fournisseurs
+            ]) ;
     }
 
     /**
@@ -59,22 +125,29 @@ class LivraisonController extends Controller
         $livraison = new Livraison  ;
         $livraison->date_livraison = date("d-m-Y H:i:s") ;
         $livraison->id_commande = $postData["id_commande"] ;
+        $livraison->id_fournisseur = $postData["id_fournisseur"] ;
+        $livraison->num_bordereau = $postData["num_bordereau"] ;
+        $livraison->num_facture = $postData["num_facture"] ;
         if($livraison->save())
         {
             $postDataKeys = array_keys($postData) ;
-            for($i=2; $i<count($postDataKeys); $i+=5)
+            for($i=0; $i<count($postDataKeys); $i++)
             {
                 if(strstr($postDataKeys[$i], "id_article-") !== false)
                 {
                     // Bulk insertion without verification
-                    $articleLivraison = new ArticleLivraison() ;
-                    $articleLivraison->id_article = $postData[$postDataKeys[$i]] ;
-                    $articleLivraison->quantite = $postData[$postDataKeys[$i+1]] ;
-                    $articleLivraison->prix_unitaire = $postData[$postDataKeys[$i+2]] ;
-                    $articleLivraison->date_peremption = $postData[$postDataKeys[$i+3]] ;
-                    $articleLivraison->date_fabrication = $postData[$postDataKeys[$i+4]] ;
-                    $articleLivraison->id_livraison = $livraison->id_livraison ;
-                    $articleLivraison->save() ;
+                    if($postData[$postDataKeys[$i+1]] != 0)
+                    {
+                        $articleLivraison = new ArticleLivraison() ;
+                        $articleLivraison->id_article = $postData[$postDataKeys[$i]] ;
+                        $articleLivraison->quantite = $postData[$postDataKeys[$i+1]] ;
+                        $articleLivraison->prix_entree = $postData[$postDataKeys[$i+2]] ;
+                        $articleLivraison->prix_sortie = $postData[$postDataKeys[$i+3]] ;
+                        $articleLivraison->date_peremption = $postData[$postDataKeys[$i+4]] ;
+                        $articleLivraison->date_fabrication = $postData[$postDataKeys[$i+5]] ;
+                        $articleLivraison->id_livraison = $livraison->id_livraison ;
+                        $articleLivraison->save() ;
+                    }
                 }
             }
 
@@ -144,7 +217,7 @@ class LivraisonController extends Controller
         $deliveredArr = Collection::unwrap($delivered) ;
         if(count($deliveredArr) > 0)
         {
-            for($i = 0; $i <count($articlesArr); $i++)
+            for($i = 0; $i <count($deliveredArr); $i++)
             {
                 if($deliveredArr[$i]->id_article == $articlesArr[$i]->id_article)
                 {

@@ -49,8 +49,8 @@
                             <td>{{$employe->adresse_employe}}</td>
                             <td class="center">
 
-                                <button class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt " data-toggle="modal" data-target="
-                                .bs-example-modal-lg">Autres Informations</button>
+                                <button class="btn btn-black-opacity col-md-3" data-toggle="modal" data-target="
+                                .bs-example-modal-lg" title="DETAILS"><i class="glyph-icon icon-eye"></i></button>
 
                                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -60,7 +60,7 @@
                                                 <h4 class="modal-title">Informations Supplémentaires</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <table>
+                                                <table table table-striped table-bordered>
                                                     <thead>
                                                     <th>PERE</th>
                                                     <th>MERE</th>
@@ -96,17 +96,23 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-1"></div>
 
-                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url('/personnel/employe/create_update/'.$employe->id_employe)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_employe')}}">
+                                <a class="btn btn-blue-alt col-md-3" href="{{url
+                                ('/parametre/personnel/create_update/'.$employe->id_employe)}}" title="MODIFIER">
+                                    <i class="glyph-icon icon-pencil"></i>
+                                </a>
+                                <div class="col-md-1"></div>
+
+                                <form method="post" action=" {{url('delete_employe')}}" class="col-md-4">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$employe->id_employe}}">
 
-                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2"
-                                            data-toggle="modal"
-                                            data-target="#myModal{{$employe->id_employe}}">Supprimer</button>
+                                    <button type="button" class="btn btn-danger col-md-12" data-toggle="modal"
+                                            title="SUPPRIMER"
+                                            data-target="#myModal{{$employe->id_employe}}">
+                                        <i class="glyph-icon icon-trash"></i>
+                                    </button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal{{$employe->id_employe}}"
                                          tabindex="-1" role="dialog"

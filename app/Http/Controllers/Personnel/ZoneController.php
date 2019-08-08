@@ -46,7 +46,7 @@ class ZoneController extends Controller
     {
     	if (!is_null($id))
         {
-            $zone = Zone::where(['supprime'=>0])->first();
+            $zone = Zone::where(['id_zone'=>$id, 'supprime'=>0])->first();
             return view('personnel.zone.create_update')->with(['zone'=>$zone]);
         }else
             return view('personnel.zone.create_update');

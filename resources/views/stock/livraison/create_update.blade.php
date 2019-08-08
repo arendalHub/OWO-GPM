@@ -18,8 +18,9 @@ LIVRAISON
                             @csrf
                             <span id="items-index" hidden>0</span>
                             <fieldset>
-                                <legend>Reference de commande</legend>
+                                <legend>Informations de livraison</legend>
                                 <div class="form-group">
+                                    <label>Référence de commande</label>
                                     @if($commandes != null && count($commandes)>0)
                                         <select required onchange="resetForm(); addItemRow(''+this.value)" name="id_commande" class="form-control">
                                             <option></option>
@@ -28,6 +29,28 @@ LIVRAISON
                                             @endforeach
                                         </select>
                                     @endif
+                                </div>
+                                <div class="form-group">
+                                    <label>Fournisseur</label>
+                                    @if($fournisseurs != null && count($fournisseurs)>0)
+                                        <select required name="id_fournisseur" class="form-control">
+                                            <option></option>
+                                            @foreach($fournisseurs as $fournisseur)
+                                                <option value="{{$fournisseur->id_fournisseur}}">{{$fournisseur->designation_fournisseur}}</option>
+                                            @endforeach
+                                        </select>
+                                    @endif
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Facturation</legend>
+                                <div class="form-group">
+                                    <label>Numéro de bordereau</label>
+                                    <input type="text" required name="num_bordereau" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Numéro facture</label>
+                                    <input type="text" required name="num_facture" class="form-control">
                                 </div>
                             </fieldset>
                             <fieldset>
@@ -39,7 +62,8 @@ LIVRAISON
                                         <tr>
                                             <td>Article</td>
                                             <td>Quantité</td>
-                                            <td>Prix (XOF)</td>
+                                            <td>Prix d'entrée</td>
+                                            <td>Prix de sortie</td>
                                             <td>Date de péremption</td>
                                             <td>Date de fabrication</td>
                                         </tr>
