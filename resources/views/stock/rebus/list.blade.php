@@ -29,6 +29,7 @@ LISTE DES ARTICLES MIS EN REBUS
                         <tr>
                             <th>Date</th>
                             <th>Article</th>
+                            <th>Motif</th>
                             <th>Quantité</th>
                             <th>Emplacement stock</th>
                         </tr>
@@ -39,6 +40,7 @@ LISTE DES ARTICLES MIS EN REBUS
                             <tr>
                                 <td>{{$rebu->date_mouvement}}</td>
                                 <td>{{$rebu->designation_article}}</td>
+                                <td>{{$rebu->motif_mouvement}}</td>
                                 <td>{{$rebu->quantite_mouvement}}</td>
                                 <td>{{$rebu->emplacement_stock}}</td>
                             </tr>

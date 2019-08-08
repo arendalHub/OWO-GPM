@@ -18,7 +18,7 @@ class RebusController extends Controller
     {
         $rebus = DB::table("MouvementStock")
             ->leftJoin("Article", "Article.id_article", "=", "MouvementStock.id_article")
-            ->where("id_type_mouvement_stock", "=", 2)->paginate() ;
+            ->where("id_type_mouvement_stock", "=", 3)->paginate() ;
         return view('stock.rebus.list', ["rebus"=>$rebus]);
     }
 
@@ -44,7 +44,7 @@ class RebusController extends Controller
                 $destroyedQuantity = DB::table("MouvementStock")
                     ->groupBy("MouvementStock.id_article")
                     ->where("MouvementStock.id_article", "=", $articles[$i]->id_article)
-                    ->where("MouvementStock.id_type_mouvement_stock", "=", 2)
+                    ->where("MouvementStock.id_type_mouvement_stock", "=", 3)
                     ->sum("quantite_mouvement") ;
                 if(($deliveredQuantity - $destroyedQuantity) >= 1)
                 {
@@ -71,9 +71,10 @@ class RebusController extends Controller
         }
 
         $mouvementStock = new MouvementStock() ;
-        $mouvementStock->id_type_mouvement_stock = 2 ;
+        $mouvementStock->id_type_mouvement_stock = 3 ;
         $mouvementStock->id_article	= explode(";", $postData["id_article"])[0];
         $mouvementStock->quantite_mouvement = $postData["quantite_mouvement"]	;
+        $mouvementStock->motif_mouvement = $postData["motif_mouvement"]	;
         $mouvementStock->date_mouvement = date("d-m-Y H:i:s") ;
 
         if($mouvementStock->save())

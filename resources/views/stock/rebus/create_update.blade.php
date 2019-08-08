@@ -44,6 +44,12 @@ MISE EN REBUS
                                     <input id="number_input" required type="number" name="quantite_mouvement" max="" min="1" class="form-control"/>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Motif de mise en rebus</label>
+                                <div class="col-sm-6">
+                                    <input required type="text" name="motif_mouvement" maxlength="127" class="form-control"/>
+                                </div>
+                            </div>
                             <div class="bg-default content-box text-center pad20A mrg25T">
                                 <button type="submit" class="btn btn-lg btn-primary">Valider</button>
                                 <button type="reset" class="btn btn-lg btn-default">Effacer</button>

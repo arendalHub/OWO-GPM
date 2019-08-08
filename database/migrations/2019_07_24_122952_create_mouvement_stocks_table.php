@@ -20,6 +20,7 @@ class CreateMouvementStocksTable extends Migration
             $table->bigInteger('id_article')->nullable();
             $table->bigInteger('quantite_mouvement');
             $table->string('date_mouvement');
+            $table->string('motif_mouvement', 128)->nullable();
         });
     }
 
