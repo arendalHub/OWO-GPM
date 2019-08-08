@@ -51,6 +51,7 @@ Route::get('/stock/commande/create_update/{id_commande?}', 'CommandeController@c
 Route::post('/stock/commande/do_create_update', 'CommandeController@do_create_update');
 Route::get('/stock/commande/list/{num_page?}', 'CommandeController@list');
 Route::get('/stock/commande/details/{id}', 'CommandeController@details');
+Route::get('/stock/commande/delete/{id}', 'CommandeController@delete');
 Route::get('/stock/commande/itemspart', 'CommandeController@getItemsPart');
 
 Route::get('/stock/livraison/create_update', 'LivraisonController@create_update');

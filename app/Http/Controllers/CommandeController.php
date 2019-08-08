@@ -28,6 +28,32 @@ class CommandeController extends Controller
         return view('stock.commande.create_update')->with(['update'=>false, 'fournisseurs'=>$fournisseurs]) ;
     }
 
+    /**
+     * Cette fonction permet d'annule ou de supprimer une commande,
+     * selon les cas.
+     * @param string $id_commande
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(string $id_commande)
+    {
+        $commande = Commande::find($id_commande) ;
+        $nLivraison = DB::table('Livraison')->where('id_commande', $id_commande)->count() ;
+        $message = "" ;
+        if($nLivraison > 0){
+            $commande->livre = true ;
+            $message = "Votre commande ne recevra plus de livraison !" ;
+        }
+        else {
+            $commande->supprime = true ;
+            $message = "Votre commande a est annulée !" ;
+        }
+        if($commande->save())
+        {
+            return back()->with("message", $message) ;
+        }
+        return back()->with("error", "Une erreur s'est produite, veuillez recommencer !") ;
+    }
+
     public function details(string $id_commande)
     {
         $commande = Commande::find($id_commande) ;
