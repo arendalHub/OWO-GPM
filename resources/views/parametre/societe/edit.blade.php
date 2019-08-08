@@ -5,15 +5,16 @@
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    {{$sous_titre = 'CREATION DE EMPLOYE'}}
-    {{$action = url('/add_employe')}}
     @if(isset($employe))
-        {{$sous_titre = 'MODIFICATION DE EMPLOYE'}}
-        {{$action = url('/update_employe')}}
+        MODIFICATION D'UN EMPLOYE
+        @php($action = url('/update_employe'))
+    @else
+        CREATION D'UN EMPLOYE
+        @php($action = url('/add_employe'))
     @endif
 @endsection('sous_titre_contenu')
 
-@section('contenu_page')
+@section('contenu')
 
     <div class="panel">
         <div class="panel-body">
@@ -21,9 +22,7 @@
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
                 ('personnel/employe/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES EMPLOYES</span></a>
-                <h3 class="col-md-9 col-md-push-5">
-                    {{$sous_titre}}
-                </h3>
+
                 <br><br>
             </div>
             <div class="example-box-wrapper">
@@ -281,4 +280,4 @@
             </div>
         </div>
     </div>
-@endsection('contenu_page')
+@endsection('contenu')

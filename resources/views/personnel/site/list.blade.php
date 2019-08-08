@@ -27,6 +27,11 @@
                     <tr>
                         <th>ID</th>
                         <th>NOM</th>
+                        <th>ADRESSE</th>
+                        <th>DATE DEBUT TRAVAUX</th>
+                        <th>DATE FIN TRAVAUX</th>
+                        <th>DUREE</th>
+                        <th>SECTION</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -36,22 +41,31 @@
                         <tr class="odd gradeX">
                             <td>{{$site->id_site}}</td>
                             <td>{{$site->nom_site}}</td>
+                            <td>{{$site->adresse_site}}</td>
+                            <td>{{$site->date_deb_travaux_site}}</td>
+                            <td>{{$site->date_fin_travaux_site}}</td>
+                            <td>{{$site->duree_travaux_site}}</td>
+                            <td>
+                                @foreach($sections as $section)
+                                    {{$site->id_section==$section->id_section ? $section->nom_section:''}}
+                                @endforeach
+                            </td>
                             <td class="center">
-                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url
-                                ('/personnel/site/create_update/'.$site->id_site)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_site')}}">
+                                <a class="btn btn-blue-alt col-md-4" href="{{url('/parametre/personnel/create_update/'
+                                .$site->id_site)}}" title="MODIFIER">
+                                    <i class="glyph-icon icon-pencil"></i>
+                                </a>
+                                <form method="post" action=" {{url('delete_site')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$site->id_site}}">
 
-                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2"
-                                            data-toggle="modal"
-                                            data-target="#myModal{{$site->id_site}}">Supprimer</button>
+                                    <button type="button" class="btn btn-danger col-md-12" data-toggle="modal"
+                                            title="SUPPRIMER" data-target="#myModal{{$site->id_site}}">
+                                        <i class="glyph-icon icon-trash"></i>
+                                    </button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal{{$site->id_site}}"
-                                         tabindex="-1" role="dialog"
-                                         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                         tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content">
                                                 <div class="modal-header">

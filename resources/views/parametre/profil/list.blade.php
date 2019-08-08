@@ -40,17 +40,19 @@
                             <td>{{$profil->libelle_profil}}</td>
                             <td> [DROITS]</td>
                             <td class="center">
-                                <a class="btn btn-border btn-alt border-blue-alt btn-link font-blue-alt col-md-5"
-                                   href="{{url
-                                ('/parametre/profil/create_update/'.$profil->id_profil)}}"><span>Modifier</span></a>
-                                <form method="post" action=" {{url('delete_profil')}}">
+
+                                <a class="btn btn-blue-alt col-md-5" href="{{url('/parametre/profil/create_update/'.$profil->id_profil)}}" title="MODIFIER">
+                                    <i class="glyph-icon icon-pencil"></i>
+                                </a>
+                                <form method="post" action=" {{url('delete_profil')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$profil->id_profil}}">
 
-                                    <button type="button" class="btn btn-border btn-alt border-red btn-link font-red
-                                    col-md-5 col-md-push-2"
-                                            data-toggle="modal"
-                                            data-target="#myModal{{$profil->id_profil}}">Supprimer</button>
+                                    <button type="button" class="btn btn-danger col-md-12" data-toggle="modal"
+                                            title="SUPPRIMER"
+                                            data-target="#myModal{{$profil->id_profil}}">
+                                        <i class="glyph-icon icon-trash"></i>
+                                    </button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal{{$profil->id_profil}}"
                                          tabindex="-1" role="dialog"

@@ -26,52 +26,50 @@
                 </h3>
                 <br><br>
             </div>
-            <div class="example-box-wrapper">
-                <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">NOM</label>
-                                <div class="col-sm-6">
-                                    <input type="text" id="nom" name="nom" placeholder="Nom de la section"
-                                           required class="form-control"
-                                           @if(isset($section))
-                                           value="{{old('nom',$section->nom_section)}}"
-                                            @endif
-                                    >
-                                </div>
+            <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8">
+                @csrf
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="nom">NOM</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="nom" name="nom" placeholder="Nom de la section"
+                                       required class="form-control"
+                                       @if(isset($section))
+                                       value="{{old('nom',$section->nom_section)}}"
+                                        @endif
+                                >
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">ZONE</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" id="zone" name="zone">
-                                        <option>--Choissisez une zone--</option>
-                                        @foreach($zones as $zone)
-                                            @if(isset($section) && ($zone->id_zone == $section->id_zone))
-                                                {{$selected = 'selected'}}
-                                            @endif
-                                            <option value="{{$zone->id_zone}}" {{$selected}}>{{$zone->libelle_zone}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-
-
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">ZONE</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="zone" name="zone">
+                                    <option>--Choissisez une zone--</option>
+                                    @foreach($zones as $zone)
+                                        {{$selected = ''}}
+                                        @if(isset($section) && ($zone->id_zone == $section->id_zone))
+                                            {{$selected = 'selected'}}
+                                        @endif
+                                        <option value="{{$zone->id_zone}}" {{$selected}}>{{$zone->nom_zone}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                        </div>
 
-                        </div>
-                        <div class="bg-default content-box text-center pad20A mrg25T">
-                            @if(isset($section))
-                                <input type="hidden" id="id" name="id" value="{{$section->id_section}}">
-                            @endif
-                            <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
-                            <button class="btn btn-lg btn-default" type="reset">ANNULER</button>
-                        </div>
-                </form>
-            </div>
+                    </div>
+                </div>
+
+                    <div class="bg-default content-box text-center pad20A mrg25T">
+                        @if(isset($section))
+                            <input type="hidden" id="id" name="id" value="{{$section->id_section}}">
+                        @endif
+                        <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
+                        <button class="btn btn-lg btn-default" type="reset">ANNULER</button>
+                    </div>
+
+            </form>
         </div>
     </div>
 @endsection('contenu_page')
