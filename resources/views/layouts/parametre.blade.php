@@ -30,6 +30,17 @@ PARAMETRES
              <span>Société</span>
          </a>
      </li>
+     
+        <br>
+        <hr>
+        <br>
+
+        <li>
+            <a href="{{ url('/parametre/') }}" title="Dashboard">
+                <i class="glyph-icon icon-dashboard"></i>
+                <span>DASHBOARD</span>
+            </a>
+        </li>
 
 @endsection('menu')
 

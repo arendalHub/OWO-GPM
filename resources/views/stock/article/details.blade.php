@@ -46,13 +46,11 @@ DETAILS DE L'ARTICLE {{$article->code_article}}-{{$article->designation_article}
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                     <tr>
-                        <th>Magasin</th>
-                        <th>Emplacement dans le magation</th>
+                        <th>Position</th>
                     </tr>
                     </thead>
                     <tr>
-                        <td>{{$article->libelle_magasin}} à {{$article->adresse_magasin}}</td>
-                        <td>Étagère {{$article->stock_etagere}} - Rangée {{$article->stock_range}} - Box {{$article->stock_box}}</td>
+                        <td>Étagère : {{$emplacement->lib_etagere}} | Rangée : {{$emplacement->lib_rangee}} | Box : {{$emplacement->lib_box}}</td>
                     </tr>
                 </table>
             </div>

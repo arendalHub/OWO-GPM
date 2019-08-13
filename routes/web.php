@@ -11,25 +11,27 @@
 |
 */
 
-
-// AUTHENTIFICATION
-use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\VerifieConnexion;
 
-Route::get('/',  'Parametre\UtilisateurController@deconnexion');
+// AUTHENTIFICATION
 
+//Deconnexion
+Route::get('/',  'Parametre\UtilisateurController@deconnexion');
+Route::get('/deconnexion', 'Parametre\UtilisateurController@deconnexion');
+
+//Connexion
+Route::post('connexion', 'Parametre\UtilisateurController@connexion');
+
+//Menu
 Route::get('/menu_modulaire', function () {
     return view('menu_modulaire');
-})/* ->middleware(VerifieConnexion::class) */;
-
-Route::post('connexion', 'Parametre\UtilisateurController@connexion');
-Route::get('/deconnexion', 'Parametre\UtilisateurController@deconnexion');
+})->middleware(VerifieConnexion::class);
 
 
 // Gestion de stocks
 Route::get('/stock', function () {
     return view('stock.accueil');
-});
+})->middleware(VerifieConnexion::class);
 Route::get('/stock/article/list/{num_page?}', 'ArticleController@list');
 Route::get('/stock/article/create_update/{id_article?}','ArticleController@create_update');
 Route::post('/stock/article/do_create_update','ArticleController@do_create_update'); // Traitememt du formulaire d'ajout/modification de produit
@@ -69,40 +71,40 @@ Route::get('/stock/rebus/list/{page_num?}', "Stock\RebusController@list") ;
 // PERSONNEL
 Route::get('/personnel', function () {
     return view('personnel.accueil');
-});
+})->middleware(VerifieConnexion::class);
 
 //Employes
-Route::get('/personnel/employe', 'Personnel\EmployeController@afficher');
-Route::get('/personnel/employe/list', 'Personnel\EmployeController@afficher');
-Route::get('/personnel/employe/create_update', 'Personnel\EmployeController@formulaire');
-Route::get('/personnel/employe/create_update/{id}', 'Personnel\EmployeController@formulaire');
+Route::get('/personnel/employe', 'Personnel\EmployeController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/employe/list', 'Personnel\EmployeController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/employe/create_update', 'Personnel\EmployeController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/personnel/employe/create_update/{id}', 'Personnel\EmployeController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_employe', 'Personnel\EmployeController@ajouter');
 Route::post('update_employe', 'Personnel\EmployeController@modifier');
 Route::post('delete_employe', 'Personnel\EmployeController@supprimer');
 
 //Zones
-Route::get('/personnel/zone', 'Personnel\ZoneController@afficher');
-Route::get('/personnel/zone/list', 'Personnel\ZoneController@afficher');
-Route::get('/personnel/zone/create_update', 'Personnel\ZoneController@formulaire');
-Route::get('/personnel/zone/create_update/{id}', 'Personnel\ZoneController@formulaire');
+Route::get('/personnel/zone', 'Personnel\ZoneController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/zone/list', 'Personnel\ZoneController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/zone/create_update', 'Personnel\ZoneController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/personnel/zone/create_update/{id}', 'Personnel\ZoneController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_zone', 'Personnel\ZoneController@ajouter');
 Route::post('update_zone', 'Personnel\ZoneController@modifier');
 Route::post('delete_zone', 'Personnel\ZoneController@supprimer');
 
 //Sections
-Route::get('/personnel/section', 'Personnel\SectionController@afficher');
-Route::get('/personnel/section/list', 'Personnel\SectionController@afficher');
-Route::get('/personnel/section/create_update', 'Personnel\SectionController@formulaire');
-Route::get('/personnel/section/create_update/{id}', 'Personnel\SectionController@formulaire');
+Route::get('/personnel/section', 'Personnel\SectionController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/section/list', 'Personnel\SectionController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/section/create_update', 'Personnel\SectionController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/personnel/section/create_update/{id}', 'Personnel\SectionController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_section', 'Personnel\SectionController@ajouter');
 Route::post('update_section', 'Personnel\SectionController@modifier');
 Route::post('delete_section', 'Personnel\SectionController@supprimer');
 
 //Sites
-Route::get('/personnel/site', 'Personnel\SiteController@afficher');
-Route::get('/personnel/site/list', 'Personnel\SiteController@afficher');
-Route::get('/personnel/site/create_update', 'Personnel\SiteController@formulaire');
-Route::get('/personnel/site/create_update/{id}', 'Personnel\SiteController@formulaire');
+Route::get('/personnel/site', 'Personnel\SiteController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/site/list', 'Personnel\SiteController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/personnel/site/create_update', 'Personnel\SiteController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/personnel/site/create_update/{id}', 'Personnel\SiteController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_site', 'Personnel\SiteController@ajouter');
 Route::post('update_site', 'Personnel\SiteController@modifier');
 Route::post('delete_site', 'Personnel\SiteController@supprimer');
@@ -111,39 +113,39 @@ Route::post('delete_site', 'Personnel\SiteController@supprimer');
 // PARAMETRAGE
 Route::get('/parametre', function () {
     return view('parametre.accueil');
-});
+})->middleware(VerifieConnexion::class);
 
 //Profils
-Route::get('/parametre/profil', 'Parametre\ProfilController@afficher');
-Route::get('/parametre/profil/list', 'Parametre\ProfilController@afficher');
-Route::get('/parametre/profil/create_update', 'Parametre\ProfilController@formulaire');
-Route::get('/parametre/profil/create_update/{id}', 'Parametre\ProfilController@formulaire');
+Route::get('/parametre/profil', 'Parametre\ProfilController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/parametre/profil/list', 'Parametre\ProfilController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/parametre/profil/create_update', 'Parametre\ProfilController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/parametre/profil/create_update/{id}', 'Parametre\ProfilController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_profil', 'Parametre\ProfilController@ajouter');
 Route::post('update_profil', 'Parametre\ProfilController@modifier');
 Route::post('delete_profil', 'Parametre\ProfilController@supprimer');
 
 //Utilisateurs
-Route::get('/parametre/utilisateur', 'Parametre\UtilisateurController@afficher');
-Route::get('/parametre/utilisateur/list', 'Parametre\UtilisateurController@afficher');
-Route::get('/parametre/utilisateur/create_update', 'Parametre\UtilisateurController@formulaire');
-Route::get('/parametre/utilisateur/create_update/{id}', 'Parametre\UtilisateurController@formulaire');
+Route::get('/parametre/utilisateur', 'Parametre\UtilisateurController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/parametre/utilisateur/list', 'Parametre\UtilisateurController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/parametre/utilisateur/create_update', 'Parametre\UtilisateurController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/parametre/utilisateur/create_update/{id}', 'Parametre\UtilisateurController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_utilisateur', 'Parametre\UtilisateurController@ajouter');
 Route::post('update_utilisateur', 'Parametre\UtilisateurController@modifier');
 Route::post('delete_utilisateur', 'Parametre\UtilisateurController@supprimer');
 
 //Droits
-Route::get('/parametre/droit', 'Parametre\DroitController@afficher');
-Route::get('/parametre/droit/list', 'Parametre\DroitController@afficher');
-Route::get('/parametre/droit/create_update', 'Parametre\DroitController@formulaire');
-Route::get('/parametre/droit/create_update/{id}', 'Parametre\DroitController@formulaire');
+Route::get('/parametre/droit', 'Parametre\DroitController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/parametre/droit/list', 'Parametre\DroitController@afficher')->middleware(VerifieConnexion::class);
+Route::get('/parametre/droit/create_update', 'Parametre\DroitController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/parametre/droit/create_update/{id}', 'Parametre\DroitController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('add_droit', 'Parametre\DroitController@ajouter');
 Route::post('update_droit', 'Parametre\DroitController@modifier');
 Route::post('delete_droit', 'Parametre\DroitController@supprimer');
 
 //Societe
-Route::get('/parametre/societe', 'Parametre\SocieteController@formulaire');
-Route::get('/parametre/societe/edit', 'Parametre\SocieteController@formulaire');
-Route::get('/parametre/societe/edit/{id}', 'Parametre\SocieteController@formulaire');
+Route::get('/parametre/societe', 'Parametre\SocieteController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/parametre/societe/edit', 'Parametre\SocieteController@formulaire')->middleware(VerifieConnexion::class);
+Route::get('/parametre/societe/edit/{id}', 'Parametre\SocieteController@formulaire')->middleware(VerifieConnexion::class);
 Route::post('edit_societe', 'Parametre\SocieteController@editer');
 
 

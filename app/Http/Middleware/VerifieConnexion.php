@@ -2,8 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Support\Facades\Auth;
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class VerifieConnexion
 {
@@ -14,15 +15,16 @@ class VerifieConnexion
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
+        // dd($request);
+        // dd(Auth::user());
         if (Auth::User() && !is_null(Auth::User()))
+        // if (Auth::guard($guard)->check())
         {
             return $next($request);
         }
-        else
-        {
-            return redirect('/');
-        }
+        return redirect('/');
+        Session::flush();
     }
 }

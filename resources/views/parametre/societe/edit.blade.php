@@ -16,6 +16,20 @@
     @else
         AJOUT DES INFORMATIONS DE LA SOCIETE
     @endif
+
+    @if (Session::has('message'))
+        <div class="alert alert-close alert-success col-md-8 col-md-offset-2">
+            <a href="#" title="Close" class="glyph-icon alert-close-btn icon-remove"></a>
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content text-center">
+                <h4 class="alert-title">{{Session::get('message')}}</h4>
+                {{-- <p></p> --}}
+                <p></p>
+            </div>
+        </div> <br>
+    @endif
 @endsection('sous_titre_contenu')
 
 @section('contenu')
@@ -86,7 +100,7 @@
                                 <label class="col-sm-3 control-label">TELEPHONE 1</label>
                                 <div class="col-sm-6">
                                     <input type="text" id="telephone1" name="telephone1" placeholder="Téléphone N°1 de la societe"
-                                           required class="form-control" {{$disabled}}
+                                           required class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'" {{$disabled}}
                                            value="{{isset($societe)? $societe->telephone1_societe : old('telephone1')}}"
                                     >
                                 </div>
@@ -98,7 +112,7 @@
                                 <label class="col-sm-3 control-label">TELEPHONE 2</label>
                                 <div class="col-sm-6">
                                     <input type="text" id="telephone2" name="telephone2" placeholder="Téléphone N°2 de la societe"
-                                           required class="form-control" {{$disabled}}
+                                           required class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'" {{$disabled}}
                                            value="{{isset($societe)? $societe->telephone2_societe : old('telephone2')}}"
                                     >
                                 </div>

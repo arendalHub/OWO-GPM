@@ -22,19 +22,22 @@
 
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
-                ('/zone/section/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES SECTIONS</span></a>
+                ('/personnel/section/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES SECTIONS</span></a>
                 <br><br>
             </div>
             <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8">
                 @csrf
                 <div class="row">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="nom">NOM</label>
+                        <label class="col-sm-4 control-label" for="nom_section">NOM</label>
                         <div class="col-sm-6">
-                            <input type="text" id="nom" name="nom" placeholder="Nom de la section"
-                                   required class="form-control"
-                                   value="{{isset($section)? $section->nom_section : old('nom')}}"
+                            <input type="text" id="nom_section" name="nom_section" placeholder="Nom de la section"
+                                   required class="form-control {{ $errors->has('nom_section') ? 'parsley-error' : '' }}"
+                                   value="{{isset($section)? $section->nom_section : old('nom_section')}}"
                             >
+                            @if($errors->has('nom_section'))
+                                <span class="parsley-error"> Le nom de la section doit être unique.</span>
+                            @endif
                         </div>
                     </div>
 

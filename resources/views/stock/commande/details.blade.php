@@ -16,8 +16,6 @@ DETAILS DE LA COMMANDE cmd-{{$commande->id_commande}}
             <p>
             <h3>Fournisseur : <a title="{{$fournisseur->designation_fournisseur}}">{{$fournisseur->designation_fournisseur}}</a> </h3>
                 <hr/>
-                <h3>Stock : {{$commande->emplacement_stock}}</h3>
-                <hr/>
                 <h3>Date : {{$commande->date_commande}}</h3>
             </p>
         </div>
@@ -34,21 +32,21 @@ DETAILS DE LA COMMANDE cmd-{{$commande->id_commande}}
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $total=0; ?>
                         @if($articles != null && count($articles)>0)
-                            <?php $total=0; ?>
                             @foreach($articles as $article)
                                 <tr>
-                                    <td>{{$article->designation_article}}</td>
-                                    <td>{{$article->prix_achat}}</td>
-                                    <td>{{$article->quantite}}</td>
-                                    <td>{{$article->prix_achat * $article->quantite}}</td>
-                                    <?php $total=$total+$article->prix_achat * $article->quantite; ?>
+                                    <td>{{$article->design}}</td>
+                                    <td>{{$article->prix}}</td>
+                                    <td>{{$article->qtt}}</td>
+                                    <td>{{$article->prix * $article->qtt}}</td>
+                                    <?php $total=$total+$article->prix * $article->qtt; ?>
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
                 </table>
-                <h3>Coût de la commande: {{$total}} FCFA</h3>
+                <h3>Coût estimé de la commande: {{$total}} FCFA</h3>
             </div>
             <div style="width: 100%" class="example-box-wrapper">
                 <h2>Livraisons pour cette commande</h2>

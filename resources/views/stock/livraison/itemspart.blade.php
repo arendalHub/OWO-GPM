@@ -1,6 +1,6 @@
 @if($articles != null && count($articles) > 0)
     @foreach($articles as $article)
-        @if($article->quantite > 0)
+        @if($article->quantite_commande > 0)
             <tr>
                 <td>
                     <input required name="id_article-{{$article->id_article}}" hidden value="{{$article->id_article}}"/>
@@ -12,22 +12,14 @@
                            value="0"
                            type="number"
                            min="0"
-                           max="{{$article->quantite}}"
+                           max="{{$article->quantite_commande}}"
                            title="Laissez à zéro si aucune quantité de produits n'est livrée !"
                            class="form-control"/>
                 </td>
                 <td>
                     <input required
-                           name="prix_entree-{{$article->id_article}}"
-                           id="prix_entree-{{$article->id_article}}"
-                           type="number"
-                           min="0"
-                           value="0"
-                           class="form-control"/>
-                </td>
-                <td>
-                    <input required
-                           name="prix_sortie-{{$article->id_article}}"
+                           name="prix-{{$article->id_article}}"
+                           id="prix-{{$article->id_article}}"
                            type="number"
                            min="0"
                            value="0"

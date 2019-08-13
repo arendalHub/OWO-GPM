@@ -6,6 +6,19 @@ UTILISATEURS
 
 @section('sous_titre_contenu')
 LISTE DES UTILISATEURS
+    @if (Session::has('message'))
+        <div class="alert alert-close alert-success col-md-8 col-md-offset-2">
+            <a href="#" title="Close" class="glyph-icon alert-close-btn icon-remove"></a>
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content text-center">
+                <h4 class="alert-title">{{Session::get('message')}}</h4>
+                {{-- <p></p> --}}
+                <p></p>
+            </div>
+        </div> <br>
+    @endif
 @endsection('sous_titre_contenu')
 
 @section('contenu')

@@ -9,6 +9,13 @@ MISE EN REBUS
 
 @section('contenu_page')
     <div class="panel">
+        <div class="panel-heading">
+            <a href="{{url('/stock/rebus/list')}}" style="" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
+                <i class="glyph-icon icon-trash"></i>
+                <span>Liste des articles mis au rebus</span>
+            </a>
+        </div>
+
         <div class="panel-body">
                 @if(Session::has('error'))
                     @include('stock.error', ['type'=>'warning', 'key'=>'error'])
@@ -26,7 +33,6 @@ MISE EN REBUS
                                     <label class="col-sm-3 control-label">Désignation de l'article</label>
                                     <div class="col-sm-6">
                                         <select onchange="document.getElementById('number_input').max = this.value.split(';')[1]" required class="form-control" name="id_article">
-                                            <option></option>
                                             @if($articles != null && count($articles) > 0)
                                                 @for($i = 0; $i<count($articles); $i++)
                                                     <option class="{{$articles[$i]["article_quantity"]}}" value="{{$articles[$i]["article_item"]->id_article}};{{$articles[$i]["article_quantity"]}}">
@@ -42,6 +48,12 @@ MISE EN REBUS
                                 <label class="col-sm-3 control-label">Quantité</label>
                                 <div class="col-sm-6">
                                     <input id="number_input" required type="number" name="quantite_mouvement" max="" min="1" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Motif de mise en rebus</label>
+                                <div class="col-sm-6">
+                                    <input required type="text" name="motif_mouvement" maxlength="127" class="form-control"/>
                                 </div>
                             </div>
                             <div class="bg-default content-box text-center pad20A mrg25T">

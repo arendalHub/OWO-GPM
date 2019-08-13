@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPrixToArticleTable extends Migration
+class CreateTypeMouvementStockTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddPrixToArticleTable extends Migration
      */
     public function up()
     {
-        Schema::table('Article', function (Blueprint $table) {
-            $table->bigInteger('prix_achat')->after('designation_article');
+        Schema::create('TypeMouvementStock', function (Blueprint $table) {
+            $table->bigIncrements('id_type_mouvement_stock');
+            $table->string('libelle_mouvement_stock');
         });
     }
 
@@ -25,8 +26,6 @@ class AddPrixToArticleTable extends Migration
      */
     public function down()
     {
-        Schema::table('Article', function (Blueprint $table) {
-            $table->dropColumn('prix_achat');
-        });
+        Schema::dropIfExists('TypeMouvementStock');
     }
 }

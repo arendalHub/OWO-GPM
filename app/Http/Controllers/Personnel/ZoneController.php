@@ -18,30 +18,41 @@ class ZoneController extends Controller
 
     public function ajouter(Request $request)
     {
+        $this->validate(
+            $request,
+            ['nom_zone' => 'unique:zones'],
+            ['nom_zone.unique' => 'Le nom de la zone doit être unique']
+        );
         $zone = new Zone;
-        $zone->nom_zone = $request->input('nom');
-        $zone->situation_geo_zone = $request->input('situation_geo');
+        $zone->nom_zone = $request->input('nom_zone');
+        $zone->situation_geo_zone = $request->input('situation_geo_zone');
         $zone->save();
 
-        return redirect('/personnel/zone/list');
+        return redirect('/personnel/zone/list')->with(['message'=>'Enregistrement effectué avec succès!']);
     }
 
     public function modifier(Request $request)
     {
         $zone = Zone::where(['id_zone'=>$request->input('id'), 'supprime'=>0])->first();
-        $zone->nom_zone = $request->input('nom');
-        $zone->situation_geo_zone = $request->input('situation_geo');
+        $this->validate(
+            $request,
+            ['nom_zone' => 'unique:zones,nom_zone,'. $request->input('id'). ',id_zone'],
+            ['nom_zone.unique' => 'Le nom de la zone doit être unique']
+        );
+        $zone->nom_zone = $request->input('nom_zone');
+        $zone->situation_geo_zone = $request->input('situation_geo_zone');
         $zone->save();
 
-        return redirect('/personnel/zone/list');
+        return redirect('/personnel/zone/list')->with(['message' => 'Modification effectuée avec succès!']);
     }
 
     public function supprimer(Request $request)
     {
         $zone = Zone::where(['id_zone'=>$request->input('id'), 'supprime'=>0])->first();
         $zone->supprime = 1;
+        $zone->save();
 
-        return redirect('/personnel/zone/list');
+        return redirect('/personnel/zone/list')->with(['message' => 'Suppression effectuée avec succès!']);
     }
 
     public function formulaire($id=null)

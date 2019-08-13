@@ -31,16 +31,19 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">NOM</label>
+                                <label class="col-sm-4 control-label">* NOM :</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="nom" name="nom" placeholder="Nom du site"
-                                           required class="form-control"
-                                        value="{{isset($site)? $site->nom_site : old('nom')}}"
+                                    <input type="text" id="nom_site" name="nom_site" placeholder="Nom du site"
+                                           required class="form-control {{ $errors->has('nom_site') ? 'parsley-error' : '' }}"
+                                        value="{{isset($site)? $site->nom_site : old('nom_site')}}"
                                     >
+                                    @if($errors->has('nom_site'))
+                                        <span class="parsley-error"> Le nom de la site doit être unique.</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">ADRESSE</label>
+                                <label class="col-sm-4 control-label">* ADRESSE :</label>
                                 <div class="col-sm-6">
                                     <input type="text" id="adresse" name="adresse" placeholder="Adresse du site"
                                            required class="form-control"
@@ -49,24 +52,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">COORDONNES GPS</label>
+                                <label class="col-sm-4 control-label">* COORDONNES GPS :</label>
                                 <div class="col-sm-3">
-                                    <input type="text" id="longitude" name="longitude" placeholder="Longitude"
+                                    <input type="number" id="longitude" name="longitude" placeholder="Longitude"
                                            required class="form-control"
                                         value="{{isset($site)? $site->longitude_site : old('longitude')}}"
                                     >
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="text" id="lattitude" name="lattitude" placeholder="Lattitude"
+                                    <input type="number" id="lattitude" name="lattitude" placeholder="Lattitude"
                                            required class="form-control"
                                         value="{{isset($site)? $site->lattitude_site : old('lattitude')}}"
                                     >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">DATE DEBUT TRAVAUX</label>
+                                <label class="col-sm-4 control-label">* DATE DEBUT TRAVAUX :</label>
                                 <div class="col-sm-6">
-                                    <input type="date" id="date_debut_travaux" name="date_debut_travaux" placeholder="Nom du site" required class="form-control"
+                                    <input type="date" id="date_debut_travaux" name="date_debut_travaux" required class="form-control"
                                         value="{{isset($site)? $site->date_debut_travaux_site : old('date_debut_travaux')}}"
                                     >
                                 </div>
@@ -74,17 +77,16 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">DATE FIN TRAVAUX</label>
                                 <div class="col-sm-6">
-                                    <input type="date" id="date_fin_travaux" name="date_fin_travaux" placeholder="Nom
-                                     du site" required class="form-control"
+                                    <input type="date" id="date_fin_travaux" name="date_fin_travaux" class="form-control"
                                         value="{{isset($site)? $site->date_fin_travaux_site : old('date_fin_travaux')}}"
                                     >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">DUREE</label>
+                                <label class="col-sm-4 control-label">* DUREE :</label>
                                 <div class="col-sm-6">
                                     <label class="radio-inline">
-                                        <input type="radio" id="duree_travaux" name="duree_travaux" value="Déterminée"
+                                        <input type="radio" id="duree_travaux" name="duree_travaux" required value="Déterminée"
                                                @if((isset($site) && $site->duree_travaux_site=="Déterminée") || old('duree_travaux')=="Déterminée")
                                                checked
                                                 @endif
@@ -92,7 +94,7 @@
                                         Déterminée
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" id="duree_travaux" name="duree_travaux" value="Indéterminée"
+                                        <input type="radio" id="duree_travaux" name="duree_travaux" required value="Indéterminée"
                                                @if((isset($site) && $site->duree_travaux_site=="Indéterminée") || old('duree_travaux')=="Indéterminée")
                                                checked
                                                 @endif
@@ -104,10 +106,9 @@
 
 
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">SECTION</label>
+                                <label class="col-sm-4 control-label">* SECTION :</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" id="section" name="section">
-                                        <option>--Choissisez une section--</option>
+                                    <select class="form-control" id="section" name="section" required>
                                         @foreach($sections as $section)
                                             {{$selected = ''}}
                                             @if((isset($site) && ($section->id_section == $site->id_section)) ||

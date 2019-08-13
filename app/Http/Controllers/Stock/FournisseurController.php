@@ -16,8 +16,10 @@ class FournisseurController extends Controller
      */
     public function list(string $num_page = "")
     {
-        $fournisseurs = Fournisseur::orderBy('id_fournisseur', 'desc')->paginate() ;
-        return view("stock.fournisseur.list")->with(["fournisseurs"=>$fournisseurs]) ;
+        $fournisseurs = Fournisseur::orderBy('id_fournisseur', 'desc')
+                                    ->where('supprime','=',false)
+                                    ->paginate();
+        return view("stock.fournisseur.list")->with(["fournisseurs"=>$fournisseurs]);
     }
 
     /**
@@ -56,7 +58,10 @@ class FournisseurController extends Controller
             $fournisseur = new Fournisseur ;
             $creat_update_message = "Le fournisseur {$postData['designation_fournisseur']} a été enregistré !" ;
         }
+        $fournisseur->raison_sociale = $postData['raison_sociale'] ;
         $fournisseur->designation_fournisseur = $postData['designation_fournisseur'] ;
+        $fournisseur->nif_fournisseur = $postData['nif_fournisseur'] ;
+        $fournisseur->personne_ressource = $postData['personne_ressource'] ;
         $fournisseur->email_fournisseur = $postData['email_fournisseur'] ;
         $fournisseur->contact_fournisseur = $postData['contact_fournisseur'] ;
         $fournisseur->bp_fournisseur = $postData['bp_fournisseur'] ;
@@ -65,5 +70,18 @@ class FournisseurController extends Controller
             return redirect('/stock/fournisseur/list')->with(['message'=> $creat_update_message]) ;
         }
         return back()->withInput($postData)->with(['error'=>'Veuilles reprendre, une erreur inconnue s\'est produite !']) ;
+    }
+
+    public function delete(string $id_fournisseur = null)
+    {
+        if($id_fournisseur != null)
+        {
+            $fournisseur = Fournisseur::find($id_fournisseur) ;
+            $fournisseur->supprime = true;
+            if ($fournisseur->save()){
+                $delete="Fournisseur supprimé avec succès!";
+            }
+            return redirect('/stock/fournisseur/list')->with(['message'=> $delete]) ;
+        }
     }
 }

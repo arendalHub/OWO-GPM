@@ -34,11 +34,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">LIBELLE</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="libelle" name="libelle" placeholder="Libellé du profil" required class="form-control"
-                                    @if(isset($profil))
-                                        value="{{isset($profil)? $profil->libelle_profil : old('libelle')}}"
-                                    @endif
+                                    <input type="text" id="libelle_profil" name="libelle_profil" placeholder="Libellé du profil" required class="form-control {{ $errors->has('login') ? 'parsley-error' : '' }}" 
+                                    value="{{isset($profil)? $profil->libelle_profil : old('libelle_profil') }}"
                                     >
+                                    @if($errors->has('libelle_profil'))
+                                        <span class="parsley-error"> Le libelle doit être unique.</span>
+                                    @endif
                                 </div>
                             </div>
 

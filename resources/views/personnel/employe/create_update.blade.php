@@ -27,9 +27,10 @@
             </div>
             <div class="example-box-wrapper">
                 <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8">
+                    @csrf
                     <div id="form-wizard-4" class="form-wizard">
                         <ul>
-                            <li>
+                            <li class="active">
                                 <a href="#step-1" data-toggle="tab">
                                     <label class="wizard-step">1</label>
                                     <span class="wizard-description">
@@ -65,7 +66,7 @@
                                     </h3>
                                     <div class="content-box-wrapper">
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">NOM</label>
+                                            <label class="col-sm-4 control-label">* NOM :</label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="nom" name="nom" placeholder="Nom de l'employé"
                                                        required class="form-control"
@@ -75,7 +76,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">PRENOM(S)</label>
+                                            <label class="col-sm-4 control-label">* PRENOM(S) :</label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="prenom" name="prenom" placeholder="Nom de l'employé"
                                                        required class="form-control"
@@ -85,7 +86,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">DATE DE NAISSANCE</label>
+                                            <label class="col-sm-4 control-label">* DATE DE NAISSANCE :</label>
                                             <div class="col-sm-6">
                                                 <input type="date" id="date_naiss" name="date_naiss" placeholder="Date de naissance de l'employé"
                                                        required class="form-control"
@@ -95,7 +96,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">LIEU DE NAISSANCE</label>
+                                            <label class="col-sm-4 control-label">* LIEU DE NAISSANCE :</label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="lieu_naiss" name="lieu_naiss" placeholder="Lieu de naissance de l'employé"
                                                        required class="form-control"
@@ -106,34 +107,34 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">SEXE</label>
+                                            <label class="col-sm-4 control-label">* SEXE :</label>
                                             <div class="col-sm-6">
                                                 <label class="radio-inline">
-                                                    <input type="radio" id="sexe" name="sexe" value="M"
+                                                    <input type="radio" id="sexe" name="sexe" required value="M"
                                                            @if((isset($employe) && $employe->sexe_employe=="M") || old('sexe')=="M")
                                                            checked
                                                             @endif
                                                     >
                                                     Masculin
-                                                </label>
+                                                 :</label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" id="sexe" name="sexe" value="F"
+                                                    <input type="radio" id="sexe" name="sexe" required value="F"
                                                            @if((isset($employe) && $employe->sexe_employe=="F") ||
                                                            old('sexe')=="F")
                                                            checked
                                                             @endif
                                                     >
                                                     Féminin
-                                                </label>
+                                                 :</label>
 
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">TELEPHONE</label>
+                                            <label class="col-sm-4 control-label">* TELEPHONE :</label>
                                             <div class="col-sm-6">
-                                                <input type="number" id="num_tel" name="num_tel" placeholder="Téléphone de l'employé"
-                                                       required class="form-control"
+                                                <input type="text" id="num_tel" name="num_tel" placeholder="Téléphone de l'employé"
+                                                       required class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'"
                                                        value="{{isset($employe)? $employe->num_tel_employe : old
                                                        ('num_tel')}}"
                                                 >
@@ -141,22 +142,26 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">ADRESSE</label>
+                                            <label class="col-sm-4 control-label">* ADRESSE :</label>
                                             <div class="col-sm-6">
                                                 <textarea name="adresse" id="adresse" class="form-control">{{isset($employe)? $employe->adresse_employe : old('adresse')}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">TELEPHONE URGENCE</label>
+                                            <label class="col-sm-4 control-label">* TELEPHONE URGENCE :</label>
                                             <div class="col-sm-6">
-                                                <input type="number" id="num_tel_urgence" name="num_tel_urgence"
+                                                <input type="text" id="num_tel_urgence" name="num_tel_urgence"
                                                        placeholder="Telephone d'urgence"
-                                                       required class="form-control"
+                                                       required class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'"
                                                        value="{{isset($employe)? $employe->num_tel_employe : old
                                                        ('num_tel')}}"
                                                 >
                                             </div>
+                                        </div>
+
+                                        <div class="bg-default content-box text-center pad20A mrg25T">
+                                            <a href="#step-2" data-toggle="tab" class="btn btn-md btn-blue-alt pull-right" type="submit"><i class="glyph-icon icon-arrow-right"></i> </a> <br> <br>
                                         </div>
 
                                     </div>
@@ -169,38 +174,56 @@
                                     </h3>
                                     <div class="content-box-wrapper">
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">PÈRE</label>
+                                            <label class="col-sm-4 control-label">PÈRE :</label>
                                             <div class="col-sm-6">
-                                                <input type="text" id="pere" name="pere" placeholder="Père de l'employé" required class="form-control"
-                                                       value="{{isset($employe)? $employe->pere_employe : old('pere')}}"
+                                                <input type="text" id="pere" name="pere" placeholder="Père de l'employé" class="form-control" value="{{isset($employe)? $employe->pere_employe : old('pere')}}"
                                                 >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">MÈRE</label>
+                                            <label class="col-sm-4 control-label">MÈRE :</label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="mere" name="mere" placeholder="Mère de l'employé"
-                                                       required class="form-control"
+                                                       class="form-control"
                                                        value="{{isset($employe)? $employe->mere_employe : old('mere')}}"
                                                 >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">SITUATION MATRIMONIALE</label>
+                                            <label class="col-sm-4 control-label">* SITUATION MATRIMONIALE :</label>
                                             <div class="col-sm-6">
-                                                <input type="text" id="situation_mat" name="situation_mat"
-                                                       placeholder="Situation matrimoniale"
-                                                       required class="form-control"
-                                                       value="{{isset($employe)? $employe->situation_mat_employe : old
-                                                       ('situation_mat')}}"
-                                                >
+                                                <select class="form-control" id="situation_mat" name="situation_mat" required>
+                                                    <option value="Celibataire"
+                                                            @if((isset($employe) && $employe->situation_mat_employe=="Celibataire") || old('situation_mat')=="Celibataire")
+                                                                selected
+                                                            @endif
+                                                    >Célibataire</option>
+                                                    <option value="Marie"
+                                                            @if((isset($employe) && $employe->situation_mat_employe=="Marie")
+                                                            || old('situation_mat')=="Marie")
+                                                                selected
+                                                            @endif
+                                                    >Marié(e)</option>
+                                                    <option value="Veuf"
+                                                            @if((isset($employe) && $employe->situation_mat_employe=="Veuf") || old('situation_mat')=="Veuf")
+                                                                selected
+                                                            @endif
+                                                    >Veuf(ve)</option>
+                                                    <option value="Divorce"
+                                                            @if((isset($employe) && $employe->situation_mat_employe=="Divorce") || old('situation_mat')=="Divorce")
+                                                                selected
+                                                            @endif
+                                                    >Divorcé(e)</option>
+
+                                                </select>
+
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">NOMBRE D'ENFANTS</label>
+                                            <label class="col-sm-4 control-label">* NOMBRE D'ENFANTS :</label>
                                             <div class="col-sm-6">
                                                 <input type="number" id="nb_enfant" name="nb_enfant"
                                                        placeholder="Nombre d'enfants"
@@ -212,18 +235,49 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">N° IDENTITÉ</label>
+                                            <label class="col-sm-4 control-label">* TYPE PIECE D'IDENTITE :</label>
                                             <div class="col-sm-6">
-                                                <input type="number" id="num_identite" name="num_identite" placeholder="Numéro d'identité"
+                                                <select class="form-control" id="type_piece" name="type_piece" required>
+                                                    <option value="CNI"
+                                                            @if((isset($employe) && $employe->type_piece_employe=="CNI") || old('type_piece')=="CNI")
+                                                                selected
+                                                            @endif
+                                                    >CNI</option>
+                                                    <option value="Carte electeur"
+                                                            @if((isset($employe) && $employe->type_piece_employe=="Carte electeur")
+                                                            || old('type_piece')=="Carte electeur")
+                                                                selected
+                                                            @endif
+                                                    >Carte d'électeur</option>
+                                                    <option value="Permis de conduire"
+                                                            @if((isset($employe) && $employe->type_piece_employe=="Permis de conduire") || old('type_piece')=="Permis de conduire")
+                                                                selected
+                                                            @endif
+                                                    >Permis de conduire</option>
+                                                    <option value="Passport"
+                                                            @if((isset($employe) && $employe->type_piece_employe=="Passport") || old('type_piece')=="Passport")
+                                                                selected
+                                                            @endif
+                                                    >Passport</option>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">* N° PIECE D'IDENTITE :</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" id="num_piece" name="num_piece" placeholder="Numéro de la piece d'identité"
                                                        required class="form-control"
-                                                       value="{{isset($employe)? $employe->num_identite_employe : old
-                                                       ('num_identite')}}"
+                                                       value="{{isset($employe)? $employe->num_piece_employe : old
+                                                       ('num_piece')}}"
                                                 >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">NIVEAU D'ETUDES</label>
+                                            <label class="col-sm-4 control-label">* NIVEAU D'ETUDES :</label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="niveau_etudes" name="niveau_etudes"
                                                        placeholder="Niveau d'études de l'employé"
@@ -234,7 +288,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">DATE ENTRÉE</label>
+                                            <label class="col-sm-4 control-label">* DATE ENTRÉE :</label>
                                             <div class="col-sm-6">
                                                 <input type="date" id="date_entree" name="date_entree" placeholder="Date d'entrée"
                                                        required class="form-control"
@@ -244,30 +298,30 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">DATE DE DEPART</label>
+                                            <label class="col-sm-4 control-label">DATE DE DEPART :</label>
                                             <div class="col-sm-6">
                                                 <input type="date" id="date_depart" name="date_depart"
                                                        placeholder="Date de départ"
-                                                       required class="form-control"
+                                                       class="form-control"
                                                        value="{{isset($employe)? $employe->date_depart_employe : old('date_depart')}}"
                                                 >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">N° CNSS</label>
+                                            <label class="col-sm-4 control-label">N° CNSS :</label>
                                             <div class="col-sm-6">
                                                 <input type="text" id="num_cnss" name="num_cnss" placeholder="N° CNSS"
-                                                       required class="form-control"
+                                                       class="form-control"
                                                        value="{{isset($employe)? $employe->num_cnss_employe : old('num_cnss')}}"
                                                 >
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">TYPE CONTRAT</label>
+                                            <label class="col-sm-4 control-label">* TYPE CONTRAT :</label>
                                             <div class="col-sm-6">
-                                                <select class="form-control" id="contrat" name="contrat">
+                                                <select class="form-control" id="contrat" name="contrat" required>
                                                     <option value="Prestation de sercices"
                                                             @if((isset($employe) && $employe->contrat_employe=="Prestation de sercices") || old('contrat')=="Prestation de sercices")
                                                                 selected
@@ -289,6 +343,11 @@
                                             </div>
                                         </div>
 
+                                        <div class="bg-default content-box pad20A mrg25T">
+                                            <a href="#step-1" data-toggle="tab" class="btn btn-md btn-blue-alt pull-left" type="submit"><i class="glyph-icon icon-arrow-left"></i> </a>
+                                            <a href="#step-3" data-toggle="tab" class="btn btn-md btn-blue-alt pull-right" type="submit"><i class="glyph-icon icon-arrow-right"></i> </a> <br><br>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -300,84 +359,99 @@
                                     <div class="content-box-wrapper">
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">PHOTO</label>
+                                            <label class="col-sm-4 control-label">PHOTO :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">NAISSANCE</label>
+                                            <label class="col-sm-4 control-label">NAISSANCE :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">NATIONNALITE</label>
+                                            <label class="col-sm-4 control-label">NATIONNALITE :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">CNI</label>
+                                            <label class="col-sm-4 control-label">CNI :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">PASSPORT</label>
+                                            <label class="col-sm-4 control-label">PASSPORT :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">DIPLOME N°1</label>
+                                            <label class="col-sm-4 control-label">DIPLOME N°1 :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">DIPLOME N°2</label>
+                                            <label class="col-sm-4 control-label">DIPLOME N°2 :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">DIPLOME N°3</label>
+                                            <label class="col-sm-4 control-label">DIPLOME N°3 :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">ATTESTATION N°1</label>
+                                            <label class="col-sm-4 control-label">ATTESTATION N°1 :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">ATTESTATION N°2</label>
+                                            <label class="col-sm-4 control-label">ATTESTATION N°2 :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">ATTESTATION N°3</label>
+                                            <label class="col-sm-4 control-label">ATTESTATION N°3 :</label>
                                             <div class="col-sm-6">
-                                                <input type="file" class="form-control" id="">
+                                                <input type="file" disabled class="form-control" id="">
                                             </div>
                                         </div>
+
+                                        <div class="bg-default content-box pad20A mrg25T">
+                                            <div class="col-md-1">
+                                                <a href="#step-2" data-toggle="tab" class="btn btn-md btn-blue-alt pull-left" type="submit"><i class="glyph-icon icon-arrow-left"></i> </a> 
+                                            </div>
+                                        {{-- </div> --}}
+
+                                        {{-- <div class="bg-default content-box text-center pad20A mrg25T"> --}}
+                                            <div class="col-md-11 text-center">
+                                                @if(isset($employe))
+                                                    <input type="hidden" id="id" name="id" value="{{$employe->id_employe}}">
+                                                @endif
+                                                <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
+                                                <button class="btn btn-lg btn-default" type="reset">ANNULER</button>
+                                            </div>  
+                                            <br> <br>  
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
 
-                    <div class="bg-default content-box text-center pad20A mrg25T">
-                        @if(isset($employe))
-                            <input type="hidden" id="id" name="id" value="{{$employe->id_employe}}">
-                        @endif
-                        <button class="btn btn-lg btn-primary" type="submit">VALIDER</button>
-                        <button class="btn btn-lg btn-default" type="reset">ANNULER</button>
-                    </div>
+
                 </form>
             </div>
         </div>

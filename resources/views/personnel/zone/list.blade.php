@@ -5,12 +5,27 @@
 @endsection('titre_contenu')
 
 @section('sous_titre_contenu')
-    LISTE DES ZONES
+    LISTE DES ZONES        
+    @if (Session::has('message'))
+        <div class="alert alert-close alert-success col-md-8 col-md-offset-2">
+            <a href="#" title="Close" class="glyph-icon alert-close-btn icon-remove"></a>
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content text-center">
+                <h4 class="alert-title">{{Session::get('message')}}</h4>
+                {{-- <p></p> --}}
+                <p></p>
+            </div>
+        </div> <br>
+    @endif
+
 @endsection('sous_titre_contenu')
 
 @section('contenu')
 
     <div class="panel">
+
         <div class="panel-body">
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
@@ -36,7 +51,7 @@
                             <td>{{$zone->nom_zone}}</td>
                             <td>{{$zone->situation_geo_zone}}</td>
                             <td class="center">
-                                <a class="btn btn-blue-alt col-md-6" href="{{url('/parametre/personnel/create_update/'
+                                <a class="btn btn-blue-alt col-md-6" href="{{url('/personnel/zone/create_update/'
                                 .$zone->id_zone)}}" title="MODIFIER">
                                     <i class="glyph-icon icon-pencil"></i>
                                 </a>

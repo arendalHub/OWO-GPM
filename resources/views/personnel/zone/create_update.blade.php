@@ -20,8 +20,7 @@
         <div class="panel-body">
 
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url
-                ('personnel/zone/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES ZONES</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-3" href="{{ url('personnel/zone/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES ZONES</span></a>
                 <br><br>
             </div>
             <div class="example-box-wrapper">
@@ -31,19 +30,21 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">NOM</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="nom" name="nom" placeholder="Nom de la zone"
-                                           required class="form-control"
-                                        value="{{isset($zone)? $zone->nom_zone : old('nom')}}"
+                                    <input type="text" id="nom_zone" name="nom_zone" placeholder="Nom de la zone"
+                                           required class="form-control {{ $errors->has('nom_zone') ? 'parsley-error' : '' }}"
+                                        value="{{isset($zone)? $zone->nom_zone : old('nom_zone')}}"
                                     >
+                                    @if($errors->has('nom_zone'))
+                                        <span class="parsley-error"> Le nom de la zone doit être unique.</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">SITUATION GEOGRAPHIQUE</label>
                                 <div class="col-sm-6">
-                                    <input type="text" id="situation_geo" name="situation_geo" placeholder="Situation
-                                     géographique de la zone"
+                                    <input type="text" id="situation_geo_zone" name="situation_geo_zone" placeholder="Situation géographique de la zone"
                                            required class="form-control"
-                                           value="{{isset($zone)? $zone->situation_geo_zone : old('situation_geo')}}"
+                                           value="{{isset($zone)? $zone->situation_geo_zone : old('situation_geo_zone')}}"
                                     >
                                 </div>
                             </div>

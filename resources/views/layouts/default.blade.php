@@ -72,7 +72,9 @@
                             @yield('menu')
 
                         </ul><!-- #sidebar-menu -->
+
                     </div>
+
                 </div>
                 <!-- END LEFT -->
 
@@ -105,7 +107,8 @@
                                         <span class="small-badge bg-yellow"></span>
                                         <i class="glyph-icon icon-linecons-megaphone"></i>
                                     </a>
-                                    <div class="dropdown-menu box-md float-left">
+                                    
+                                    {{-- <div class="dropdown-menu box-md float-left">
 
                                         <div class="popover-title display-block clearfix pad10A">
                                             Notifications
@@ -210,7 +213,7 @@
                                                 View all notifications
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                             </div><!-- #header-nav-right -->

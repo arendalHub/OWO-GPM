@@ -22,13 +22,18 @@ LISTE DES ARTICLES MIS EN REBUS
         </div>
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
-                <a href="{{url('/stock/rebus/create_update')}}" title="Mettre un article en rebus" class="btn btn-primary">Mettre un article en rebus</a>
-
+                <div class="panel-heading">
+                    <a href="{{url('/stock/rebus/create_update')}}" style="" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
+                        <i class="glyph-icon icon-plus"></i>
+                        <span>Mettre un article au rebus</span>
+                    </a>
+                </div>
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Article</th>
+                            <th>Motif</th>
                             <th>Quantité</th>
                             <th>Emplacement stock</th>
                         </tr>
@@ -39,8 +44,11 @@ LISTE DES ARTICLES MIS EN REBUS
                             <tr>
                                 <td>{{$rebu->date_mouvement}}</td>
                                 <td>{{$rebu->designation_article}}</td>
+                                <td>{{$rebu->motif_mouvement}}</td>
                                 <td>{{$rebu->quantite_mouvement}}</td>
-                                <td>{{$rebu->emplacement_stock}}</td>
+                                <td>
+                                    Étagère : {{$rebu->emplacement_stock['lib_etagere']}} | Rangée : {{$rebu->emplacement_stock['lib_rangee']}} | Box : {{$rebu->emplacement_stock['lib_box']}}
+                                </td>
                             </tr>
                         @endforeach
                     @endif

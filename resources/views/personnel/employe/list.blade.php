@@ -6,6 +6,19 @@
 
 @section('sous_titre_contenu')
     LISTE DES EMPLOYES
+    @if (Session::has('message'))
+        <div class="alert alert-close alert-success col-md-8 col-md-offset-2">
+            <a href="#" title="Close" class="glyph-icon alert-close-btn icon-remove"></a>
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content text-center">
+                <h4 class="alert-title">{{Session::get('message')}}</h4>
+                {{-- <p></p> --}}
+                <p></p>
+            </div>
+        </div> <br>
+    @endif
 @endsection('sous_titre_contenu')
 
 @section('contenu')
@@ -109,7 +122,7 @@
                                 <div class="col-md-1"></div>
 
                                 <a class="btn btn-blue-alt col-md-3" href="{{url
-                                ('/parametre/personnel/create_update/'.$employe->id_employe)}}" title="MODIFIER">
+                                ('/personnel/employe/create_update/'.$employe->id_employe)}}" title="MODIFIER">
                                     <i class="glyph-icon icon-pencil"></i>
                                 </a>
                                 <div class="col-md-1"></div>

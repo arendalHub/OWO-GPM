@@ -66,8 +66,7 @@ UTILISATEURS
                         <div class="form-group">
                             <label class="col-sm-3 control-label">NOM D'UTILISATEUR</label>
                             <div class="col-sm-6">
-                                <input type="text" id="login" name="login" required class="form-control {{
-                                $errors->has('login') ? 'parsley-error' : '' }}"
+                                <input type="text" id="login" name="login" required class="form-control {{ $errors->has('login') ? 'parsley-error' : '' }}"
                                        value="{{isset($utilisateur)? $utilisateur->login : old('login') }}"
                                        @if(isset($utilisateur))
                                            disabled
@@ -111,6 +110,13 @@ UTILISATEURS
                                                 selected
                                             @endif
                                     >Personnel</option>
+                                    >Stock</option>
+                                    <option value="Administrateur"
+                                            @if((isset($utilisateur) &&($utilisateur->profil_temporaire=="Administrateur")
+                                            || old('profil_temporaire')=="Administrateur"))
+                                                selected
+                                            @endif
+                                    >Administrateur</option>
 
                                 </select>
                             </div>
