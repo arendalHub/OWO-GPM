@@ -370,6 +370,7 @@ CREATION D'UN EMPLOYE
                                         <div class="col-sm-6">
                                             <input type="file" disabled class="form-control" id="">
                                         </div>
+
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">CNI :</label>
@@ -441,6 +442,9 @@ CREATION D'UN EMPLOYE
 
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>

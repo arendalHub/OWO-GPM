@@ -33,10 +33,16 @@ Liste des articles
                         <th>Code article</th>
                         <th>Designation</th>
                         <th>Famille</th>
+<<<<<<< HEAD
                         <th>Retiré</th>
                         <th>Consommable</th>
                         <th>Emplacement</th>
                         <th>Action</th>
+=======
+                        <th>Consommable</th>
+                        <th>Emplacement</th>
+                        <th width="12%">Action</th>
+>>>>>>> 36414c3edda45442c5dda64932ee82365fa0f7f6
                     </tr>
                 </thead>
                 <tbody>
