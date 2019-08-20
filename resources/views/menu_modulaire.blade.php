@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="AADUAYOM MESSAN Ekoue Enoc">
     <title>OWO-GPM</title>
 
 
-    <link rel="shortcut icon" href="{{ url('asset_delight/assets-minified/images/icons/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ url('asset_delight/assets-minified/images/icons/owo_gpm_logo_favicon.png') }}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
@@ -65,9 +64,13 @@
 
         <div class="row">
             <div class="col-xl-4 col-lg-6">
-                {{-- <a href="{{ (Auth::User()->profil_temporaire == 'Stock')? url('/stock') : '#' }}"> --}}
-                <a href="{{ url('/stock')}}">
-                    <div class="card card-stats mb-4 mb-xl-0">
+                <a 
+                    @if (Auth::User() && !is_null(Auth::User()) )
+                    href="{{ url((Auth::User()->profil_temporaire == 'Administrateur' || Auth::User()->profil_temporaire == 'Stock' )? '/stock' : '#') }}"
+                    @endif
+                >
+                {{-- <a href="{{ url('/stock')}}"> --}}
+                    <div class="card card-stats mb-4 mb-xl-0" style="{{(Auth::User()->profil_temporaire != 'Administrateur' && Auth::User()->profil_temporaire != 'Stock' )? 'background: gray' : ''}}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -84,9 +87,13 @@
                 </a>
             </div>
             <div class="col-xl-4 col-lg-6">
-                {{-- <a href="{{ (Auth::User()->profil_temporaire == 'Personnel')? url('/personnel') : '#' }}"> --}}
-                <a href="{{ url('/personnel') }}">
-                    <div class="card card-stats mb-4 mb-xl-0">
+                <a
+                    @if (Auth::User() && !is_null(Auth::User()) )
+                        href="{{ url((Auth::User()->profil_temporaire == 'Administrateur' || Auth::User()->profil_temporaire == 'Personnel')? '/personnel' : '#') }}"
+                    @endif
+                >
+                {{-- <a href="{{ url('/personnel') }}"> --}}
+                    <div class="card card-stats mb-4 mb-xl-0" style="{{(Auth::User()->profil_temporaire != 'Administrateur' && Auth::User()->profil_temporaire != 'Personnel' )? 'background: gray' : ''}}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -186,7 +193,13 @@
         <h1 class="text-white" align="center">OWO - GPM</h1>
 
         <h1 class="text-white" align="center">
-            <a href="{{ url('parametre') }}"> <i class="fas fa-cogs"></i></a>
+            @if (Auth::User() && !is_null(Auth::User()) && Auth::User()->profil_temporaire == 'Administrateur')
+                <a href="{{url((Auth::User()->profil_temporaire == 'Administrateur') ? '/parametre' : '#') }}" class="col-md-6" title="PARAMETRES"> <i class="fas fa-cogs"></i></a>
+            @endif
+
+            @if (Auth::User() && !is_null(Auth::User()) )
+                <a href="{{url('/deconnexion')}}" class="col-md-6" title="DECONNEXION"> <i class="ni ni-button-power"></i></a>
+            @endif
         </h1>
 
     </div>
@@ -199,8 +212,8 @@
 <script src="{{ URL::to('templates/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{ URL::to('templates/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
 <!-- Optional JS -->
-<script src="{{ URL::to('templates/assets/vendor/chart.js')}}/dist/Chart.min.js')}}"></script>
-<script src="{{ URL::to('templates/assets/vendor/chart.js')}}/dist/Chart.extension.js')}}"></script>
+<script src="{{ URL::to('templates/assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
+<script src="{{ URL::to('templates/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
 <!-- Argon JS -->
 
 <script src="{{ URL::to('templates/assets/vendor/datatables.net/js/jquery.dataTables.min.js')}}"></script>

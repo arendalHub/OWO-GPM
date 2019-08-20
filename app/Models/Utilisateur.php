@@ -13,4 +13,9 @@ class Utilisateur extends Model implements Authenticatable
 	public $timestamps = false;
     protected $primaryKey = 'id_utilisateur';
     protected $fillable = ['id_utilisateur','nom_utilisateur','prenom_utilisateur','login','service_utilisateur','poste_utilisateur', 'password', 'id_profil', 'profil_temporaire', 'actif','supprime'];
+
+    public function testDatabase()
+    {
+        $user = \factory(App\Utilisateur::class)->make();
+    }
 }

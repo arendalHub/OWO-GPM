@@ -18,20 +18,30 @@ class ProfilController extends Controller
 
     public function ajouter(Request $request)
     {
+        $this->validate(
+            $request,
+            ['libelle_profil' => 'unique:profils'],
+            ['libelle_profil.unique' => 'Le libelle du profil doit être unique']
+        );
         $profil = new Profil;
         $profil->libelle_profil = $request->input('libelle');
         $profil->save();
 
-        return redirect('/parametre/profil/list')->with(['message'=>'Profil ajouté avec succès!']);
+        return redirect('/parametre/profil/list')->with(['message' => 'Enregistrement effectué avec succès!']);
     }
 
     public function modifier(Request $request)
     {
+        $this->validate(
+            $request,
+            ['libelle_profil' => 'unique:profils,libelle_profil,' . $request->input('id') . ',id_profil'],
+            ['libelle_profil.unique' => 'Le libelle du profil doit être unique']
+        );
         $profil = Profil::where(['id_profil'=>$request->input('id'), 'supprime'=>0])->first();
         $profil->libelle_profil = $request->input('libelle');
         $profil->save();
 
-        return redirect('/parametre/profil/list')->with(['message'=>'Profil modifié avec succès!']);
+        return redirect('/parametre/profil/list')->with(['message' => 'Modification effectuée avec succès!']);
     }
 
     public function supprimer(Request $request)
@@ -40,7 +50,7 @@ class ProfilController extends Controller
         $profil->supprime = 1;
         $profil->save();
 
-        return redirect('/parametre/profil/list')->with(['message'=>'Profil supprimé avec succès!']);
+        return redirect('/parametre/profil/list')->with(['message' => 'Suppression effectuée avec succès!']);
     }
 
     public function formulaire($id=null)

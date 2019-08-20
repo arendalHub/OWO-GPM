@@ -17,6 +17,7 @@ class CreateFamilleArticlesTable extends Migration
         {
             $table->bigIncrements('id_famille');
             $table->string('description_famille');
+            $table->timestamps();
         });
     }
 

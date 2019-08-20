@@ -37,6 +37,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'verifie_connexion' => [
+            \App\Http\Middleware\VerifieConnexion::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',

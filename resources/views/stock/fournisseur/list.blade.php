@@ -10,26 +10,22 @@ LISTE DES FOURNISSEURS
 
 @section('contenu_page')
     <div class="panel">
-        <div class="panel panel-heading">
-            <form class="form-inline">
-                <div class="form-group">
-                    <input  class="form-control" required placeholder="rechercher un fournisseur" type="search"/>
-                </div>
-            </form>
-        </div>
-        <div class="panel-body">
+        <div class="panel-heading">
             @if(Session::has('message'))
                 @include('stock.error', ['type'=>'info', 'key'=>'message'])
             @endif
+            <a href="{{url('/stock/fournisseur/create_update')}}" class="btn btn-primary">Ajouter un nouveau fournisseur</a>
+        </div>
+        <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
-                <a href="{{url('/stock/fournisseur/create_update')}}" class="btn btn-primary">Ajouter un nouveau fournisseur</a>
-
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-responsive">
                     <thead>
                         <tr>
-                            <th>Désignation</th>
+                            <th>Raison sociale</th>
+                            <th>Perso. res.</th>
                             <th>Adresse</th>
                             <th>Contact</th>
+                            <th>Second contact</th>
                             <th>Email</th>
                             <th>Boite postale</th>
                             <th>Action</th>
@@ -40,12 +36,15 @@ LISTE DES FOURNISSEURS
                             @foreach($fournisseurs as $fournisseur)
                                 <tr>
                                     <td>{{$fournisseur->designation_fournisseur}}</td>
+                                    <td>{{$fournisseur->personne_ressource}}</td>
                                     <td>{{$fournisseur->adresse_fournisseur}}</td>
                                     <td>{{$fournisseur->contact_fournisseur}}</td>
+                                    <td>{{$fournisseur->contact_fournisseur_2}}</td>
                                     <td>{{$fournisseur->email_fournisseur}}</td>
                                     <td>{{$fournisseur->bp_fournisseur}}</td>
                                     <td>
-                                        <a title="modifier" href="{{url("/stock/fournisseur/create_update/{$fournisseur->id_fournisseur}")}}">Modifier</a>
+                                        <a class="btn" title="modifier" href="{{url("/stock/fournisseur/create_update/{$fournisseur->id_fournisseur}")}}"><i class="glyph-icon icon-pencil"></i></a>
+                                        <a class="btn" title="supprimer" href="{{url("/stock/fournisseur/delete/{$fournisseur->id_fournisseur}")}}"><i class="glyph-icon icon-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

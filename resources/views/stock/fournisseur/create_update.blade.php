@@ -11,13 +11,16 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
 @section('contenu_page')
 
 <div class="panel">
-    <div class="panel-body">
+    <div class="panel-heading">
         @if(Session::has('error'))
             @include('stock.error', ['type'=>'warning', 'key'=>'error'])
         @endif
         @if(Session::has('message'))
             @include('stock.error', ['type'=>'info', 'key'=>'message'])
         @endif
+        <a href="{{url('/stock/fournisseur/list')}}" class="btn btn-primary">Retour sur la liste</a>
+    </div>
+    <div class="panel-body">
         <div class="example-box-wrapper">
             <form class="form-horizontal bordered-row" method="POST" action="{{url('/stock/fournisseur/do_create_update')}}" id="demo-form" data-parsley-validate>
                 <div class="row">
@@ -25,7 +28,7 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Raison sociale</label>
                             <div class="col-sm-6">
-                                <input 
+                                <input
                                  value="@if(($fournisseur != null && $update)){{$fournisseur->designation_fournisseur}}@else{{old('designation_fournisseur')}}@endif"
                                  class="form-control"
                                  required
@@ -34,46 +37,78 @@ ENREGISTREMENT / MODIFICATION D'UN FOURNISSEUR
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">NIF</label>
+                            <div class="col-sm-6">
+                                <input
+                                 value="@if(($fournisseur != null && $update)){{$fournisseur->nif_fournisseur}}@else{{old('nif_fournisseur')}}@endif"
+                                 class="form-control"
+                                 name="nif_fournisseur"
+                                 placeholder="Numero d'Identification Fiscale fournisseur" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Personne ressource</label>
+                            <div class="col-sm-6">
+                                <input
+                                 value="@if(($fournisseur != null && $update)){{$fournisseur->personne_ressource}}@else{{old('personne_ressource')}}@endif"
+                                 class="form-control"
+                                 required
+                                 name="personne_ressource"
+                                 placeholder="Personne ressource du fournisseur" type="text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Adresse</label>
                             <div class="col-sm-6">
-                                <input 
+                                <input
                                  value="@if(($fournisseur != null && $update)) {{$fournisseur->adresse_fournisseur}}@else{{old('adresse_fournisseur')}}@endif"
                                  name="adresse_fournisseur"
-                                 class="form-control" 
-                                 placeholder="Adresse du fournisseur" 
+                                 class="form-control"
+                                 placeholder="Adresse du fournisseur"
                                  type="text"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Contact</label>
                             <div class="col-sm-6">
-                                <input 
+                                <input
                                  value="@if(($fournisseur != null && $update)) {{$fournisseur->contact_fournisseur}}@else{{old('contact_fournisseur')}}@endif"
                                  name="contact_fournisseur"
-                                 class="form-control" 
-                                 required placeholder="Contact du fournisseur" 
+                                 class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'"
+                                 required placeholder="Contact du fournisseur"
                                  type="text"/>
                             </div>
                         </div>
                         <div class="form-group">
+                                <label class="col-sm-3 control-label">Second contact</label>
+                                <div class="col-sm-6">
+                                    <input
+                                     value="@if(($fournisseur != null && $update)) {{$fournisseur->contact_fournisseur}}@else{{old('contact_fournisseur')}}@endif"
+                                     name="contact_fournisseur"
+                                     class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'"
+                                     required placeholder="Contact du fournisseur"
+                                     type="text"/>
+                                </div>
+                            </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Email</label>
                             <div class="col-sm-6">
-                                <input 
+                                <input
                                  value="@if(($fournisseur != null && $update)) {{$fournisseur->email_fournisseur}}@else{{old('email_fournisseur')}}@endif"
-                                 name="email_fournisseur" 
-                                 class="form-control" 
-                                 placeholder="Email du fournisseur" 
+                                 name="email_fournisseur"
+                                 class="form-control"
+                                 placeholder="Email du fournisseur"
                                  type="email"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Boite postale</label>
                             <div class="col-sm-6">
-                                <input 
+                                <input
                                  value="@if(($fournisseur != null && $update)) {{$fournisseur->bp_fournisseur}}@else{{old('bp_fournisseur')}}@endif"
-                                 name="bp_fournisseur" 
-                                 class="form-control" 
-                                 placeholder="Boite postale du fournisseur" 
+                                 name="bp_fournisseur"
+                                 class="form-control"
+                                 placeholder="Boite postale du fournisseur"
                                  type="text"/>
                             </div>
                         </div>

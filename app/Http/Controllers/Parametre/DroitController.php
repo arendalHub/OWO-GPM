@@ -38,6 +38,7 @@ class DroitController extends Controller
     {
         $droit = Droit::where(['id_droit'=>$request->input('id'), 'supprime'=>0])->get();
         $droit->supprime = 1;
+        $droit->save();
 
         return redirect('/parametre/droit/list');
     }

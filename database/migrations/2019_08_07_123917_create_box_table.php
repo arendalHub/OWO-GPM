@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPrixToArticleTable extends Migration
+class CreateBoxTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddPrixToArticleTable extends Migration
      */
     public function up()
     {
-        Schema::table('Article', function (Blueprint $table) {
-            $table->bigInteger('prix_achat')->after('designation_article');
+        Schema::create('box', function (Blueprint $table) {
+            $table->bigIncrements('id_box');
+            $table->string('code_box',10)->nullable();
+            $table->string('lib_box',75);
+            $table->boolean('supprime')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddPrixToArticleTable extends Migration
      */
     public function down()
     {
-        Schema::table('Article', function (Blueprint $table) {
-            $table->dropColumn('prix_achat');
-        });
+        Schema::dropIfExists('box');
     }
 }

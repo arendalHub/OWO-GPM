@@ -16,11 +16,12 @@ class CreateUtilisateursTable extends Migration
         Schema::create('utilisateurs', function (Blueprint $table) {
             $table->bigIncrements('id_utilisateur');
             $table->string('nom_utilisateur');
-            $table->string('prenom_utilisateur')();
+            $table->string('prenom_utilisateur');
             $table->string('login')->unique();
             $table->string('service_utilisateur');
             $table->string('poste_utilisateur');
             $table->string('password');
+            // $table->enum('profil_temporaire', ['Administrateur', 'Stock', 'Personnel']);
             $table->string('profil_temporaire');
             $table->boolean('actif')->default(true);
             $table->boolean('supprime')->default(false);
@@ -28,7 +29,7 @@ class CreateUtilisateursTable extends Migration
         });
 
         Schema::table('utilisateurs', function (Blueprint $table){
-           $table->unsignedBigInteger('id_profil');
+           $table->unsignedBigInteger('id_profil')->nullable();
            $table->foreign('id_profil')->references('id_profil')->on('profils')->onUpdate('cascade')->onDelete('cascade');
         });
     }

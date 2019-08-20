@@ -16,11 +16,15 @@ class Fournisseur extends Migration
         Schema::create('Fournisseur', function (Blueprint $table)
         {
             $table->bigIncrements('id_fournisseur');
-            $table->string('designation_fournisseur', 75);
+            $table->string('raison_sociale',50)->nullable();
+            $table->string('nif_fournisseur',30)->nullable();
+            $table->string('personne_ressource',75);
             $table->string('adresse_fournisseur', 150)->nullable();
-            $table->string('contact_fournisseur', 35);
+            $table->string('contact_fournisseur', 20);
+            $table->string('contact_fournisseur_2', 20)->nullable();
             $table->string('email_fournisseur', 100)->nullable();
-            $table->integer('bp_fournisseur')->nullable();
+            $table->string('bp_fournisseur', 11)->nullable();
+            $table->boolean('supprime')->default(false);
             $table->timestamps();
         });
     }

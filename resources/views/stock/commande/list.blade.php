@@ -10,26 +10,26 @@ LISTE DES COMMANDES
 
 @section('contenu_page')
     <div class="panel">
-        <div class="panel panel-heading">
-            <form class="form-inline">
-                    <div class="form-group">
-                        <input  class="form-control" required placeholder="rechercher une commande" type="search"/>
-                </div>
-            </form>
-        </div>
-        <div class="panel-body">
+        <div class="panel-heading">
             @if(Session::has('message'))
                 @include('stock.error', ['type'=>'info', 'key'=>'message'])
             @endif
+            <a href="{{url('/stock/commande/create_update')}}" class="btn btn-primary">
+                Creer une nouvelle commande
+            </a>
+            <a href="{{url("/stock/commande/print_list")}}" class="btn btn-primary">
+                <span>Imprimer</span>
+            </a>
+        </div>
+        <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
-                <a href="{{url('/stock/commande/create_update')}}" class="btn btn-primary">Creer une nouvelle commande</a>
-
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-responsive">
                     <thead>
                         <tr>
                             <th>Référence</th>
                             <th>Date</th>
                             <th>Fournisseur</th>
+                            <th>Livrée</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -38,21 +38,26 @@ LISTE DES COMMANDES
                             @foreach($commandes as $commande)
                                 <tr>
                                     <td>CMD-{{$commande->id_commande}}</td>
-                                    <td>{{$commande->date_commande}}</td>
+                                    {{-- l jS \\of F Y h:i:s A --}}
+                                    <td>{{date('l jS \\of F Y', strtotime($commande->date_commande))}}</td>
                                     <td>{{$commande->designation_fournisseur}}</td>
                                     <td>
-                                        {{--<div class="dropdown">--}}
-                                        {{--<button class="btn btn-link" type="button" data-toggle="dropdown">--}}
-                                        {{--<span class="caret"></span>--}}
-                                        {{--</button>--}}
-                                        {{--<ul class="dropdown-menu">--}}
-                                        {{--<li><a title="supprimer la commande" disabled="">supprimer</a></li>--}}
-                                        {{--<li><a title="modifier la commande" disabled="" href="{{url("/stock/commande/create_update/{$commande->id_commande}")}}">modifier</a></li>--}}
-                                        <a title="Voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}"> <i class="glyph-icon icon-info"> Détails </i> </a>
-                                        <a title="Imprimer la commande"> <i class="glyph-icon icon-print"> Imprimer </i> </a>
-                                        <!--<li><a href="#">JavaScript</a></li>-->
-                                        {{--</ul>--}}
-                                        {{--</div>--}}
+                                            @if($commande->livre == 0)
+                                            Non
+                                        @else
+                                            Oui
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a class="btn" title="Voir les details de la commande" href="{{url("/stock/commande/details/{$commande->id_commande}")}}">
+                                            <i class="glyph-icon icon-eye"></i>
+                                        </a>
+                                        <a class="btn" title="Supprimer la commande" href="{{url("/stock/commande/delete/{$commande->id_commande}")}}">
+                                            <i class="glyph-icon icon-trash"></i>
+                                        </a>
+                                        <a class="btn" title="Imprimer la commande" href="{{url("/stock/commande/print_details/{$commande->id_commande}")}}">
+                                            <i class="glyph-icon icon-print"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -13,12 +13,14 @@ LISTE DES STOCKS D'ARTICLES
         <div class="panel panel-heading">
             <a href="{{url('/stock/entree/create_update')}}" title="Ajouter un(des) produit(s) au stock" class="btn btn-primary">Ajouter un(des) produit(s) au stock</a>
             <a href="{{url('/stock/commande/create_update')}}" title="Passer une commande" class="btn btn-primary">Passer une commande</a>
-            <a href="{{url('/stock/stock/create_update')}}" title="Créer un stock" class="btn btn-primary">Créer un stock</a>
+            <a href="{{url('/stock/affectation/create_update')}}" title="Effectuer un approvisionnement" class="btn btn-primary">Effectuer un approvisionnement</a>
+            <a href="{{url('/stock/rebus/list/')}}" title="Mettre au rebus" class="btn btn-primary">Mettre au rebus</a>
+            <a href="{{url('/stock/stock/print_list/')}}" title="Imprimer" class="btn btn-primary">Imprimer</a>
         </div>
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
 
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" id="datatable-example">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" id="datatable-responsive">
                     <thead>
                         <tr>
                             <th width="18%">Référence</th>
@@ -42,6 +44,7 @@ LISTE DES STOCKS D'ARTICLES
                     @endif
                     </tbody>
                 </table>
+
             </div>
         </div>
         <div class="panel-footer">

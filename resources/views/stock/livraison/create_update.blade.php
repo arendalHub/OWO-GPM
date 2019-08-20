@@ -23,7 +23,6 @@ LIVRAISON
                                     <label>Référence de commande</label>
                                     @if($commandes != null && count($commandes)>0)
                                         <select required onchange="resetForm(); addItemRow(''+this.value)" name="id_commande" class="form-control">
-                                            <option></option>
                                             @foreach($commandes as $commande)
                                                 <option value="{{$commande->id_commande}}">cmd-{{$commande->id_commande}}</option>
                                             @endforeach
@@ -34,7 +33,6 @@ LIVRAISON
                                     <label>Fournisseur</label>
                                     @if($fournisseurs != null && count($fournisseurs)>0)
                                         <select required name="id_fournisseur" class="form-control">
-                                            <option></option>
                                             @foreach($fournisseurs as $fournisseur)
                                                 <option value="{{$fournisseur->id_fournisseur}}">{{$fournisseur->designation_fournisseur}}</option>
                                             @endforeach
@@ -53,27 +51,28 @@ LIVRAISON
                                     <input type="text" required name="num_facture" class="form-control">
                                 </div>
                             </fieldset>
-                            <fieldset>
-                                <legend>Produits livrés</legend>
-                                {{--                            <button id="add_btn" type="button" class="btn btn-link" id="action-indicator">Ajouter un élément</button>--}}
-                                <div id="items-form-group">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <td>Article</td>
-                                            <td>Quantité</td>
-                                            <td>Prix d'entrée</td>
-                                            <td>Prix de sortie</td>
-                                            <td>Date de péremption</td>
-                                            <td>Date de fabrication</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                            {{-- @if($update == null) --}}
+                                {{-- <fieldset>
+                                    <legend>Produits livrés</legend>
+                                    <button id="add_btn" type="button" class="btn btn-link" id="action-indicator">Ajouter un élément</button>
+                                    <div id="items-form-group">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <td>Article</td>
+                                                <td>Quantité</td>
+                                                <td>Prix</td>
+                                                <td>Date de péremption</td>
+                                                <td>Date de fabrication</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </fieldset>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </fieldset> --}}
+                            {{-- @endif --}}
                             <div class="bg-default content-box text-center pad20A mrg25T">
                                 <button type="submit" class="btn btn-lg btn-primary">Valider</button>
                                 <button type="reset" onclick="resetForm()" class="btn btn-lg btn-default">Effacer</button>

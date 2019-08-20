@@ -2,7 +2,7 @@
 <html lang="">
 
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,9 +30,6 @@
   <link rel="stylesheet" href="{{ URL::to('templates/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}">
 
   <link rel="stylesheet" href="{{ URL::to('templates/assets/css/argon.min9f1e.css?v=1.1.0')}}" type="text/css">
-
-
-
 
   <!-- End Google Tag Manager -->
 </head>
@@ -71,6 +68,9 @@
           <div class="card-body px-lg-5 py-lg-5">
             <div class="text-center text-muted mb-4">
               <small>CONNECTEZ-VOUS</small>
+              @if (Session::has('message'))
+                <h4 class="text-danger">{{Session::get('message')}}</h4>  
+              @endif
             </div>
             <form role="form" method="POST" action="{{ url('connexion') }}">
               @csrf
@@ -79,8 +79,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                   </div>
-                  <input id="login" name="login" type="text" class="form-control{{ $errors->has('login') ? '
-                  is-invalid' : '' }}" placeholder="Login" value="{{ old('login') }}" required autofocus>
+                  <input id="login" name="login" type="text" class="form-control" placeholder="Login" value="{{ old('login')}}" required autofocus>
                   @if ($errors->has('login'))
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('login') }}</strong>
@@ -93,7 +92,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                   </div>
-                  <input id="password" placeholder="Mot de passe" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="current-password">
+                  <input id="password" placeholder="Mot de passe" type="password" class="form-control" name="password" required autocomplete="current-password">
 
                   @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">

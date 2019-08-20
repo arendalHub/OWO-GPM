@@ -15,9 +15,8 @@ class CreateMagasinsTable extends Migration
     {
         Schema::create('Magasin', function (Blueprint $table) {
             $table->bigIncrements('id_magasin');
-            $table->bigInteger('id_employe')->unsigned();
-            $table->string("adresse_magasin") ;
             $table->string("libelle_magasin") ;
+            $table->string("adresse_magasin") ;
             $table->boolean("supprime")->default(false) ;
             $table->timestamps();
         });

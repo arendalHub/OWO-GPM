@@ -5,6 +5,17 @@ PARAMETRES
 @endsection('titre_page')
 
 @section('menu')
+    <li>
+        <a href="{{ url('/parametre/') }}" title="Dashboard">
+            <i class="glyph-icon icon-dashboard"></i>
+            <span>ACCUEIL</span>
+        </a>
+    </li>
+
+    <br>
+    <hr>
+    <br>
+
     <li class="header"><span>PARAMETRES</span></li>
     <li>
         <a href="{{ url('/parametre/utilisateur') }}" title="Utilisateurs">
@@ -12,7 +23,7 @@ PARAMETRES
             <span>Utilisateurs</span>
         </a>
     </li>
-     <li>
+    {{-- <li>
          <a href="{{ url('/parametre/profil') }}" title="Profils">
              <i class="glyph-icon icon-tags"></i>
              <span>Profils</span>
@@ -23,7 +34,7 @@ PARAMETRES
             <i class="glyph-icon icon-book"></i>
             <span>Dictionnaire</span>
         </a>
-    </li>
+    </li> --}}
     <li>
          <a href="{{url('/parametre/societe')}}" title="Societe">
              <i class="glyph-icon icon-institution"></i>

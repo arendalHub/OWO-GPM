@@ -17,7 +17,7 @@ class CreateArticleCommandesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_commande');
             $table->bigInteger('id_article');
-            $table->bigInteger('quantite');
+            $table->bigInteger('quantite_commande');
             $table->timestamps();
 
 //            $table->foreign('id_commande')->on("Commande")

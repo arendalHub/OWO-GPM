@@ -23,24 +23,25 @@ class CreateEmployesTable extends Migration
             $table->string('sexe_employe');
             $table->string('num_tel_employe');
             $table->string('adresse_employe');
-            $table->string('pere_employe');
-            $table->string('mere_employe');
-            $table->string('num_tel_urgence_employe');
+            $table->string('pere_employe')->nullable();
+            $table->string('mere_employe')->nullable();
+            $table->string('num_tel_urgence_employe')->nullable();
             $table->string('situation_mat_employe');
             $table->integer('nb_enfant_employe');
-            $table->string('num_identite_employe');
-            $table->string('niveau_etudes_employe');
+            $table->string('type_piece_employe');
+            $table->string('num_piece_employe');
+            $table->string('niveau_etudes_employe')->nullable();
             $table->date('date_entree_employe');
-            $table->date('date_depart_employe');
-            $table->date('date_sortie_employe');
-            $table->string('num_cnss_employe');
-            $table->enum('contrat_employe',['Prestation de service', 'CDD', 'CDI']);
+            $table->date('date_depart_employe')->nullable();
+            $table->date('date_sortie_employe')->nullable();
+            $table->string('num_cnss_employe')->nullable();
+            $table->string('contrat_employe');
             $table->boolean('supprime')->default(false);
             $table->timestamps();
         });
 
         Schema::table('employes', function (Blueprint $table){
-           $table->unsignedBigInteger('id_dossier');
+           $table->unsignedBigInteger('id_dossier')->nullable();
            $table->foreign('id_dossier')->references('id_dossier')->on('dossiers')->onUpdate('cascade')->onDelete('cascade');
         });
 
