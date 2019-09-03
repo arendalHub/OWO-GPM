@@ -20,15 +20,12 @@ CREATION D'UN EMPLOYE
     <div class="panel-body">
 
         <div class=" title-hero">
-            <a class="btn btn-border btn-alt border-green btn-link font-green col-md-4" href="{{ url
-                ('personnel/employe/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES
-                    EMPLOYES</span></a>
+            <a class="btn btn-border btn-alt border-green btn-link font-green col-md-4" href="{{ url ('personnel/employe/list') }}" title=""> <i class="glyph-icon icon-list"></i> <span>LISTE DES EMPLOYES</span></a>
 
             <br><br>
         </div>
         <div class="example-box-wrapper">
-            <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form"
-                data-parsley-validate accept-charset="UTF-8">
+            <form method="post" action="{{$action}}" class="form-horizontal bordered-row" id="demo-form" data-parsley-validate accept-charset="UTF-8" enctype="multipart/form-data">
                 @csrf
                 <div id="form-wizard-4" class="form-wizard">
                     <ul>
@@ -68,8 +65,8 @@ CREATION D'UN EMPLOYE
                                 </h3>
                                 <div class="content-box-wrapper">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* NOM :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* NOM :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="nom" name="nom" placeholder="Nom de l'employé"
                                                 required class="form-control"
                                                 value="{{isset($employe)? $employe->nom_employe : old('nom') }}">
@@ -77,8 +74,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* PRENOM(S) :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* PRENOM(S) :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="prenom" name="prenom"
                                                 placeholder="Prénom de l'employé" required class="form-control"
                                                 value="{{isset($employe)? $employe->prenom_employe : old('prenom')}}">
@@ -86,8 +83,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* DATE DE NAISSANCE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* DATE DE NAISSANCE :</label>
+                                        <div class="col-md-6">
                                             <input type="date" id="date_naiss" name="date_naiss"
                                                 placeholder="Date de naissance de l'employé" required
                                                 class="form-control"
@@ -96,8 +93,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* LIEU DE NAISSANCE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* LIEU DE NAISSANCE :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="lieu_naiss" name="lieu_naiss"
                                                 placeholder="Lieu de naissance de l'employé" required
                                                 class="form-control" value="{{isset($employe)? $employe->lieu_naiss_employe : old
@@ -106,8 +103,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* SEXE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* SEXE :</label>
+                                        <div class="col-md-6">
                                             <label class="radio-inline">
                                                 <input type="radio" id="sexe" name="sexe" required value="M"
                                                     @if((isset($employe) && $employe->sexe_employe=="M") ||
@@ -131,8 +128,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* TELEPHONE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* TELEPHONE :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="num_tel" name="num_tel"
                                                 placeholder="Téléphone de l'employé" required
                                                 class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'"
@@ -142,16 +139,16 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* ADRESSE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* ADRESSE :</label>
+                                        <div class="col-md-6">
                                             <textarea name="adresse" id="adresse"
                                                 class="form-control">{{isset($employe)? $employe->adresse_employe : old('adresse')}}</textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* TELEPHONE URGENCE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* TELEPHONE URGENCE :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="num_tel_urgence" name="num_tel_urgence"
                                                 placeholder="Telephone d'urgence" required
                                                 class="input-mask form-control" data-inputmask="'mask':' 99-99-99-99'"
@@ -175,8 +172,8 @@ CREATION D'UN EMPLOYE
                                 </h3>
                                 <div class="content-box-wrapper">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">PÈRE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">PÈRE :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="pere" name="pere" placeholder="Père de l'employé"
                                                 class="form-control"
                                                 value="{{isset($employe)? $employe->pere_employe : old('pere')}}">
@@ -184,8 +181,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">MÈRE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">MÈRE :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="mere" name="mere" placeholder="Mère de l'employé"
                                                 class="form-control"
                                                 value="{{isset($employe)? $employe->mere_employe : old('mere')}}">
@@ -193,8 +190,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* SITUATION MATRIMONIALE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* SITUATION MATRIMONIALE :</label>
+                                        <div class="col-md-6">
                                             <select class="form-control" id="situation_mat" name="situation_mat"
                                                 required>
                                                 <option value="Celibataire" @if((isset($employe) && $employe->
@@ -224,8 +221,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* NOMBRE D'ENFANTS :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* NOMBRE D'ENFANTS :</label>
+                                        <div class="col-md-6">
                                             <input min=0 type="number" id="nb_enfant" name="nb_enfant"
                                                 placeholder="Nombre d'enfants" required class="form-control" value="{{isset($employe)? $employe->nb_enfant_employe : old
                                                        ('nb_enfant')}}">
@@ -233,8 +230,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* TYPE PIECE D'IDENTITE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* TYPE PIECE D'IDENTITE :</label>
+                                        <div class="col-md-6">
                                             <select class="form-control" id="type_piece" name="type_piece" required>
                                                 <option value="CNI" @if((isset($employe) && $employe->
                                                     type_piece_employe=="CNI") || old('type_piece')=="CNI")
@@ -265,8 +262,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* N° PIECE D'IDENTITE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* N° PIECE D'IDENTITE :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="num_piece" name="num_piece"
                                                 placeholder="Numéro de la piece d'identité" required
                                                 class="form-control" value="{{isset($employe)? $employe->num_piece_employe : old
@@ -275,8 +272,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* NIVEAU D'ETUDES :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* NIVEAU D'ETUDES :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="niveau_etudes" name="niveau_etudes"
                                                 placeholder="Niveau d'études de l'employé" required class="form-control"
                                                 value="{{isset($employe)? $employe->niveau_etudes_employe : old('niveau_etudes')}}">
@@ -284,8 +281,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* DATE ENTRÉE :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* DATE ENTRÉE :</label>
+                                        <div class="col-md-6">
                                             <input type="date" id="date_entree" name="date_entree"
                                                 placeholder="Date d'entrée" required class="form-control"
                                                 value="{{isset($employe)? $employe->date_entree_employe : old('date_entree')}}">
@@ -293,8 +290,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">DATE DE DEPART :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">DATE DE DEPART :</label>
+                                        <div class="col-md-6">
                                             <input type="date" id="date_depart" name="date_depart"
                                                 placeholder="Date de départ" class="form-control"
                                                 value="{{isset($employe)? $employe->date_depart_employe : old('date_depart')}}">
@@ -302,8 +299,8 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">N° CNSS :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">N° CNSS :</label>
+                                        <div class="col-md-6">
                                             <input type="text" id="num_cnss" name="num_cnss" placeholder="N° CNSS"
                                                 class="form-control"
                                                 value="{{isset($employe)? $employe->num_cnss_employe : old('num_cnss')}}">
@@ -311,12 +308,12 @@ CREATION D'UN EMPLOYE
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">* TYPE CONTRAT :</label>
-                                        <div class="col-sm-6">
+                                        <label class="col-md-4 control-label">* TYPE CONTRAT :</label>
+                                        <div class="col-md-6">
                                             <select class="form-control" id="contrat" name="contrat" required>
-                                                <option value="Prestation de sercices" @if((isset($employe) &&
-                                                    $employe->contrat_employe=="Prestation de sercices") ||
-                                                    old('contrat')=="Prestation de sercices")
+                                                <option value="Prestation de services" @if((isset($employe) &&
+                                                    $employe->contrat_employe=="Prestation de services") ||
+                                                    old('contrat')=="Prestation de services")
                                                     selected
                                                     @endif
                                                     >Prestation de sercices</option>
@@ -352,84 +349,170 @@ CREATION D'UN EMPLOYE
                                     Dossier
                                 </h3>
                                 <div class="content-box-wrapper">
-
+                                    @php($monDossier = null)
+                                    @foreach($dossiers as $dossier)
+                                        @if(isset($employe) && $employe->id_dossier==$dossier->id_dossier)
+                                            @php($monDossier = $dossier)
+                                        @endif
+                                    @endforeach 
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">PHOTO :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">PHOTO :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="photo" class="form-control col-md-6" id="photo">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->photo) || $monDossier->photo=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->photo)}}" target="_blank" class="col-md-4"><img src="{{ asset('storage/'.$monDossier->photo)}}" height="70" width="70" class="meta-image img-bordered"></a>    
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">NAISSANCE :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">NAISSANCE :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="naissance" class="form-control" id="naissance">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->naissance) || $monDossier->naissance=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->naissance)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                       
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">NATIONNALITE :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">NATIONNALITE :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="nationalite" class="form-control" id="nationalite">
                                         </div>
-
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->nationalite) || $monDossier->nationalite=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->nationalite)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">CNI :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">CNI :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="cni" class="form-control" id="cni">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->cni) || $monDossier->cni=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->cni)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">PASSPORT :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">PASSPORT :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="passport" class="form-control" id="passport">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->passport) || $monDossier->passport=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->passport)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">DIPLOME N°1 :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">DIPLOME N°1 :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="diplome1" class="form-control" id="diplome1">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->diplome1) || $monDossier->diplome1=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->diplome1)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">DIPLOME N°2 :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">DIPLOME N°2 :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="diplome2" class="form-control" id="diplome2">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->diplome2) || $monDossier->diplome2=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->diplome2)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">DIPLOME N°3 :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">DIPLOME N°3 :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="diplome3" class="form-control" id="diplome3">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->diplome3) || $monDossier->diplome3=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->diplome3)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif 
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">ATTESTATION N°1 :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">ATTESTATION N°1 :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="attestation1" class="form-control" id="attestation1">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->attestation1) || $monDossier->attestation1=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->attestation1)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">ATTESTATION N°2 :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">ATTESTATION N°2 :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="attestation2" class="form-control" id="attestation2">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->attestation2) || $monDossier->attestation2=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->attestation2)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">ATTESTATION N°3 :</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" disabled class="form-control" id="">
+                                        <label class="col-md-4 control-label">ATTESTATION N°3 :</label>
+                                        <div class="col-md-4">
+                                            <input type="file" name="attestation3" class="form-control" id="attestation3">
                                         </div>
+                                        @if (isset($employe))
+                                            @if (is_null($monDossier) || is_null($monDossier->attestation3) || $monDossier->attestation3=='')
+                                                <small class="col-md-4"><i>NON-RENSEIGNÉ</i></small>
+                                            @else
+                                                <a href="{{ asset('storage/'.$monDossier->attestation3)}}" target="_blank" class="btn btn-border border-info"><i class="glyph-icon icon-file"></i></a>
+                                            @endif
+                                        @endif
                                     </div>
 
                                     <div class="bg-default content-box pad20A mrg25T">
                                         <div class="col-md-1">
-                                            <a href="#step-2" data-toggle="tab"
-                                                class="btn btn-md btn-blue-alt pull-left" type="submit"><i
-                                                    class="glyph-icon icon-arrow-left"></i> </a>
+                                            <a href="#step-2" data-toggle="tab" class="btn btn-md btn-blue-alt pull-left" type="submit"><i class="glyph-icon icon-arrow-left"></i> </a>
                                         </div>
-                                        {{-- </div> --}}
 
-                                        {{-- <div class="bg-default content-box text-center pad20A mrg25T"> --}}
                                         <div class="col-md-11 text-center">
                                             @if(isset($employe))
                                             <input type="hidden" id="id" name="id" value="{{$employe->id_employe}}">
@@ -442,8 +525,6 @@ CREATION D'UN EMPLOYE
 
                                 </div>
                             </div>
-
-
 
                         </div>
                     </div>

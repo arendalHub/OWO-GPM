@@ -72,44 +72,47 @@
 
 
     </page_footer>
-    <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
-        <div class="panel panel-heading">
-            <div>
-                <h3 align="center">Liste des livraisons</h3>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div style="width: 100%" class="example-box-wrapper">
-                <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
-                    <thead>
-                    <tr>
-                        <th style="width: unset;">Référence</th>
-                        <th style="width: unset;">Date livraison</th>
-                        <th style="width: unset;">Total livraison</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if($livraisons != null && count($livraisons) > 0)
-                        @foreach($livraisons as $livraison)
-                            <tr>
-                                <td style="width: unset;">
-                                    Liv-{{$livraison->id_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->date_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->total_livraison}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel-footer">
 
-        </div>
-    </div>
+        <h3 align="center">Liste des Employés</h3>
+
+        <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
+            <thead>
+            <tr>
+                <th style="width: unset;">MATRICULE</th>
+                <th style="width: unset;">NOM & PRENOM(S)</th>
+                <th style="width: unset;">DATE & LIEU NAISSANCE</th>
+                <th style="width: unset;">SEXE</th>
+                <th style="width: unset;">TELEPHONE</th>
+                <th style="width: unset;">ADRESSE</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            @if($employes != null && count($employes) > 0)
+                @foreach($employes as $employe)
+                    <tr>
+                        <td style="width: unset;">
+                            {{$employe->matricule_employe}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$employe->nom_employe.' '.$employe->prenom_employe}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$employe->date_naiss_employe.' à '.$employe->lieu_naiss_employe}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$employe->sexe_employe}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$employe->num_tel_employe}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$employe->adresse_employe}}
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+
 </page>

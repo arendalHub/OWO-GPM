@@ -20,7 +20,7 @@ GESTION DE STOCKS
                     <a href="{{url('/stock/alert')}}">
                         <div class="tile-box tile-box-alt bg-yellow">
                             <div class="tile-header" style="font-size: 32px; font-weight: bold;">
-                                STOCK SEUIL
+                                STOCK D'ALERTE
                             </div>
                             <br /><br />
                             <div class="tile-content-wrapper">
@@ -38,7 +38,7 @@ GESTION DE STOCKS
                     <a href="{{url('/stock/critique')}}">
                         <div class="tile-box tile-box-alt bg-orange">
                             <div class="tile-header" style="font-size: 32px; font-weight: bold;">
-                                SEUIL CRITIQUE
+                                STOCK DE SECURITE
                             </div>
                             <br /><br />
                             <div class="tile-content-wrapper">

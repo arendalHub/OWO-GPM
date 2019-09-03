@@ -72,50 +72,51 @@
 
 
     </page_footer>
-
     <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
         <div class="panel panel-heading">
             <div>
-                <h3 align="center">Informations de livraison</h3>
-                <p>
-                <h4>Reference de commande : CMD-{{$livraison->id_commande}}</h4>
-                <h4>Date : {{$livraison->date_livraison}}</h4>
-                <h4>Fournisseur : {{$livraison->designation_fournisseur}}</h4>
-                </p>
-            </div>
-            <br/>
-            <div>
-                <h3>Facturation</h3>
-                <p>
-                <h4>Numero de bordereau : {{$livraison->num_bordereau}}</h4>
-                <h4>Numero de la facture : {{$livraison->num_facture}}</h4>
-                <h4>Total de la livraison : {{$total}} FCFA</h4>
-                </p>
-                <hr>
+                <h3 align="center">Liste des fournisseurs</h3>
             </div>
         </div>
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
-                <h3 align="center">Articles livrés</h3>
                 <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
-                    <thead>
+                <thead>
                     <tr>
-                        <th style="width: unset;">Article</th>
-                        <th style="width: unset;">Quantite</th>
-                        <th style="width: unset;">Prix (FCFA)</th>
-                        <th style="width: unset;">Date de péremption</th>
-                        <th style="width: unset;">Date de fabrication</th>
+                        <th style="width: unset;">Raison sociale</th>
+                        <th style="width: unset;">Perso. res.</th>
+                        <th style="width: unset;">Adresse</th>
+                        <th style="width: unset;">Contact</th>
+                        <th style="width: unset;">Second contact</th>
+                        <th style="width: unset;">Email</th>
+                        <th style="width: unset;">BP</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @if($articles != null && count($articles) > 0)
-                        @foreach($articles as $article)
+                </thead>
+                <tbody>
+                    @if($fournisseurs != null && count($fournisseurs) > 0)
+                        @foreach($fournisseurs as $fournisseur)
                             <tr>
-                                <td style="width: unset;">{{$article->designation_article}}</td>
-                                <td style="width: unset;">{{$article->quantite_mouvement}}</td>
-                                <td style="width: unset;">{{$article->prix}}</td>
-                                <td style="width: unset;">{{$article->date_peremption}}</td>
-                                <td style="width: unset;">{{$article->date_fabrication}}</td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->designation_fournisseur}}
+                                </td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->personne_ressource}}
+                                </td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->adresse_fournisseur}}
+                                </td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->contact_fournisseur}}
+                                </td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->contact_fournisseur_2}}
+                                </td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->email_fournisseur}}
+                                </td>
+                                <td style="width: unset;">
+                                    {{$fournisseur->bp_fournisseur}}
+                                </td>
                             </tr>
                         @endforeach
                     @endif

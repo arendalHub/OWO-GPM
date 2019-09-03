@@ -96,7 +96,7 @@
                             @if (Auth::User() && !is_null(Auth::User()) )
 
                             <a class="header-btn" id="logout-btn" href="{{ url('/deconnexion') }}" title="Déconnexion">
-                                <i class="glyph-icon icon-sign-out"></i>
+                                <i class="glyph-icon icon-power-off"></i>
                             </a>
 
                             <div class="user-account-btn dropdown">

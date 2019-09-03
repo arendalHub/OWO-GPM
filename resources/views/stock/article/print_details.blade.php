@@ -1,84 +1,159 @@
+<style type="text/css">
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 5mm;
+    }
 
-<div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
-    <div class="panel panel-heading">
+    #table tr {
+        background-color: white;
+        color: black
+    }
 
-    </div>
-    <div class="panel-body">
-        <div style="width: 100%" class="example-box-wrapper">
-            <div>
-                <h2>Détails de l'article</h2>
-            </div>
-            <table style="color: rgb(50,50,50);border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Code article</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Désignation</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Famille</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Consommable</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Prix d'achat</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Prix de vente</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$article->code_article}}
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$article->designation_article}}
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$article->description_famille}}
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            @if($article->consommable == 0)
-                                Non
-                            @else
-                                Oui
-                            @endif
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$article->prix_achat}}
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$article->prix_vente}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    #table tr th {
+        border: 1px solid #aaa;
+        width: 14%;
+        text-align: center;
+        padding: 15px
+    }
+
+    #table tr td {
+        border: 1px solid #aaa;
+        width: 14%;
+        text-align: center;
+        text-decoration: blink;
+        padding: 15px
+    }
+
+    h2 {
+        font: normal 175% Arial, Helvetica, sans-serif;
+        color: #008000;
+        letter-spacing: -1px;
+        margin: 0 0 10px 0;
+        padding: 5px 0 0 0;
+    }
+</style>
+
+<page backtop='45mm' footer="date;heure;page;">
+
+    <page_header>
+        <hr>
+        <table align="center">
+            <tr>
+                <td style="width:20%">
+                    <img src="images/photo_2019-08-21_06-43-23.jpg" {{-- height="100" width="100" --}}/>
+                </td>
+                <td style="width:60%; text-align:center;">
+                    <h2> PLETHO SARL-U </h2>
+                    <small>Nettoyage industriel</small>
+                    <br>
+                    <small>
+                        26, Rue des Myosotis
+                        Kodjoviakopé - 07 BP 12467
+                        Lomé - Togo
+                        Tel :
+                            (+228) 22 22 34 53
+                        Gsm :
+                            (+228) 90 11 12 32
+                            (+228) 93 25 81 85
+
+                    </small>
+                </td>
+                <td style="width:20%">
+                    <img src="images/photo_2019-08-21_06-43-23.jpg" {{-- height="100" width="100" --}}/>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <br>
+    </page_header>
+
+    <page_footer>
+
+
+    </page_footer>
+
+    <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
+        <div class="panel panel-heading">
+
         </div>
-
-        <br/>
-
-        <div style="width: 100%" class="example-box-wrapper">
-            <div>
-                <h2>Empmacement de l'article</h2>
+        <div class="panel-body">
+            <div style="width: 100%" class="example-box-wrapper">
+                <div>
+                    <h3 align="center">Détails de l'article</h3>
+                </div>
+                <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
+                    <thead>
+                        <tr>
+                            <th style="width: unset;">Code article</th>
+                            <th style="width: unset;">Désignation</th>
+                            <th style="width: unset;">Famille</th>
+                            <th style="width: unset;">Consommable</th>
+                            <th style="width: unset;">Prix d'achat</th>
+                            <th style="width: unset;">Prix de vente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: unset;">
+                                {{$article->code_article}}
+                            </td>
+                            <td style="width: unset;">
+                                {{$article->designation_article}}
+                            </td>
+                            <td style="width: unset;">
+                                {{$article->description_famille}}
+                            </td>
+                            <td style="width: unset;">
+                                @if($article->consommable == 0)
+                                    Non
+                                @else
+                                    Oui
+                                @endif
+                            </td>
+                            <td style="width: unset;">
+                                {{$article->prix_achat}}
+                            </td>
+                            <td style="width: unset;">
+                                {{$article->prix_vente}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table style="color: rgb(50,50,50);border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Etagère</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Rangée</th>
-                        <th style="border-bottom: 1px solid #ddd;padding:10px;height:30px;">Box</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$emplacement->lib_etagere}}
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$emplacement->lib_rangee}}
-                        </td>
-                        <td style="border-bottom: 1px solid #ddd;padding:15px;">
-                            {{$emplacement->lib_box}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <br/>
+
+            <div style="width: 100%" class="example-box-wrapper">
+                <div>
+                    <h3 align="center">Emplacement de l'article</h3>
+                </div>
+                <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
+                    <thead>
+                        <tr>
+                            <th style="width: unset;">Etagère</th>
+                            <th style="width: unset;">Rangée</th>
+                            <th style="width: unset;">Box</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: unset;">
+                                {{$emplacement->lib_etagere}}
+                            </td>
+                            <td style="width: unset;">
+                                {{$emplacement->lib_rangee}}
+                            </td>
+                            <td style="width: unset;">
+                                {{$emplacement->lib_box}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+
         </div>
     </div>
-    <div class="panel-footer">
-
-    </div>
-</div>
+</page>

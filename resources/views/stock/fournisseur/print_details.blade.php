@@ -72,44 +72,28 @@
 
 
     </page_footer>
-    <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
-        <div class="panel panel-heading">
-            <div>
-                <h3 align="center">Liste des livraisons</h3>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div style="width: 100%" class="example-box-wrapper">
-                <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
-                    <thead>
-                    <tr>
-                        <th style="width: unset;">Référence</th>
-                        <th style="width: unset;">Date livraison</th>
-                        <th style="width: unset;">Total livraison</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if($livraisons != null && count($livraisons) > 0)
-                        @foreach($livraisons as $livraison)
-                            <tr>
-                                <td style="width: unset;">
-                                    Liv-{{$livraison->id_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->date_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->total_livraison}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel-footer">
 
+    <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
+            <div class="panel panel-heading">
+                <div>
+                    <h3 align="center">Fiche de fournisseur</h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div style="width: 100%" class="example-box-wrapper">
+                    <p>
+                        <h4>Raison sociale: {{$fournisseur->designation_fournisseur}}</h4>
+                        <h4>Personne ressource : {{$fournisseur->personne_ressource}}</h4>
+                        <h4>Adresse : {{$fournisseur->adresse_fournisseur}}</h4>
+                        <h4>Contact : {{$fournisseur->contact_fournisseur}}</h4>
+                        <h4>Second Contact : {{$fournisseur->contact_fournisseur_2}}</h4>
+                        <h4>Email : {{$fournisseur->email_fournisseur}}</h4>
+                        <h4>Boite postale : {{$fournisseur->bp_fournisseur}}</h4>
+                    </p>
+                </div>
+            </div>
+            <div class="panel-footer">
+
+            </div>
         </div>
-    </div>
 </page>

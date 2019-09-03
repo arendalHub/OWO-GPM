@@ -70,46 +70,51 @@
 
     <page_footer>
 
-
     </page_footer>
-    <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
-        <div class="panel panel-heading">
-            <div>
-                <h3 align="center">Liste des livraisons</h3>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div style="width: 100%" class="example-box-wrapper">
-                <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
-                    <thead>
-                    <tr>
-                        <th style="width: unset;">Référence</th>
-                        <th style="width: unset;">Date livraison</th>
-                        <th style="width: unset;">Total livraison</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if($livraisons != null && count($livraisons) > 0)
-                        @foreach($livraisons as $livraison)
-                            <tr>
-                                <td style="width: unset;">
-                                    Liv-{{$livraison->id_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->date_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->total_livraison}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel-footer">
 
-        </div>
-    </div>
+        <h3 align="center">Liste des utilisateurs</h3>
+
+        <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
+            <thead>
+            <tr>
+                <th style="width: unset;">Nom & prénom(s)</th>
+                <th style="width: unset;">Login</th>
+                <th style="width: unset;">Poste</th>
+                <th style="width: unset;">Service</th>
+                <th style="width: unset;">Profil</th>
+                <th style="width: unset;">Statut</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if($utilisateurs != null && count($utilisateurs) > 0)
+                @foreach($utilisateurs as $utilisateur)
+                    <tr >
+                        <td style="width: unset;">
+                            {{$utilisateur->nom_utilisateur.' '.$utilisateur->prenom_utilisateur}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$utilisateur->login}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$utilisateur->poste_utilisateur}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$utilisateur->service_utilisateur}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$utilisateur->profil_temporaire}}
+                        </td>
+                        <td style="width: unset;">
+                            @if ($utilisateur->actif == 1)
+                                ACTIF
+                            @else
+                                DESACTIVÉ
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+
 </page>

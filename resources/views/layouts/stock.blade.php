@@ -79,7 +79,6 @@ STOCK
 
 
 @section('contenu_page')
-<<<<<<< HEAD
 <div id="page-title">
     <h2>@yield('titre_contenu', 'STOCKS')</h2>
     <p>@yield('sous_titre_contenu', '[SOUS MODULE]')</p>
@@ -89,15 +88,3 @@ STOCK
     @yield('contenu_page', '[-EN COURS DE DEVELOPPEMENT-]')
 </div>
 @endsection('contenu_page')
-=======
-    <div id="page-title">
-        <h2>@yield('titre_contenu', 'STOCKS')</h2>
-        <p>@yield('sous_titre_contenu', '[SOUS MODULE]')</p>
-    </div>
-
-    <div class="row">
-        @yield('contenu', '[EN COURS DE DEVELOPPEMENT]')
-    </div>
-@endsection('contenu_page')
-
->>>>>>> 36414c3edda45442c5dda64932ee82365fa0f7f6

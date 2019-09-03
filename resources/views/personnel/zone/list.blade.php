@@ -30,6 +30,7 @@
             <div class=" title-hero">
                 <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
                 ('personnel/zone/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVELLE ZONE</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green pull-right" href="{{ url('personnel/zone/print_list') }}" title=""> <i class="glyph-icon icon-print"></i> <span>IMPRIMER</span></a>
                 <br><br>
             </div>
             <div class="example-box-wrapper">
@@ -37,7 +38,6 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NOM</th>
                         <th>SITUATION GEOGRAPHIQUE</th>
                         <th>ACTIONS</th>
@@ -47,7 +47,6 @@
 
                     @foreach($zones as $zone)
                         <tr class="odd gradeX">
-                            <td>{{$zone->id_zone}}</td>
                             <td>{{$zone->nom_zone}}</td>
                             <td>{{$zone->situation_geo_zone}}</td>
                             <td class="center">

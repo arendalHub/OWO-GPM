@@ -27,6 +27,7 @@ class CreateDossiersTable extends Migration
             $table->longText('attestation1')->nullable();
             $table->longText('attestation2')->nullable();
             $table->longText('attestation3')->nullable();
+            $table->boolean('supprime')->default(false);
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class Fournisseur extends Migration
         Schema::create('Fournisseur', function (Blueprint $table)
         {
             $table->bigIncrements('id_fournisseur');
-            $table->string('raison_sociale',50)->nullable();
+            $table->string('designation_fournisseur',50);
             $table->string('nif_fournisseur',30)->nullable();
             $table->string('personne_ressource',75);
             $table->string('adresse_fournisseur', 150)->nullable();

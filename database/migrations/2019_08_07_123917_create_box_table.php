@@ -15,7 +15,7 @@ class CreateBoxTable extends Migration
     {
         Schema::create('box', function (Blueprint $table) {
             $table->bigIncrements('id_box');
-            $table->string('code_box',10);
+            $table->string('code_box',10)->nullable();
             $table->string('lib_box',75);
             $table->boolean('supprime')->default(false);
             $table->timestamps();

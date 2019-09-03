@@ -26,12 +26,8 @@
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
-                ('/parametre/profil/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU
-                        PROFIL</span></a>
-{{--                <h3 class="col-md-10 col-md-push-7">--}}
-{{--                    LISTE DES PROFILS--}}
-{{--                </h3>--}}
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url('/parametre/profil/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU PROFIL</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green pull-right" href="{{ url('parametre/profil/print_list') }}" title=""> <i class="glyph-icon icon-print"></i> <span>IMPRIMER</span></a>
                 <br><br>
             </div>
             <div class="example-box-wrapper">
@@ -39,7 +35,6 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>LIBELLE</th>
                         <th>DROITS</th>
                         <th>ACTIONS</th>
@@ -49,7 +44,6 @@
 
                     @foreach($profils as $profil)
                         <tr class="odd gradeX">
-                            <td>{{$profil->id_profil}}</td>
                             <td>{{$profil->libelle_profil}}</td>
                             <td> [DROITS]</td>
                             <td class="center">

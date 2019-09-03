@@ -18,16 +18,16 @@ PERSONNEL
 
     <li class="header"><span>GESTION OPERATIONS PERSONNEL</span></li>
     <li>
-        <a href="{{ url('/personnel/employe/affectation') }}" title="Employes">
-            <i class="glyph-icon icon-send"></i>
-            <span>Affectations</span>
-        </a>
-    </li>
-    <li>
-        <a href="{{ url('/personnel/employe') }}" title="Employes">
+        <a href="javascript:void(0);" title="Personnel">
             <i class="glyph-icon icon-users"></i>
-            <span>Employes</span>
+            <span>Personnel</span>
         </a>
+        <div class="sidebar-submenu">
+            <ul>
+                <li><a href="{{url('/personnel/employe')}}" title="Employés"><span>Employés</span></a></li>
+                <li><a href="{{url('/personnel/employe/affectation')}}" title="Affectations"><span>Affectations</span></a></li>
+            </ul>
+        </div>
     </li>
     <li>
         <a href="{{ url('/personnel/zone') }}" title="Zones">

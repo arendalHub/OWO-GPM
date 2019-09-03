@@ -7,6 +7,7 @@ use App\Models\Section;
 use App\Models\Site;
 use App\Models\Zone;
 use Illuminate\Http\Request;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class SiteController extends Controller
 {
@@ -85,5 +86,23 @@ class SiteController extends Controller
         }else
             return view('personnel.site.create_update')->with(['sections'=>$sections]);
     }
+
+    public function print_list()
+    {
+        $sites = Site::where(['sites.supprime' => 0])->join('sections', 'sites.id_section', 'sections.id_section')->join('zones', 'sections.id_zone', 'zones.id_zone')->get();
+
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(view("personnel/site/print_list")->with('sites', $sites));
+            $html2pdf->output('Liste des sites.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('personnel.site.list')->with(["error" => $formatter->getHtmlMessage()]);
+        }
+    }
+
 
 }

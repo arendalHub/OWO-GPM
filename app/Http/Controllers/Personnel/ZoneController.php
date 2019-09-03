@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Personnel;
 use App\Http\Controllers\Controller;
 use App\Models\Zone;
 use Illuminate\Http\Request;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class ZoneController extends Controller
 {
@@ -64,5 +65,22 @@ class ZoneController extends Controller
         }else
             return view('personnel.zone.create_update');
     }
+
+    public function print_list()
+    {
+        $zones = Zone::where(['supprime' => 0])->get();
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(view("personnel/zone/print_list")->with('zones', $zones));
+            $html2pdf->output('Liste des zones.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('personnel.zone.list')->with(["error" => $formatter->getHtmlMessage()]);
+        }
+    }
+
 
 }

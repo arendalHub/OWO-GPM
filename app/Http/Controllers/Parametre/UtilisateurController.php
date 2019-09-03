@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class UtilisateurController extends Controller
 {
@@ -69,6 +70,15 @@ class UtilisateurController extends Controller
         return redirect('/parametre/utilisateur/list')->with(['message' => 'Suppression effectuée avec succès!']);
     }
 
+    public function activer_desactiver(Request $request)
+    {
+        $utilisateur = Utilisateur::where(['id_utilisateur'=>$request->input('id'), 'supprime'=>0])->first();
+        $utilisateur->actif = ($utilisateur->actif==1) ? 0 : 1 ;
+        $utilisateur->save();
+
+        return redirect('/parametre/utilisateur/list')->with(['message' => 'Statut modifié avec succès!']);
+    }
+
     public function formulaire($id=null)
     {
         if (!is_null($id))
@@ -94,6 +104,14 @@ class UtilisateurController extends Controller
         // dd(var_dump(Auth::attempt(['login' => $request['login'], 'password' => $request['password']])));
         if(Auth::attempt(['login'=>$request['login'], 'password'=>$request['password']]))
         {
+            if (Auth::User()->actif==0) {
+                Auth::logout();
+                return redirect('/')->with(['message' => 'Compte désactivé. Contacter l\'administrateur.']);
+            } elseif(Auth::User()->supprime == 1){
+                Auth::logout();
+                return redirect('/')->with(['message' => 'Compte supprimé. Contacter l\'administrateur.']);
+            }
+            
             $message = 'Bienveue '.Auth::User()->nom_utilisateur.' '. Auth::User()->prenom_utilisateur;
             return redirect('/menu_modulaire')->with(['message' => $message]);
         }
@@ -108,4 +126,20 @@ class UtilisateurController extends Controller
         return view('/connexion');
     }
 
+    public function print_list()
+    {
+        $utilisateurs = Utilisateur::where(['supprime' => 0])->get();
+        // $utilisateurs = Utilisateur::where(['utilisateurs.supprime' => 0])->join('profils', 'utilisateurs.id_profil', 'profils.id_profil')->get();
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(view("parametre/utilisateur/print_list")->with('utilisateurs', $utilisateurs));
+            $html2pdf->output('Liste des utilisateurs.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('parametre.utilisateur.list')->with(["error" => $formatter->getHtmlMessage()]);
+        }
+    }
 }

@@ -74,7 +74,7 @@
                                     @csrf 
                                     <input type="hidden" name="id" value="{{$employe->id_employe}}"> 
 
-                                    <button class="btn btn-black-opacity" data-toggle="modal" data-target="#myModal0{{$employe->id_employe}}" title="DETAILS"><i class="glyph-icon icon-send"></i></button>
+                                    <button class="btn btn-black-opacity" data-toggle="modal" data-target="#myModal0{{$employe->id_employe}}" title="AFFECTER L'EMPLOYE"><i class="glyph-icon icon-send"></i></button>
 
                                     <div class="modal fade bs-example-modal-sm" id="myModal0{{$employe->id_employe}}"
                                          tabindex="-1" role="dialog"
@@ -90,7 +90,7 @@
                                                     <div class="form-group col-sm-12">
                                                         <label class="col-sm-4 control-label">* SITE :</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" id="section" name="section" required>
+                                                            <select class="form-control" id="site" name="site" required>
                                                                 @foreach($sites as $site)
                                                                     <option value="{{$site->id_site}}">{{$site->nom_site}}</option>
                                                                 @endforeach
@@ -102,8 +102,7 @@
                                                         <div class="form-group col-sm-12">
                                                             <label class="col-sm-4 control-label">* DATE AFFECTATION :</label>
                                                             <div class="col-sm-6">
-                                                                <input type="date" id="date_affectation" name="date_affectation" required class="form-control"
-                                                                    value="{{old('date_affectation')}}"
+                                                                <input type="date" id="date_affectation" name="date_affectation" required class="form-control" value="{{old('date_affectation')}}"
                                                                 >
                                                             </div>
                                                         </div>
@@ -113,7 +112,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                    <button type="submit" disabled class="btn btn-primary">Valider</button>
+                                                    <button type="submit" class="btn btn-primary">Valider</button>
                                                 </div>
                                                 
                                             </div>
@@ -123,7 +122,7 @@
 
                                 {{-- <div class="col-md-1"></div> --}}
 
-                                <form method="post" action=" {{url('delete_employe')}}" class="col-md-6">
+                                <form method="post" action=" {{url('cancel_affectation')}}" class="col-md-6">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$employe->id_employe}}">
 

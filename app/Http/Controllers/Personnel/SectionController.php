@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Section;
 use App\Models\Zone;
 use Illuminate\Http\Request;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class SectionController extends Controller
 {
@@ -13,8 +14,7 @@ class SectionController extends Controller
     public function afficher($status=null)
     {
         $zones = Zone::where(['supprime'=>0])->get();
-    	$sections = Section::join('zones', 'zones.id_zone', '=', 'sections.id_zone')->where(['sections.supprime'=>0])
-            ->get();
+    	$sections = Section::join('zones', 'zones.id_zone', '=', 'sections.id_zone')->where(['sections.supprime'=>0])->get();
 
     	return view('personnel.section.list')->with(['sections'=>$sections])->with(['zones'=>$zones]);
     }
@@ -69,5 +69,22 @@ class SectionController extends Controller
         }else
             return view('personnel.section.create_update')->with(['zones'=>$zones]);
     }
+
+    public function print_list()
+    {
+        $sections = Section::where(['sections.supprime' => 0])->join('zones', 'sections.id_zone', 'zones.id_zone')->get();
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(view("personnel/section/print_list")->with('sections', $sections));
+            $html2pdf->output('Liste des sections.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('personnel.section.list')->with(["error" => $formatter->getHtmlMessage()]);
+        }
+    }
+
 
 }

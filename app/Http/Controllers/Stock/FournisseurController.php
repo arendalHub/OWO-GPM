@@ -52,12 +52,12 @@ class FournisseurController extends Controller
             $fournisseur = new Fournisseur;
             $creat_update_message = "Le fournisseur {$postData['designation_fournisseur']} a été enregistré !";
         }
-        $fournisseur->raison_sociale = $postData['raison_sociale'];
+        $fournisseur->designation_fournisseur = $postData['designation_fournisseur'];
         $fournisseur->nif_fournisseur = $postData['nif_fournisseur'];
         $fournisseur->personne_ressource = $postData['personne_ressource'];
         $fournisseur->email_fournisseur = $postData['email_fournisseur'];
         $fournisseur->contact_fournisseur = $postData['contact_fournisseur'];
-        $fournisseur->designation_fournisseur = $postData['contact_fournisseur_2'];
+        $fournisseur->contact_fournisseur_2 = $postData['contact_fournisseur_2'];
         $fournisseur->bp_fournisseur = $postData['bp_fournisseur'];
         $fournisseur->adresse_fournisseur = $postData['adresse_fournisseur'];
 

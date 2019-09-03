@@ -14,7 +14,6 @@
             </div>
             <div class="alert-content text-center">
                 <h4 class="alert-title">{{Session::get('message')}}</h4>
-                {{-- <p></p> --}}
                 <p></p>
             </div>
         </div> <br>
@@ -26,8 +25,8 @@
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
-                ('personnel/section/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVELLE SECTION</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url('personnel/section/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVELLE SECTION</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green pull-right" href="{{ url('personnel/section/print_list') }}" title=""> <i class="glyph-icon icon-print"></i> <span>IMPRIMER</span></a>
 
                 <br><br>
             </div>
@@ -36,7 +35,6 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NOM</th>
                         <th>ZONE</th>
                         <th>ACTIONS</th>
@@ -46,7 +44,6 @@
 
                     @foreach($sections as $section)
                         <tr class="odd gradeX">
-                            <td>{{$section->id_section}}</td>
                             <td>{{$section->nom_section}}</td>
                             <td>
                                 @foreach($zones as $zone)

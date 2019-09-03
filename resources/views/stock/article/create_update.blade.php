@@ -55,13 +55,13 @@ CREATION / MODIFICATION D'UN ARTICLE
                             </div>
                             <input min="0" type="number" value="@if(($item != null && $update)){{$item->id_emplacement}}@endif" name="id_emplacement" class="form-control hidden">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Valeur du seuil d'avertissement</label>
+                                <label class="col-sm-3 control-label">Valeur du stock d'alerte</label>
                                 <div class="col-sm-6">
                                     <input required min="0" type="number" value="@if(($item != null && $update)){{$item->seuil_alert}}@else {{old('seuil_alert')}} @endif" name="seuil_alert" placeholder=" @if($item == null) Saisir une valeur d'alerte de quantité en stock @elseif($item != null && $update) {{$item->seuil_alert}} @else {{old('seuil_alert')}} @endif" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Valeur du seuil critique</label>
+                                <label class="col-sm-3 control-label">Valeur du stock de sécurité</label>
                                 <div class="col-sm-6">
                                     <input required min="0" type="number" value="@if(($item != null && $update)){{$item->seuil_critique}}@else {{old('seuil_critique')}} @endif" name="seuil_critique" placeholder=" @if($item == null) Saisir une valeur d'alerte critique de quantité en stock @elseif($item != null && $update) {{$item->seuil_critique}} @else {{old('seuil_critique')}} @endif" class="form-control">
                                 </div>

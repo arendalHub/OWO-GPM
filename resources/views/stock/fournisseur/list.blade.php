@@ -35,7 +35,6 @@ LISTE DES FOURNISSEURS
                         @if($fournisseurs != null && count($fournisseurs) > 0)
                             @foreach($fournisseurs as $fournisseur)
                                 <tr>
-                                    <td>{{$fournisseur->raison_sociale}}</td>
                                     <td>{{$fournisseur->designation_fournisseur}}</td>
                                     <td>{{$fournisseur->personne_ressource}}</td>
                                     <td>{{$fournisseur->adresse_fournisseur}}</td>

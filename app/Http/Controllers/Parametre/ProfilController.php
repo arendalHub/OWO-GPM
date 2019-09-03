@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Parametre;
 use App\Http\Controllers\Controller;
 use App\Models\Profil;
 use Illuminate\Http\Request;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class ProfilController extends Controller
 {
@@ -62,6 +63,22 @@ class ProfilController extends Controller
             return view('parametre.profil.create_update')->with(['profil'=>$profil]);
         }else
     	    return view('parametre.profil.create_update');
+    }
+
+    public function print_list()
+    {
+        $profils = Profil::where(['supprime' => 0])->get();
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(view("parametre/profil/print_list")->with('profils', $profils));
+            $html2pdf->output('Liste des profils.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('parametre.profil.list')->with(["error" => $formatter->getHtmlMessage()]);
+        }
     }
 
 }

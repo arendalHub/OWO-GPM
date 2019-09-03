@@ -26,9 +26,8 @@
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
-                ('personnel/site/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU SITE</span></a>
-
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url('personnel/site/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i> <span>NOUVEAU SITE</span></a>
+                <a class="btn btn-border btn-alt border-green btn-link font-green pull-right" href="{{ url('personnel/site/print_list') }}" title=""> <i class="glyph-icon icon-print"></i> <span>IMPRIMER</span></a>
                 <br><br>
             </div>
             <div class="example-box-wrapper">
@@ -36,7 +35,6 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NOM</th>
                         <th>ADRESSE</th>
                         <th>COORDONNES GPS</th>
@@ -52,7 +50,6 @@
 
                     @foreach($sites as $site)
                         <tr class="odd gradeX">
-                            <td>{{$site->id_site}}</td>
                             <td>{{$site->nom_site}}</td>
                             <td>{{$site->adresse_site}}</td>
                             <td>{{$site->longitude_site.', '.$site->lattitude_site}}</td>

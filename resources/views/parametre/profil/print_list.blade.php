@@ -70,46 +70,27 @@
 
     <page_footer>
 
-
     </page_footer>
-    <div style="color: rgb(50,50,50); width: 60%; margin: auto;" class="panel">
-        <div class="panel panel-heading">
-            <div>
-                <h3 align="center">Liste des livraisons</h3>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div style="width: 100%" class="example-box-wrapper">
-                <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
-                    <thead>
-                    <tr>
-                        <th style="width: unset;">Référence</th>
-                        <th style="width: unset;">Date livraison</th>
-                        <th style="width: unset;">Total livraison</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if($livraisons != null && count($livraisons) > 0)
-                        @foreach($livraisons as $livraison)
-                            <tr>
-                                <td style="width: unset;">
-                                    Liv-{{$livraison->id_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->date_livraison}}
-                                </td>
-                                <td style="width: unset;">
-                                    {{$livraison->total_livraison}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel-footer">
 
-        </div>
-    </div>
+        <h3 align="center">Liste des profils</h3>
+
+        <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
+            <thead>
+            <tr>
+                <th style="width: unset;">Libellé</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if($profils != null && count($profils) > 0)
+                @foreach($profils as $profil)
+                    <tr >
+                        <td style="width: unset;">
+                            {{$profil->libelle_profil}}
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+
 </page>

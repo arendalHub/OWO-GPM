@@ -72,41 +72,48 @@
 
     </page_footer>
 
-        <h3 align="center">Liste des articles</h3>
+        <h3 align="center">Liste des sites</h3>
 
         <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
             <thead>
             <tr>
-                <th style="width: unset;">Code article</th>
-                <th style="width: unset;">Désignation</th>
-                <th style="width: unset;">Famille</th>
-                <th style="width: unset;">Consommable</th>
-                <th style="width: unset;">Emplacement</th>
+                <th style="width: unset;">Nom</th>
+                <th style="width: unset;">Adresse</th>
+                <th style="width: unset;">Coordonnées GPS</th>
+                <th style="width: unset;">Début des Travaux</th>
+                <th style="width: unset;">Fin des Travaux</th>
+                <th style="width: unset;">Durée des Travaux</th>
+                <th style="width: unset;">Section</th>
+                <th style="width: unset;">Zone</th>
             </tr>
             </thead>
             <tbody>
-            @if($items != null && count($items) > 0)
-                @foreach($items as $item)
+            @if($sites != null && count($sites) > 0)
+                @foreach($sites as $site)
                     <tr >
                         <td style="width: unset;">
-                            {{$item->code_article}}
+                            {{$site->nom_site}}
                         </td>
                         <td style="width: unset;">
-                            {{$item->designation_article}}
+                            {{$site->adresse_site}}
                         </td>
                         <td style="width: unset;">
-                            {{$item->description_famille}}
+                            {{$site->lattitude_site.'-'.$site->longitude_site}}
                         </td>
                         <td style="width: unset;">
-                            @if($item->consommable == 0)
-                                Non
-                            @else
-                                Oui
-                            @endif
+                            {{$site->date_debut_travaux_site}}
                         </td>
                         <td style="width: unset;">
-                            Étagère : {{$item->lib_etagere}} | Rangée : {{$item->lib_rangee}} | Box :
-                            {{$item->lib_box}}
+                            {{$site->date_fin_travaux_site}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$site->duree_travaux_site}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$site->nom_section}}
+                        </td>
+                        <td style="width: unset;">
+                            {{$site->nom_zone}}
                         </td>
                     </tr>
                 @endforeach

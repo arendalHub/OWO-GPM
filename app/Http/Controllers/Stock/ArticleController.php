@@ -21,14 +21,74 @@ class ArticleController extends Controller
 {
     public function list(string $num_page = '1')
     {
-        $items = Article::orderBy('Article.id_article', 'desc')
-            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
-            ->leftJoin("Emplacement", "Emplacement.id_article", "=", "Article.id_article")
-            ->leftJoin("Etagere", "Etagere.id_etagere", "=", "Emplacement.id_etagere")
-            ->leftJoin("Rangee", "Rangee.id_rangee", "=", "Emplacement.id_rangee")
-            ->leftJoin("Box", "Box.id_box", "=", "Emplacement.id_box")
-            ->paginate();
-        return view('stock.article.list')->with('items', $items);
+        $familles = FamilleArticle::orderBy('description_famille', 'asc')->get();
+
+        if ( isset($_GET['id_famille']) || isset($_GET['retire']) || isset($_GET['consommable']) || isset($_GET['date_deb'])) {
+            $sql = "SELECT * FROM article";
+            $sql .= " LEFT JOIN famillearticle ON famillearticle.id_famille = article.id_famille LEFT JOIN emplacement ON emplacement.id_article = article.id_article LEFT JOIN etagere ON etagere.id_etagere = emplacement.id_etagere LEFT JOIN rangee ON rangee.id_rangee = emplacement.id_rangee LEFT JOIN box ON box.id_box = emplacement.id_box";
+            $w = 0;
+            if ($_GET['id_famille'] != "*") {
+                $sql .= " WHERE article.id_famille = " . $_GET['id_famille'];
+                $w = 1;
+            }
+
+            if (isset($_GET['retire']) && $_GET['retire'] == "on") {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                $sql .= " article.supprime = true";
+            }
+
+            if (isset($_GET['consommable']) && $_GET['consommable'] == "on") {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                $sql .= " article.consommable = true";
+            }
+
+            if ($_GET['date_deb'] != null ) {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['date_fin'] == null )
+                    $sql .= " date_format(article.created_at, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+                else
+                    $sql .= " date_format(article.created_at, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+            }
+            // dd($sql);
+
+            $items = DB::select($sql);
+
+            $s = 1;
+
+        } else {
+            $items = Article::orderBy('Article.id_article', 'desc')
+                ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
+                ->leftJoin("Emplacement", "Emplacement.id_article", "=", "Article.id_article")
+                ->leftJoin("Etagere", "Etagere.id_etagere", "=", "Emplacement.id_etagere")
+                ->leftJoin("Rangee", "Rangee.id_rangee", "=", "Emplacement.id_rangee")
+                ->leftJoin("Box", "Box.id_box", "=", "Emplacement.id_box")
+                ->paginate();
+
+                $s = 0;
+        }
+        return view('stock.article.list')->with([
+            'items' => $items,
+            'familles' => $familles,
+            'sql' => $s
+        ]);
     }
 
     /**
@@ -71,7 +131,7 @@ class ArticleController extends Controller
      */
     public function create_update(string $item_id = null)
     {
-        $familles = FamilleArticle::orderBy('id_famille', 'asc')->get();
+        $familles = FamilleArticle::orderBy('description_famille', 'asc')->get();
         $boxes = Box::all();
         $etageres = Etagere::all();
         $rangees = Rangee::all();

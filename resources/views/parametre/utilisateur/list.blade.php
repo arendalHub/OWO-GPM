@@ -25,10 +25,9 @@ LISTE DES UTILISATEURS
     <div class="panel">
         <div class="panel-body">
             <div class=" title-hero">
-                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url
-                ('/parametre/utilisateur/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i>
+                <a class="btn btn-border btn-alt border-green btn-link font-green col-md-2" href="{{ url('/parametre/utilisateur/create_update') }}" title=""> <i class="glyph-icon icon-plus"></i>
                     <span>NOUVEL UTILISATEUR</span></a>
-
+                <a class="btn btn-border btn-alt border-green btn-link font-green pull-right" href="{{ url('parametre/utilisateur/print_list') }}" title=""> <i class="glyph-icon icon-print"></i> <span>IMPRIMER</span></a>
                 <br><br>
             </div>
 
@@ -36,19 +35,18 @@ LISTE DES UTILISATEURS
                 <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>NOM & PRENOM</th>
                     <th>LOGIN</th>
                     <th>SERVICE</th>
                     <th>POSTE</th>
                     <th>PROFIL</th>
+                    <th>STATUT COMPTE</th>
                     <th>ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($utilisateurs as $utilisateur)
                         <tr class="odd gradeX">
-                            <td>{{$utilisateur->id_utilisateur}}</td>
                             <td>{{$utilisateur->nom_utilisateur.' '.$utilisateur->prenom_utilisateur}}</td>
                             <td>{{$utilisateur->login}}</td>
                             <td>{{$utilisateur->service_utilisateur}}</td>
@@ -59,6 +57,45 @@ LISTE DES UTILISATEURS
                                 @endforeach
                             </td> --}}
                             <td>{{$utilisateur->profil_temporaire}}</td>
+                            <td>
+                                <form method="post" action=" {{url('enable_disable_utilisateur')}}" class="col-md-12">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$utilisateur->id_utilisateur}}">
+                                    @php
+                                        $toggle='on'; $btn='success'; $title=['DÉSACTIVÉ','ACTIVER'];
+                                    @endphp
+                                    @if ($utilisateur->actif==1)
+                                        @php
+                                            $toggle='off'; $btn='black'; $title=['ACTIF','DÉSACTIVER'];
+                                        @endphp
+                                    @endif
+
+                                    <i class="col-md-9">{{$title[0]}}</i>
+                                    <button type="button" class="btn btn-{{$btn}} col-md-3" data-toggle="modal"
+                                        title="{{$title[1]}}" data-target="#myModal0{{$utilisateur->id_utilisateur}}">
+                                        <i class="glyph-icon icon-toggle-{{$toggle}}"></i>
+                                    </button>
+
+                                    <div class="modal fade bs-example-modal-sm" id="myModal0{{$utilisateur->id_utilisateur}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Confirmation</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>VOULEZ VOUS VRAIMENT {{$title[1]}} LE CONPTE?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                                    <button type="submit" class="btn btn-blue-alt">Oui</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </td>
                             <td class="center">
                                 <a class="btn btn-blue-alt col-md-5" href="{{url('/parametre/utilisateur/create_update/'
                                 .$utilisateur->id_utilisateur)}}" title="MODIFIER">

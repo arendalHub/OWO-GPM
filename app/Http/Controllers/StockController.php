@@ -91,6 +91,7 @@ class StockController extends Controller
 
     public function accueil()
     {
+
         $alert = DB::table("Article")
             ->select(DB::raw("count(*) as nb"))
             ->where("supprime", false)
