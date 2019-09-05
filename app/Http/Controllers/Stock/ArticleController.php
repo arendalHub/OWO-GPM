@@ -19,12 +19,12 @@ use App\Http\Controllers\Stock\EmplacementController;
  */
 class ArticleController extends Controller
 {
-    public function list(string $num_page = '1')
+    public function list()
     {
         $familles = FamilleArticle::orderBy('description_famille', 'asc')->get();
 
         if ( isset($_GET['id_famille']) || isset($_GET['retire']) || isset($_GET['consommable']) || isset($_GET['date_deb'])) {
-            $sql = "SELECT * FROM article";
+            $sql = "SELECT *, article.supprime as supprime FROM article";
             $sql .= " LEFT JOIN famillearticle ON famillearticle.id_famille = article.id_famille LEFT JOIN emplacement ON emplacement.id_article = article.id_article LEFT JOIN etagere ON etagere.id_etagere = emplacement.id_etagere LEFT JOIN rangee ON rangee.id_rangee = emplacement.id_rangee LEFT JOIN box ON box.id_box = emplacement.id_box";
             $w = 0;
             if ($_GET['id_famille'] != "*") {
@@ -32,7 +32,7 @@ class ArticleController extends Controller
                 $w = 1;
             }
 
-            if (isset($_GET['retire']) && $_GET['retire'] == "on") {
+            if ($_GET['retire'] != "*") {
                 if($w == 0) {
                     $sql .= " WHERE";
                     $w = 1;
@@ -40,10 +40,13 @@ class ArticleController extends Controller
                 else
                     $sql .= " AND";
 
-                $sql .= " article.supprime = true";
+                if ($_GET['retire'] != "0")
+                    $sql .= " article.supprime = true";
+                else
+                    $sql .= " article.supprime = false";
             }
 
-            if (isset($_GET['consommable']) && $_GET['consommable'] == "on") {
+            if ($_GET['consommable'] != "*") {
                 if($w == 0) {
                     $sql .= " WHERE";
                     $w = 1;
@@ -51,7 +54,10 @@ class ArticleController extends Controller
                 else
                     $sql .= " AND";
 
-                $sql .= " article.consommable = true";
+                if ($_GET['consommable'] != "0")
+                    $sql .= " article.consommable = true";
+                else
+                    $sql .= " article.consommable = false";
             }
 
             if ($_GET['date_deb'] != null ) {
@@ -71,23 +77,19 @@ class ArticleController extends Controller
 
             $items = DB::select($sql);
 
-            $s = 1;
-
         } else {
-            $items = Article::orderBy('Article.id_article', 'desc')
+            $items = DB::table("Article")
+                ->select('*', 'Article.supprime AS supprime')
                 ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
                 ->leftJoin("Emplacement", "Emplacement.id_article", "=", "Article.id_article")
                 ->leftJoin("Etagere", "Etagere.id_etagere", "=", "Emplacement.id_etagere")
                 ->leftJoin("Rangee", "Rangee.id_rangee", "=", "Emplacement.id_rangee")
                 ->leftJoin("Box", "Box.id_box", "=", "Emplacement.id_box")
                 ->paginate();
-
-                $s = 0;
         }
         return view('stock.article.list')->with([
             'items' => $items,
-            'familles' => $familles,
-            'sql' => $s
+            'familles' => $familles
         ]);
     }
 
@@ -98,8 +100,10 @@ class ArticleController extends Controller
      */
     public function details(string $item_id)
     {
-        $item = Article::where("id_article", $item_id)
+        $item = DB::table("Article")
+            ->select('*', 'Article.supprime AS supprime')
             ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
+            ->where("id_article", $item_id)
             ->get()[0];
 
         $emplacement = Emplacement::where('id_article', $item_id)
@@ -119,7 +123,7 @@ class ArticleController extends Controller
 
             DB::table("Emplacement")
                 ->where('id_article', $item_id)
-                ->update(['supprime' => true]);
+                ->update(['supprime' => true, 'id_article' => 0]);
 
             return redirect('/stock/article/list')->with("message", "L'article {$article->designation_article} a été supprimé !");
         }
@@ -218,13 +222,72 @@ class ArticleController extends Controller
 
     public function print_list()
     {
-        $items = Article::orderBy('Article.id_article', 'desc')
-            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
-            ->leftJoin("Emplacement", "Emplacement.id_article", "=", "Article.id_article")
-            ->leftJoin("Etagere", "Etagere.id_etagere", "=", "Emplacement.id_etagere")
-            ->leftJoin("Rangee", "Rangee.id_rangee", "=", "Emplacement.id_rangee")
-            ->leftJoin("Box", "Box.id_box", "=", "Emplacement.id_box")
-            ->paginate();
+        $familles = FamilleArticle::orderBy('description_famille', 'asc')->get();
+
+        if ( isset($_GET['id_famille']) || isset($_GET['retire']) || isset($_GET['consommable']) || isset($_GET['date_deb'])) {
+            $sql = "SELECT *, article.supprime as supprime FROM article";
+            $sql .= " LEFT JOIN famillearticle ON famillearticle.id_famille = article.id_famille LEFT JOIN emplacement ON emplacement.id_article = article.id_article LEFT JOIN etagere ON etagere.id_etagere = emplacement.id_etagere LEFT JOIN rangee ON rangee.id_rangee = emplacement.id_rangee LEFT JOIN box ON box.id_box = emplacement.id_box";
+            $w = 0;
+            if ($_GET['id_famille'] != "*") {
+                $sql .= " WHERE article.id_famille = " . $_GET['id_famille'];
+                $w = 1;
+            }
+
+            if ($_GET['retire'] != "*") {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['retire'] != "0")
+                    $sql .= " article.supprime = true";
+                else
+                    $sql .= " article.supprime = false";
+            }
+
+            if ($_GET['consommable'] != "*") {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['livre'] != "0")
+                    $sql .= " article.consommable = true";
+                else
+                    $sql .= " article.consommable = false";
+            }
+
+            if ($_GET['date_deb'] != null ) {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['date_fin'] == null )
+                    $sql .= " date_format(article.created_at, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+                else
+                    $sql .= " date_format(article.created_at, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+            }
+            // dd($sql);
+
+            $items = DB::select($sql);
+
+        } else {
+            $items = DB::table("Article")
+                ->select('*', 'Article.supprime AS supprime')
+                ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
+                ->leftJoin("Emplacement", "Emplacement.id_article", "=", "Article.id_article")
+                ->leftJoin("Etagere", "Etagere.id_etagere", "=", "Emplacement.id_etagere")
+                ->leftJoin("Rangee", "Rangee.id_rangee", "=", "Emplacement.id_rangee")
+                ->leftJoin("Box", "Box.id_box", "=", "Emplacement.id_box")
+                ->paginate();
+        }
 
         try {
             $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);

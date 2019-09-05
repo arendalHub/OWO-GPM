@@ -13,23 +13,16 @@ LIVRAISON
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-12">
-                    @if($commandes != null && count($commandes) > 0)
                         <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate action="{{url("/stock/livraison/do_create_update")}}" method="POST">
                             @csrf
                             <span id="items-index" hidden>0</span>
                             <fieldset>
                                 <legend>Informations de livraison</legend>
                                 <div class="form-group">
-                                    <label>Référence de commande</label>
-                                    @if($commandes != null && count($commandes)>0)
-                                        <select required onchange="resetForm(); addItemRow(''+this.value)" name="id_commande" class="form-control">
-                                            @foreach($commandes as $commande)
-                                                <option value="{{$commande->id_commande}}">cmd-{{$commande->id_commande}}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                </div>
-                                <div class="form-group">
+                                    <input required
+                                        name="id_commande"
+                                        value="{{$_GET['id_commande']}}"
+                                        class="form-control"/>
                                     <label>Fournisseur</label>
                                     @if($fournisseurs != null && count($fournisseurs)>0)
                                         <select required name="id_fournisseur" class="form-control">
@@ -44,17 +37,17 @@ LIVRAISON
                                 <legend>Facturation</legend>
                                 <div class="form-group">
                                     <label>Numéro de bordereau</label>
-                                    <input type="text" required name="num_bordereau" class="form-control">
+                                    <input type="text" name="num_bordereau" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Numéro facture</label>
-                                    <input type="text" required name="num_facture" class="form-control">
+                                    <input type="text" name="num_facture" class="form-control">
                                 </div>
                             </fieldset>
                             {{-- @if($update == null) --}}
-                                {{-- <fieldset>
+                                <fieldset>
                                     <legend>Produits livrés</legend>
-                                    <button id="add_btn" type="button" class="btn btn-link" id="action-indicator">Ajouter un élément</button>
+                                    <button id="add_btn" type="button" class="btn btn-link" id="action-indicator">Afficher les articles</button>
                                     <div id="items-form-group">
                                         <table class="table">
                                             <thead>
@@ -67,51 +60,53 @@ LIVRAISON
                                             </tr>
                                             </thead>
                                             <tbody>
-
+                                                @foreach($articles as $article)
+                                                    @if($article->quantite_commande > 0)
+                                                        <tr>
+                                                            <td>
+                                                                <input required name="id_article-{{$article->id_article}}" hidden value="{{$article->id_article}}"/>
+                                                                {{$article->designation_article}}
+                                                            </td>
+                                                            <td>
+                                                                <input disabled
+                                                                    value="{{$article->quantite_commande}}"
+                                                                    class="form-control"/>
+                                                                <input
+                                                                    class="hidden"
+                                                                    name="quantite-{{$article->id_article}}"
+                                                                    value="{{$article->quantite_commande}}"
+                                                                    class="form-control"/>
+                                                            </td>
+                                                            <td>
+                                                                <input required
+                                                                        name="prix-{{$article->id_article}}"
+                                                                        id="prix-{{$article->id_article}}"
+                                                                        type="number"
+                                                                        min="0"
+                                                                        value="{{$article->prix_achat}}"
+                                                                        class="form-control"/>
+                                                            </td>
+                                                            <td>
+                                                                <input required name="date_peremption-{{$article->id_article}}" type="date" class="form-control"/>
+                                                            </td>
+                                                            <td>
+                                                                <input required name="date_fabrication-{{$article->id_article}}" type="date" class="form-control"/>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
-                                </fieldset> --}}
+                                </fieldset>
                             {{-- @endif --}}
                             <div class="bg-default content-box text-center pad20A mrg25T">
                                 <button type="submit" class="btn btn-lg btn-primary">Valider</button>
                                 <button type="reset" onclick="resetForm()" class="btn btn-lg btn-default">Effacer</button>
                             </div>
                         </form>
-                    @else
-                        <span class="text-center">Toutes vos commandes ont été livrées !</span>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function addItemRow(id_commande)
-        {
-            var tbody = $("#items-form-group").find("tbody") ;
-            $.ajax({
-                url: '{{url("/stock/livraison/items")}}/'+id_commande,
-                dataType: 'HTML',
-                method: 'GET'
-            }).done(function (html)
-            {
-                tbody.append(html) ;
-            }) .fail(function (xhr)
-            {
-                console.log(xhr.responseText) ;
-            }) ;
-        }
-
-        function removeItemRow(index)
-        {
-            $('#'+index).fadeOut(200, function (e) {
-                $(this).remove() ;
-            }) ;
-        }
-
-        function resetForm()
-        {
-            $("#items-form-group").find("tbody").html('') ;
-        }
-    </script>
 @endsection('page_content')

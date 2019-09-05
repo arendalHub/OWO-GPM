@@ -126,7 +126,7 @@
 
             <div style="width: 100%" class="example-box-wrapper">
                 <div>
-                    <h3 align="center">Emplacement de l'article</h3>
+                    <h3 align="center">Empmacement de l'article</h3>
                 </div>
                 <table id="table" margin-top style="font-size: 8px; width: all;" align="center">
                     <thead>

@@ -14,7 +14,16 @@ LISTE DES FOURNISSEURS
             @if(Session::has('message'))
                 @include('stock.error', ['type'=>'info', 'key'=>'message'])
             @endif
-            <a href="{{url('/stock/fournisseur/create_update')}}" class="btn btn-primary">Ajouter un nouveau fournisseur</a>
+            <a href="{{url("/stock/fournisseur/create_update")}}"
+               class="btn btn-border btn-alt border-green btn-link font-green">
+                <i class="glyph-icon icon-plus"></i>
+                <span>Ajouter un nouveau fournisseur</span>
+            </a>
+            <a href="{{url("/stock/fournisseur/print_list")}}"
+               class="btn btn-border btn-alt border-green btn-link font-green">
+                <i class="glyph-icon icon-print"></i>
+                <span>Imprimer</span>
+            </a>
         </div>
         <div class="panel-body">
             <div style="width: 100%" class="example-box-wrapper">
@@ -43,19 +52,21 @@ LISTE DES FOURNISSEURS
                                     <td>{{$fournisseur->email_fournisseur}}</td>
                                     <td>{{$fournisseur->bp_fournisseur}}</td>
                                     <td>
-                                        <a class="btn" title="modifier" href="{{url("/stock/fournisseur/create_update/{$fournisseur->id_fournisseur}")}}"><i class="glyph-icon icon-pencil"></i></a>
-                                        <a class="btn" title="supprimer" href="{{url("/stock/fournisseur/delete/{$fournisseur->id_fournisseur}")}}"><i class="glyph-icon icon-trash"></i></a>
+                                        <a class="btn" title="Modifier" href="{{url("/stock/fournisseur/create_update/{$fournisseur->id_fournisseur}")}}">
+                                            <i class="glyph-icon icon-pencil"></i>
+                                        </a>
+                                        <a class="btn" title="Imprimer" href="{{url("/stock/fournisseur/print_details/{$fournisseur->id_fournisseur}")}}">
+                                            <i class="glyph-icon icon-print"></i>
+                                        </a>
+                                        <a class="btn" title="Supprimer" href="{{url("/stock/fournisseur/delete/{$fournisseur->id_fournisseur}")}}">
+                                            <i class="glyph-icon icon-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="panel-footer">
-            <div class="text-center">
-                {{$fournisseurs->links()}}
             </div>
         </div>
     </div>

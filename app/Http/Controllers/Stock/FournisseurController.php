@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Fournisseur;
+use Spipu\Html2Pdf\HTML2PDF;
 
 /**
  * Ce controller est responsable de toute les actions sur les Fournisseurs.
@@ -76,6 +77,46 @@ class FournisseurController extends Controller
                 $delete = "Fournisseur supprimé avec succès!";
             }
             return redirect('/stock/fournisseur/list')->with(['message' => $delete]);
+        }
+    }
+
+    public function print_list()
+    {
+        $fournisseurs = Fournisseur::orderBy('id_fournisseur', 'desc')
+            ->where('supprime', '=', false)
+            ->paginate();
+
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(
+                view("stock/fournisseur/print_list")->with('fournisseurs', $fournisseurs)
+            );
+            $html2pdf->output('Liste des fournisseurs.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('stock.fournisseur.list')->with(["error" => $formatter->getHtmlMessage()]);
+        }
+    }
+
+    public function print_details($id_frn)
+    {
+        $fournisseur = Fournisseur::find($id_frn);
+
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+            $html2pdf->pdf->SetDisplayMode('fullpage');
+            $html2pdf->writeHTML(
+                view("stock/fournisseur/print_details")->with('fournisseur', $fournisseur)
+            );
+            $html2pdf->output('Détails du fournisseur '.$fournisseur->designation_fournisseur.'.pdf');
+            return back()->with(["message" => "Impression faite"]);
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            $formatter = new ExceptionFormatter($e);
+            return redirect('stock.fournisseur.list')->with(["error" => $formatter->getHtmlMessage()]);
         }
     }
 }

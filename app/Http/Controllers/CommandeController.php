@@ -17,13 +17,61 @@ use Spipu\Html2Pdf\HTML2PDF;
  */
 class CommandeController extends Controller
 {
-    public function list(string $num_page = null)
+    public function list()
     {
-        $commandes = Commande::join('Fournisseur', 'Commande.id_fournisseur', '=', 'Fournisseur.id_fournisseur')
-            ->select('Commande.*', 'Fournisseur.designation_fournisseur')
-            ->where('Commande.supprime', false)
-            ->orderBy("id_commande", "desc")->paginate();
-        return view("stock/commande/list", ["commandes" => $commandes]);
+        $fournisseurs = Fournisseur::orderBy('designation_fournisseur', 'asc')->get();
+
+        if ( isset($_GET['id_fournisseur']) || isset($_GET['livre'])|| isset($_GET['date_deb'])) {
+            $sql = "SELECT *, commande.supprime as supprime FROM commande";
+            $sql .= " LEFT JOIN fournisseur ON fournisseur.id_fournisseur = commande.id_fournisseur";
+            $w = 0;
+            if ($_GET['id_fournisseur'] != "*") {
+                $sql .= " WHERE commande.id_fournisseur = " . $_GET['id_fournisseur'];
+                $w = 1;
+            }
+
+            if ($_GET['livre'] != "*") {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['livre'] != "0")
+                    $sql .= " commande.livre = true";
+                else
+                    $sql .= " commande.livre = false";
+            }
+
+            if ($_GET['date_deb'] != null ) {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['date_fin'] == null )
+                    $sql .= " date_format(commande.created_at, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+                else
+                    $sql .= " date_format(commande.created_at, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+            }
+
+            $commandes = DB::select($sql);
+
+        } else {
+            $commandes = Commande::join('Fournisseur', 'Commande.id_fournisseur', '=', 'Fournisseur.id_fournisseur')
+                ->select('Commande.*', 'Fournisseur.designation_fournisseur')
+                ->where('Commande.supprime', false)
+                ->orderBy("id_commande", "desc")
+                ->get();
+        }
+
+        return view("stock/commande/list", [
+            "commandes" => $commandes,
+            "fournisseurs" => $fournisseurs
+            ]);
     }
 
     public function create_update(string $id_commande = null)
@@ -107,17 +155,61 @@ class CommandeController extends Controller
 
     public function getItemsPart()
     {
-        $articles = Article::all();
+        $articles = DB::table("Article")
+            ->select('id_article', 'designation_article')
+            ->where('supprime', false)
+            ->get();
         return view('stock.commande.itemspart', ['articles' => $articles, 'id' => uniqid()]);
     }
 
     public function print_list()
     {
-        $commandes = Commande::join('Fournisseur', 'Commande.id_fournisseur', '=', 'Fournisseur.id_fournisseur')
-            ->select('Commande.*', 'Fournisseur.designation_fournisseur')
-            ->where('Commande.supprime', false)
-            ->orderBy("id_commande", "desc")
-            ->paginate();
+        if ( isset($_GET['id_fournisseur']) || isset($_GET['livre'])|| isset($_GET['date_deb'])) {
+            $sql = "SELECT *, commande.supprime as supprime FROM commande";
+            $sql .= " LEFT JOIN fournisseur ON fournisseur.id_fournisseur = commande.id_fournisseur";
+            $w = 0;
+            if ($_GET['id_fournisseur'] != "*") {
+                $sql .= " WHERE commande.id_fournisseur = " . $_GET['id_fournisseur'];
+                $w = 1;
+            }
+
+            if ($_GET['livre'] != "*") {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['livre'] != "0")
+                    $sql .= " commande.livre = true";
+                else
+                    $sql .= " commande.livre = false";
+            }
+
+            if ($_GET['date_deb'] != null ) {
+                if($w == 0) {
+                    $sql .= " WHERE";
+                    $w = 1;
+                }
+                else
+                    $sql .= " AND";
+
+                if ($_GET['date_fin'] == null )
+                    $sql .= " date_format(commande.created_at, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+                else
+                    $sql .= " date_format(commande.created_at, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+            }
+
+            $commandes = DB::select($sql);
+
+        } else {
+            $commandes = Commande::join('Fournisseur', 'Commande.id_fournisseur', '=', 'Fournisseur.id_fournisseur')
+                ->select('Commande.*', 'Fournisseur.designation_fournisseur')
+                ->where('Commande.supprime', false)
+                ->orderBy("id_commande", "desc")
+                ->get();
+        }
 
         try
         {

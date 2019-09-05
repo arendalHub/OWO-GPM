@@ -30,7 +30,7 @@ DETAILS DE L'ARTICLE {{$article->code_article}}-{{$article->designation_article}
                         <td>{{$article->designation_article}}</td>
                         <td>{{$article->description_famille}}</td>
                         <td>
-                            @if($article->consommable == null)
+                            @if($article->consommable == 0)
                                 Non
                             @else
                                 Oui
@@ -41,6 +41,7 @@ DETAILS DE L'ARTICLE {{$article->code_article}}-{{$article->designation_article}
                     </tr>
                 </table>
             </div>
+            @if($article->supprime == 0)
             <div style="width: 100%" class="example-box-wrapper">
                 <h2>Emplacement de stockage</h2>
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable-example">
@@ -54,27 +55,36 @@ DETAILS DE L'ARTICLE {{$article->code_article}}-{{$article->designation_article}
                     </tr>
                 </table>
             </div>
+            @endif
         </div>
         <div class="panel-footer">
             <h2>Actions</h2>
             <table>
                 <tr>
-                    <td>
-                        <a href="{{url('/stock/article/create_update')}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
-                            <i class="glyph-icon icon-plus"></i>
-                            <span>Ajouter un nouvel article</span>
-                        </a>
-                    </td>
-                    <td>
-                        <a style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
-                            <i class="glyph-icon icon-trash"></i>
-                            <span>Supprimer</span>
-                        </a>
-                    </td>
+                    @if($article->supprime == 0)
                     <td>
                         <a href="{{url("/stock/article/create_update/{$article->id_article}")}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
                             <i class="glyph-icon icon-pencil"></i>
                             <span>Modifier</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url("/stock/article/delete/{$article->id_article}")}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
+                            <i class="glyph-icon icon-trash"></i>
+                            <span>Supprimer</span>
+                        </a>
+                    </td>
+                    @endif
+                    <td>
+                        <a href="{{url("/stock/article/print_details/{$article->id_article}")}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
+                            <i class="glyph-icon icon-print"></i>
+                            <span>Imprimer</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url('/stock/article/create_update')}}" style="float: left;" type="button" class="btn btn-border btn-alt border-green btn-link font-green">
+                            <i class="glyph-icon icon-plus"></i>
+                            <span>Ajouter un nouvel article</span>
                         </a>
                     </td>
                     <td>

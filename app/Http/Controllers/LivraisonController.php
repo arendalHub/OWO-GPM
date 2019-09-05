@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleCommande;
 use App\Models\ArticleLivraison;
 use App\Models\ArticleMouvement;
 use App\Models\Commande;
@@ -16,25 +17,43 @@ use Spipu\Html2Pdf\HTML2PDF;
 
 class LivraisonController extends Controller
 {
-    public function list(string $num_page = null)
+    public function list()
     {
-        $livraisons = Livraison::orderBy('id_livraison', 'desc')
-            ->paginate(10);
+        if (isset($_GET['date_deb'])) {
+            $sql = "SELECT * FROM livraison WHERE";
+
+            if ($_GET['date_fin'] == null )
+                $sql .= " date_format(livraison.date_livraison, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+            else
+                $sql .= " date_format(livraison.date_livraison, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+
+            // dd($sql);
+            $livraisons = DB::select($sql);
+
+        } else {
+            $livraisons = Livraison::orderBy('id_livraison', 'desc')->get();
+        }
+
         for ($i = 0; $i < count($livraisons); ++$i) {
-            $articles = DB::table("article")
-                ->leftJoin('articlemouvement', 'articlemouvement.id_article', '=', 'article.id_article')
+            $lignes = DB::table("articlemouvement")
                 ->leftJoin('mouvementstock', 'mouvementstock.id_mouvement_stock', '=', 'articlemouvement.id_mouvement')
-                ->where('mouvementstock.id_mouvement_stock', '=', $livraisons[$i]->id_mouvement_stock)
+                ->where('mouvementstock.id_livraison', '=', $livraisons[$i]->id_livraison)
                 ->get();
             $total = 0;
 
-            foreach ($articles as $article) {
-                $total  +=  $article->prix;
+            foreach ($lignes as $ligne) {
+                $total  +=  $ligne->prix * $ligne->quantite_mouvement;
             }
+
             $livraisons[$i]->total_livraison = $total;
         }
 
-        return view("stock/livraison/list")->with(['livraisons' => $livraisons]);
+        $commandes = Commande::where('livre', false)->orderBy('id_commande', 'asc')->get();
+
+        return view("stock/livraison/list")->with([
+                'livraisons' => $livraisons,
+                'commandes' => $commandes
+            ]);
     }
 
     /**
@@ -57,21 +76,33 @@ class LivraisonController extends Controller
 
     public function print_list()
     {
-        $livraisons = Livraison::orderBy('id_livraison', 'desc')
-                                ->paginate(10);
+        if (isset($_GET['date_deb'])) {
+            $sql = "SELECT * FROM livraison WHERE";
+
+            if ($_GET['date_fin'] == null )
+                $sql .= " date_format(livraison.date_livraison, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+            else
+                $sql .= " date_format(livraison.date_livraison, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+
+            $livraisons = DB::select($sql);
+
+        } else {
+            $livraisons = Livraison::orderBy('id_livraison', 'desc')->get();
+        }
+
         for($i = 0; $i<count($livraisons); ++$i)
         {
-            $articles = DB::table("article")
-                ->leftJoin('articlemouvement', 'articlemouvement.id_article', '=', 'article.id_article')
+            $lignes = DB::table("articlemouvement")
                 ->leftJoin('mouvementstock', 'mouvementstock.id_mouvement_stock', '=', 'articlemouvement.id_mouvement')
-                ->where('mouvementstock.id_mouvement_stock', '=', $livraisons[$i]->id_mouvement_stock)
-                ->get() ;
-            $total = 0 ;
+                ->where('mouvementstock.id_livraison', '=', $livraisons[$i]->id_livraison)
+                ->get();
+            $total = 0;
 
-            foreach ($articles as $article) {
-                $total  +=  $article->prix ;
+            foreach ($lignes as $ligne) {
+                $total  +=  $ligne->prix * $ligne->quantite_mouvement;
             }
-            $livraisons[$i]->total_livraison = $total ;
+
+            $livraisons[$i]->total_livraison = $total;
         }
 
         try
@@ -134,7 +165,7 @@ class LivraisonController extends Controller
 
         $total = 0;
         for ($i = 0; $i < count($articles); ++$i)
-            $total += $articles[0]->prix;
+            $total += $articles[$i]->prix * $articles[$i]->quantite_mouvement;
 
         return [$livraison, $articles, $total];
     }
@@ -146,13 +177,17 @@ class LivraisonController extends Controller
     public function create_update()
     {
         // Affichage
-        $commandes = Commande::where('livre', false)->orderBy('id_commande', 'asc')->get();
+        $id_cmd = $_GET['id_commande'];
+        $articles = DB::table('articlecommande')
+            ->leftJoin('article', 'articlecommande.id_article', '=', 'article.id_article')
+            ->where('id_commande', '=', intval($id_cmd))
+            ->get(['article.id_article', 'designation_article', 'quantite_commande', 'prix_achat']);
         $fournisseurs = Fournisseur::all();
         return view(
             'stock.livraison.create_update',
             [
-                'commandes' => $commandes,
-                'fournisseurs' => $fournisseurs
+                'fournisseurs' => $fournisseurs,
+                'articles' => $articles
             ]
         );
     }
@@ -169,7 +204,7 @@ class LivraisonController extends Controller
         $livraison = new Livraison;
         $mouvement = new MouvementStock();
 
-        $livraison->date_livraison = date("d-m-Y H:i:s");
+        $livraison->date_livraison = date("Y-m-d H:i:s");
         $livraison->id_commande = $postData["id_commande"];
         $livraison->num_bordereau = $postData["num_bordereau"];
         $livraison->num_facture = $postData["num_facture"];
@@ -181,55 +216,29 @@ class LivraisonController extends Controller
             $mouvement->date_mouvement = $livraison->date_livraison;
             $mouvement->save();
 
-            // $postDataKeys = array_keys($postData);
-            // for ($i = 0; $i < count($postDataKeys); $i++) {
-            //     if (strstr($postDataKeys[$i], "id_article-") !== false) {
-            //         // Bulk insertion without verification
-            //         if ($postData[$postDataKeys[$i + 1]] != 0) {
-            //             $am = new Articlemouvement();
-            //             $am->id_article = $postData[$postDataKeys[$i]];
-            //             $am->id_mouvement = $mouvement->id_mouvement_stock;
-            //             $am->prix = $postData[$postDataKeys[$i + 2]];
-            //             $am->date_peremption = $postData[$postDataKeys[$i + 3]];
-            //             $am->date_fabrication = $postData[$postDataKeys[$i + 4]];
-            //             $am->quantite_mouvement = $postData[$postDataKeys[$i + 1]];
-            //             $am->save();
+            $postDataKeys = array_keys($postData);
+            for ($i = 0; $i < count($postDataKeys); $i++) {
+                if (strstr($postDataKeys[$i], "id_article-") !== false) {
+                    if ($postData[$postDataKeys[$i + 1]] != 0) {
+                        $am = new ArticleMouvement();
+                        $am->id_article = $postData[$postDataKeys[$i]];
+                        $am->id_mouvement = $mouvement->id_mouvement_stock;
+                        $am->quantite_mouvement = $postData[$postDataKeys[$i + 1]];
+                        $am->prix = $postData[$postDataKeys[$i + 2]];
+                        $am->date_peremption = $postData[$postDataKeys[$i + 3]];
+                        $am->date_fabrication = $postData[$postDataKeys[$i + 4]];
+                        $am->save();
 
-            //             // This should work
-            //             $article = Article::find($am->id_article);
-            //             $article->quantite_stock += $am->quantite_mouvement;
-            //             $article->save();
-            //         }
-            //     }
-            // }
-
-            $ac = DB::table("ArticleCommande")
-                ->select('*')
-                ->where('id_commande', $livraison->id_commande)
-                ->paginate();
-
-            foreach($ac as $art_com) {
-                $article = Article::find($art_com->id_article);
-                $article->quantite_stock += $art_com->quantite_commande;
-                $article->save();
-
-                $am = new Articlemouvement();
-                $am->id_article = $art_com->id_article;
-                $am->id_mouvement = $mouvement->id_mouvement_stock;
-                $am->prix = $article->prix_achat;
-                $am->quantite_mouvement = $art_com->quantite_commande;
-                $am->save();
+                        $article = Article::find($am->id_article);
+                        $article->quantite_stock += $am->quantite_mouvement;
+                        $article->save();
+                    }
+                }
             }
 
-            // Mise à jour de la commande pour livre = true
-            // if($this->isFullDelivered( intval( $postData["id_commande"] ) ))
-            // {
             $commande = Commande::find($postData["id_commande"]);
             $commande->livre = true;
-            // Bulk update
             $commande->save();
-            // return redirect("/stock/livraison/list")->with(["message"=>"Votre commande est maintenant entièrement livrée !"]) ;
-            // }
 
             return redirect("/stock/livraison/list")->with(["message" => "Votre livraison a été enregistrée !"]);
         }
@@ -264,33 +273,5 @@ class LivraisonController extends Controller
             return true;
         }
         return false;
-    }
-
-    public function getItemsPart(string $id_commande)
-    {
-        $articles = DB::table('article')
-            ->leftJoin('articlecommande', 'articlecommande.id_article', '=', 'article.id_article')
-            ->where('articlecommande.id_commande', '=', intval($id_commande))
-            ->get(['article.id_article', 'designation_article', 'quantite_commande']);
-
-        // Vérifions s'il y a déjà une livraison pour certains produits
-        $delivered = DB::table('articlemouvement')
-            ->leftJoin('articlecommande', 'articlecommande.id_article', '=', 'articlemouvement.id_article')
-            ->where('articlecommande.id_commande', '=', intval($id_commande))
-            ->get(['articlemouvement.id_article', 'articlemouvement.quantite_mouvement']);
-
-        // Trie des deux collections
-        $articlesArr = Collection::unwrap($articles);
-        $deliveredArr = Collection::unwrap($delivered);
-
-        if (count($deliveredArr) > 0) {
-            for ($i = 0; $i < count($articlesArr); $i++) {
-                if ($deliveredArr[$i]->id_article == $articlesArr[$i]->id_article) {
-                    $articlesArr[$i]->quantite_commande -= $deliveredArr[$i]->quantite_mouvement;
-                }
-            }
-        }
-
-        return view('stock.livraison.itemspart', ['articles' => $articlesArr, 'id' => uniqid()]);
     }
 }

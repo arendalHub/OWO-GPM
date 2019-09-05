@@ -55,11 +55,57 @@ LISTE DES FAMILLES
                             <tr>
                                 <td>{{$fam->description_famille}}</td>
                                 <td>
+                                <a class="btn" title="Modifier la famille" data-toggle="modal" data-target="#edit_fam_modal{{$fam->id_famille}}">
+                                        <i class="glyph-icon icon-pencil"></i>
+                                    </a>
                                     <a class="btn" title="Supprimer la famille" href="{{url("/stock/famille/delete/ {$fam->id_famille}")}}">
                                         <i class="glyph-icon icon-trash"></i>
                                     </a>
                                 </td>
                             </tr>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="edit_fam_modal{{$fam->id_famille}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modifier Famille Article</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-inline" action="{{url("/stock/famille/modif_famille/{$fam->id_famille}")}}">
+                                            <div class="form-group">
+                                                <input
+                                                    required
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder=""
+                                                    name="famille"
+                                                    value="">
+                                            </div>
+                                            <div
+                                                class="form-group"
+                                                width="15%">
+                                            </div>
+                                            <div
+                                                class="form-group"
+                                                width="25%">
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-xs btn-primary">Valider</button>
+                                            </div>
+                                            @csrf
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                             @endforeach
                             @endif
                         </tbody>

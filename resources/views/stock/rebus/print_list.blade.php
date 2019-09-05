@@ -87,7 +87,6 @@
                         <th style="width: unset;">Article</th>
                         <th style="width: unset;">Motif</th>
                         <th style="width: unset;">Quantité</th>
-                        <th style="width: unset;">Emplacement stock</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -105,10 +104,6 @@
                                 </td>
                                 <td style="width: unset;">
                                     {{$rebu->quantite_mouvement}}
-                                </td>
-                                <td style="width: unset;">
-                                    Étagère : {{$rebu->emplacement_stock['lib_etagere']}} | Rangée :
-                                {{$rebu->emplacement_stock['lib_rangee']}} | Box : {{$rebu->emplacement_stock['lib_box']}}
                                 </td>
                             </tr>
                         @endforeach

@@ -27,7 +27,6 @@ class EmployeController extends Controller
     	return view('personnel.employe.list')->with(['employes'=>$employes])->with(['dossiers' => $dossiers]);
     }
 
-
     public function ajouter(Request $request)
     {
         $matricNum = Employe::max('id_employe') + 1;

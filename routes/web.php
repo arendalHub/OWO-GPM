@@ -36,6 +36,8 @@ Route::post('/stock/affectation/do_create_update', 'Stock\AffectationController@
 Route::get('/stock/affectation/list/{num_page?}', 'Stock\AffectationController@list')->middleware(VerifieConnexion::class);
 Route::get('/stock/affectation/details/{id_affectation}', 'Stock\AffectationController@details')->middleware(VerifieConnexion::class);
 Route::get('/stock/affectation/itemspart', 'Stock\AffectationController@getItemsPart')->middleware(VerifieConnexion::class);
+Route::get('/stock/affectation/print_list', 'CommandeController@print_list')->middleware(VerifieConnexion::class);
+Route::get('/stock/affectation/print_details/{id}', 'CommandeController@print_details')->middleware(VerifieConnexion::class);
 
 Route::get('/stock/article/list/{req?}', 'ArticleController@list')->middleware(VerifieConnexion::class);
 Route::get('/stock/article/details/{item_id}', 'ArticleController@details')->middleware(VerifieConnexion::class);
@@ -63,15 +65,20 @@ Route::get('/stock/entree/create_update/', 'Stock\EntreeController@create_update
 Route::get('/stock/entree/list/{page_num?}', 'Stock\EntreeController@list')->middleware(VerifieConnexion::class);
 Route::get('/stock/entree/details/{id}', 'Stock\EntreeController@details')->middleware(VerifieConnexion::class);
 Route::post('/stock/entree/do_create_update', 'Stock\EntreeController@do_create_update')->middleware(VerifieConnexion::class);
+Route::get('/stock/entree/print_list', 'Stock\EntreeController@print_list')->middleware(VerifieConnexion::class);
+Route::get('/stock/entree/print_details/{id}', 'Stock\EntreeController@print_details')->middleware(VerifieConnexion::class);
 
 Route::get('/stock/famille/list/', 'Stock\FamilleController@list')->middleware(VerifieConnexion::class);
 Route::get('/stock/famille/delete/{id}', 'Stock\FamilleController@delete')->middleware(VerifieConnexion::class);
 Route::get('/stock/famille/add_famille', 'Stock\FamilleController@add_famille')->middleware(VerifieConnexion::class);
+Route::get('/stock/famille/modif_famille/{id_famille}', 'Stock\FamilleController@modif_famille')->middleware(VerifieConnexion::class);
 
 Route::get('/stock/fournisseur/list/{num_page?}', 'FournisseurController@list')->middleware(VerifieConnexion::class);
 Route::get('/stock/fournisseur/create_update/{id_fournisseur?}', 'FournisseurController@create_update')->middleware(VerifieConnexion::class);
 Route::post('/stock/fournisseur/do_create_update', 'FournisseurController@do_create_update')->middleware(VerifieConnexion::class);
 Route::match(['get', 'post'], '/stock/fournisseur/delete/{id_fournisseur?}', 'FournisseurController@delete')->middleware(VerifieConnexion::class);
+Route::get('/stock/fournisseur/print_list', 'FournisseurController@print_list')->middleware(VerifieConnexion::class);
+Route::get('/stock/fournisseur/print_details/{id}', 'FournisseurController@print_details')->middleware(VerifieConnexion::class);
 
 Route::get('/stock/livraison/create_update', 'LivraisonController@create_update')->middleware(VerifieConnexion::class);
 Route::get('/stock/livraison/list', 'LivraisonController@list')->middleware(VerifieConnexion::class);
@@ -85,10 +92,13 @@ Route::get('/stock/magasin/list/{num_page?}', 'Stock\MagasinController@list')->m
 Route::get('/stock/magasin/create_update/{id_fournisseur?}', 'Stock\MagasinController@create_update')->middleware(VerifieConnexion::class);
 Route::post('/stock/magasin/do_create_update', 'Stock\MagasinController@do_create_update')->middleware(VerifieConnexion::class);
 Route::match(['get', 'post'], '/stock/magasin/delete/{id_magasin?}', 'Stock\MagasinController@delete')->middleware(VerifieConnexion::class);
+Route::get('/stock/magasin/print_list', 'CommandeController@print_list')->middleware(VerifieConnexion::class);
+Route::get('/stock/magasin/print_details/{id}', 'CommandeController@print_details')->middleware(VerifieConnexion::class);
 
 Route::get('/stock/rebus/create_update', "Stock\RebusController@create_update")->middleware(VerifieConnexion::class);
 Route::get('/stock/rebus/list/{page_num?}', "Stock\RebusController@list")->middleware(VerifieConnexion::class);
 Route::post('/stock/rebus/do_create_update', "Stock\RebusController@do_create_update")->middleware(VerifieConnexion::class);
+Route::get('/stock/rebus/print_list', 'Stock\RebusController@print_list')->middleware(VerifieConnexion::class);
 
 Route::get('/stock/stock/create_update', function () {
     return view('stock.stock.create_update');

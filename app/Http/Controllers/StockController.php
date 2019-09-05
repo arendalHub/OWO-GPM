@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Article;
+use App\Models\FamilleArticle;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Spipu\Html2Pdf\HTML2PDF;
@@ -12,20 +13,98 @@ class StockController extends Controller
 {
     public function list(String $page_num = null)
     {
-        $data = DB::table("Article")
-            ->select(DB::raw("quantite_stock as qt, designation_article, code_article, description_famille, seuil_alert, seuil_critique"))
-            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
-            ->where('Article.supprime', false)
-            ->paginate();
-        return view("stock.stock.list", ["stocks" => $data]);
+        $familles = FamilleArticle::orderBy('description_famille', 'asc')->get();
+
+        if ( isset($_GET['id_famille']) || isset($_GET['quantite_min']) || isset($_GET['consommable']) || isset($_GET['date_deb'])) {
+            $sql = "SELECT * FROM article LEFT JOIN famillearticle ON famillearticle.id_famille = article.id_famille WHERE article.supprime = false";
+
+            if ($_GET['id_famille'] != "*") {
+                $sql .= " AND article.id_famille = " . $_GET['id_famille'];
+            }
+
+            if ($_GET['consommable'] != "*") {
+
+                if ($_GET['consommable'] != "0")
+                    $sql .= " AND article.consommable = true";
+                else
+                    $sql .= " AND article.consommable = false";
+            }
+
+            if ($_GET['quantite_min'] != null ) {
+
+                if ($_GET['quantite_max'] == null )
+                    $sql .= " AND article.quantite_stock = " . $_GET['quantite_min'];
+                else
+                    $sql .= " AND article.quantite_stock BETWEEN " . $_GET['quantite_min'] . " AND " . $_GET['quantite_max'];
+            }
+
+            if ($_GET['date_deb'] != null ) {
+
+                if ($_GET['date_fin'] == null )
+                    $sql .= " AND date_format(article.created_at, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+                else
+                    $sql .= " AND date_format(article.created_at, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+            }
+
+            $data = DB::select($sql);
+
+        } else {
+            $data = DB::table("Article")
+                ->select('*')
+                ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
+                ->where('article.supprime', false)
+                ->get();
+        }
+        return view('stock.stock.list')->with([
+            'stocks' => $data,
+            'familles' => $familles
+        ]);
     }
 
     public function print_list()
     {
-        $stocks = DB::table("Article")
-            ->select(DB::raw("quantite_stock as qt, designation_article, code_article, description_famille, seuil_alert, seuil_critique"))
-            ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
-            ->paginate();
+        if ( isset($_GET['id_famille']) || isset($_GET['quantite_min']) || isset($_GET['consommable']) || isset($_GET['date_deb'])) {
+            $sql = "SELECT *, article.quantite_stock as qt FROM article";
+            $sql .= " LEFT JOIN famillearticle ON famillearticle.id_famille = article.id_famille WHERE article.supprime = false";
+
+            if ($_GET['id_famille'] != "*") {
+                $sql .= " AND article.id_famille = " . $_GET['id_famille'];
+            }
+
+            if ($_GET['consommable'] != "*") {
+
+                if ($_GET['consommable'] != "0")
+                    $sql .= " AND article.consommable = true";
+                else
+                    $sql .= " AND article.consommable = false";
+            }
+
+            if ($_GET['quantite_min'] != null ) {
+
+                if ($_GET['quantite_max'] == null )
+                    $sql .= " AND article.quantite_stock = " . $_GET['quantite_min'];
+                else
+                    $sql .= " AND article.quantite_stock BETWEEN " . $_GET['quantite_min'] . " AND " . $_GET['quantite_max'];
+            }
+
+            if ($_GET['date_deb'] != null ) {
+
+                if ($_GET['date_fin'] == null )
+                    $sql .= " AND date_format(article.created_at, '%d %m %Y') = date_format('" . $_GET['date_deb'] . "', '%d %m %Y')";
+                else
+                    $sql .= " AND date_format(article.created_at, '%d %m %Y') BETWEEN date_format('" . $_GET['date_deb'] . "', '%d %m %Y') AND date_format('" . $_GET['date_fin'] . "', '%d %m %Y')";
+            }
+            // dd($sql);
+
+            $stocks = DB::select($sql);
+
+        } else {
+            $stocks = DB::table("Article")
+                ->select('*', 'article.quantite_stock as qt')
+                ->leftJoin("FamilleArticle", "FamilleArticle.id_famille", "=", "Article.id_famille")
+                ->where('article.supprime', false)
+                ->get();
+        }
 
         try
         {

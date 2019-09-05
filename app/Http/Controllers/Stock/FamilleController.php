@@ -34,4 +34,18 @@ class FamilleController extends Controller
 
         return redirect('/stock/famille/list')->with("message", "La nouvelle famille a été bien enregistrée !") ;
     }
+
+    public function modif_famille(Request $req, string $id_famille)
+    {
+        $postData = $req->post();
+
+        if ($famille = FamilleArticle::find($id_famille)) {
+            $creat_update_message = "La famille {$famille->designation_famille} a été mise à jour !";
+        }
+        $famille->description_famille = $postData['famille'];
+        if ($famille->save())
+        {
+            return redirect('/stock/famille/list')->with(['message' => $creat_update_message]);
+        }
+    }
 }

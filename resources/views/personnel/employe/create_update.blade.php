@@ -214,7 +214,6 @@ CREATION D'UN EMPLOYE
                                                     selected
                                                     @endif
                                                     >Divorcé(e)</option>
-
                                             </select>
 
                                         </div>
@@ -255,7 +254,6 @@ CREATION D'UN EMPLOYE
                                                     selected
                                                     @endif
                                                     >Passport</option>
-
                                             </select>
 
                                         </div>
@@ -350,11 +348,13 @@ CREATION D'UN EMPLOYE
                                 </h3>
                                 <div class="content-box-wrapper">
                                     @php($monDossier = null)
-                                    @foreach($dossiers as $dossier)
-                                        @if(isset($employe) && $employe->id_dossier==$dossier->id_dossier)
-                                            @php($monDossier = $dossier)
-                                        @endif
-                                    @endforeach 
+                                    @if (isset($dossiers))
+                                        @foreach($dossiers as $dossier)
+                                            @if(isset($employe) && $employe->id_dossier==$dossier->id_dossier)
+                                                @php($monDossier = $dossier)
+                                            @endif
+                                        @endforeach 
+                                    @endif
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">PHOTO :</label>
                                         <div class="col-md-4">

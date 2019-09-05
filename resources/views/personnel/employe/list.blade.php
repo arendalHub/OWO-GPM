@@ -208,11 +208,13 @@
                                                 <table class="table table-striped table-bordered">
                                                     <tbody>
                                                         @php($monDossier = null)
-                                                        @foreach($dossiers as $dossier)
-                                                            @if($employe->id_dossier==$dossier->id_dossier)
-                                                                @php($monDossier = $dossier)
-                                                            @endif
-                                                        @endforeach 
+                                                        @if (isset($dossiers))
+                                                            @foreach($dossiers as $dossier)
+                                                                @if($employe->id_dossier==$dossier->id_dossier)
+                                                                    @php($monDossier = $dossier)
+                                                                @endif
+                                                            @endforeach 
+                                                        @endif
                                                     <tr>
                                                         <td colspan="2">N° DOSSIER: 
                                                             <b>{{$monDossier->num_dossier}}</b>

@@ -99,7 +99,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $total=0; ?>
+                        <?php $total=0; $total_ligne=0; ?>
                         @if($articles != null && count($articles) > 0)
                             @foreach($articles as $article)
                                 <tr>
@@ -113,7 +113,8 @@
                                         {{$article->qtt}}
                                     </td>
                                     <td style="width: unset;">
-                                        <td>{{$article->prix * $article->qtt}}</td>
+                                        <?php $total_ligne = $article->prix * $article->qtt; ?>
+                                        {{$total_ligne}}
                                         <?php $total=$total+$article->prix * $article->qtt; ?>
                                     </td>
                                 </tr>
